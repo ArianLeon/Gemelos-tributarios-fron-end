@@ -85,8 +85,6 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
    ============================================================ */
 .brand{display:flex;align-items:center;gap:12px;}
 .brand-mark{flex-shrink:0;}
-/* El SVG del logo trae stroke/fill "naranja" fijos en el HTML (#F17A47);
-   se pisan aquí para que el logo respete la paleta azul actual sin tocar el HTML. */
 .brand-mark rect{stroke:var(--orange-500);}
 .brand-mark circle{fill:var(--orange-500);}
 .brand-name{font-family:var(--font-display);font-weight:700;font-size:17px;color:var(--text-inverse);line-height:1.1;}
@@ -459,6 +457,13 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
   aspect-ratio:16/10;background:linear-gradient(135deg,var(--navy-900),var(--navy-950));
   position:relative;display:flex;align-items:center;justify-content:center;
 }
+.video-thumb video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  background:#000;
+}
 .video-thumb .play{
   width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.16);
   border:1.5px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;color:#fff;
@@ -610,8 +615,6 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
 
 /* ============================================================
    Landing — sección "Planes y servicios"
-   (antes sin estilos: el texto heredaba el color claro de .landing
-   sobre tarjetas blancas y quedaba casi invisible)
    ============================================================ */
 .landing-plans{
   padding:70px 6vw 10px;

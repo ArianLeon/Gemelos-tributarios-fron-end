@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aprender — Gemelo Tributario</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="brand">
+        <svg class="brand-mark" width="34" height="34" viewBox="0 0 40 40" fill="none">
+          <rect x="4" y="7" width="20" height="20" rx="6" stroke="#F17A47" stroke-width="2.2"/>
+          <rect x="16" y="13" width="20" height="20" rx="6" fill="#0A1628" stroke="#F17A47" stroke-width="2.2"/>
+          <circle cx="26" cy="23" r="2" fill="#F17A47"/>
+        </svg>
+        <div class="brand-name">Gemelo<br>Tributario</div>
+      </div>
+      <div class="regime-pill">
+        <div><span class="label">Régimen actual</span><span class="value">RIMPE Emprendedor</span></div>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F17A47" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+    </div>
+
+    <nav class="nav-list">
+      <a href="dashboard.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+        Inicio
+      </a>
+      <a href="calculadora.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h1M12 11h1M16 11h1M8 15h1M12 15h1M16 15h1M8 19h1M12 19h1"/></svg>
+        Calculadora
+      </a>
+      <a href="recordatorios.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0112 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 21a2 2 0 004 0"/></svg>
+        Recordatorios
+      </a>
+      <a href="aprender.html" class="nav-item active">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5.5A2.5 2.5 0 015.5 3H12v18H5.5A2.5 2.5 0 013 18.5v-13z"/><path d="M21 5.5A2.5 2.5 0 0018.5 3H12v18h6.5a2.5 2.5 0 002.5-2.5v-13z"/></svg>
+        Aprender
+      </a>
+      <a href="chat.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.4 8.4 0 01-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.4 8.4 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+        Gemelo Chat
+      </a>
+      <a href="perfil.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+        Perfil
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <span class="status-dot"></span>
+      <p>Gemelo Tributario<br><strong>disponible 24/7</strong></p>
+    </div>
+  </aside>
+
+  <header class="topbar-mobile">
+    <div class="brand">
+      <svg class="brand-mark" width="30" height="30" viewBox="0 0 40 40" fill="none">
+        <rect x="4" y="7" width="20" height="20" rx="6" stroke="#F17A47" stroke-width="2.2"/>
+        <rect x="16" y="13" width="20" height="20" rx="6" fill="#0A1628" stroke="#F17A47" stroke-width="2.2"/>
+        <circle cx="26" cy="23" r="2" fill="#F17A47"/>
+      </svg>
+      <div class="brand-name">Gemelo Tributario</div>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="page-head">
+      <div>
+        <span class="eyebrow">Aprender</span>
+        <h1>Guías y preguntas frecuentes</h1>
+        <p class="subtitle">Contenido pensado para emprendedores: lenguaje simple, sin tecnicismos innecesarios.</p>
+      </div>
+    </div>
+
+    <div class="category-row">
+      <button class="category-chip active" data-categoria="todas">Todas</button>
+      <button class="category-chip" data-categoria="iva">IVA</button>
+      <button class="category-chip" data-categoria="renta">Renta</button>
+      <button class="category-chip" data-categoria="rimpe">RIMPE</button>
+      <button class="category-chip" data-categoria="facturacion">Facturación</button>
+    </div>
+
+    <h3 style="font-size:14px;margin-bottom:14px;color:var(--text-700);">Videos recomendados</h3>
+    <div class="video-grid">
+      <div class="card video-card">
+        <div class="video-thumb">
+          <div class="play"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+          <span class="duration">3:45</span>
+        </div>
+        <div class="video-info">
+          <span>RIMPE</span>
+          <h4>¿Qué es el RIMPE y cómo funciona?</h4>
+        </div>
+      </div>
+      <div class="card video-card">
+        <div class="video-thumb">
+          <div class="play"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+          <span class="duration">4:20</span>
+        </div>
+        <div class="video-info">
+          <span>Facturación</span>
+          <h4>Cómo emitir una factura correctamente</h4>
+        </div>
+      </div>
+      <div class="card video-card">
+        <div class="video-thumb">
+          <div class="play"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+          <span class="duration">5:10</span>
+        </div>
+        <div class="video-info">
+          <span>IVA</span>
+          <h4>Todo sobre el IVA en Ecuador</h4>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size:14px;margin-bottom:14px;color:var(--text-700);">Preguntas frecuentes</h3>
+    <div class="faq-list">
+
+      <div class="card faq-item" data-categoria="iva">
+        <button class="faq-question">
+          <div><h4>¿Qué es el IVA?</h4></div>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          El Impuesto al Valor Agregado (IVA) grava el valor de la transferencia de bienes y la prestación de servicios. La tarifa general vigente es del 15%, aplicada sobre el precio de venta antes de impuestos.
+          <div class="norm-tag mt-16">Art. 52 LRTI</div>
+        </div></div>
+      </div>
+
+      <div class="card faq-item" data-categoria="iva">
+        <button class="faq-question">
+          <div><h4>¿Cuándo debo declarar IVA?</h4></div>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          Debes declarar el IVA mensualmente si estás obligado a llevar contabilidad o si tus ingresos anuales superan los $300.000. La fecha límite se define según el noveno dígito de tu RUC.
+          <div class="norm-tag mt-16">Art. 67 LRTI</div>
+        </div></div>
+      </div>
+
+      <div class="card faq-item" data-categoria="rimpe">
+        <button class="faq-question">
+          <div><h4>¿Qué es el RIMPE?</h4></div>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          El RIMPE es el Régimen Simplificado para Emprendedores y Negocios Populares. Es un régimen opcional que busca formalizar y facilitar el cumplimiento tributario de los negocios pequeños.
+          <div class="norm-tag mt-16">Res. NAC-DGERCGC22-00000024</div>
+        </div></div>
+      </div>
+
+      <div class="card faq-item" data-categoria="renta">
+        <button class="faq-question">
+          <div><h4>¿Cómo se calcula el Impuesto a la Renta?</h4></div>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          Se calcula aplicando una tabla progresiva a tu base imponible anual (ingresos menos gastos deducibles). A mayor base imponible, mayor es el porcentaje aplicado por tramo.
+          <div class="norm-tag mt-16">Art. 36 LRTI</div>
+        </div></div>
+      </div>
+
+      <div class="card faq-item" data-categoria="facturacion">
+        <button class="faq-question">
+          <div><h4>¿Qué comprobantes debo emitir?</h4></div>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          Toda venta de bienes o prestación de servicios debe respaldarse con un comprobante autorizado por el SRI, actualmente mediante facturación electrónica en la mayoría de los casos.
+          <div class="norm-tag mt-16">Reglamento de Comprobantes de Venta</div>
+        </div></div>
+      </div>
+
+      <div class="card faq-item" data-categoria="facturacion">
+        <button class="faq-question">
+          <div><h4>¿Qué pasa si declaro tarde?</h4></div>
+          <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          Se genera un interés por mora más una multa calculada como porcentaje del impuesto causado, incluso si el valor a pagar es cero.
+          <div class="norm-tag mt-16">Art. 100 LRTI</div>
+        </div></div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<nav class="bottom-nav">
+  <a href="dashboard.html">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+    Inicio
+  </a>
+  <a href="calculadora.html">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h1M12 11h1M16 11h1"/></svg>
+    Calc.
+  </a>
+  <a href="recordatorios.html">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0112 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 21a2 2 0 004 0"/></svg>
+    Fechas
+  </a>
+  <a href="aprender.html" class="active">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5.5A2.5 2.5 0 015.5 3H12v18H5.5A2.5 2.5 0 013 18.5v-13z"/><path d="M21 5.5A2.5 2.5 0 0018.5 3H12v18h6.5a2.5 2.5 0 002.5-2.5v-13z"/></svg>
+    Aprender
+  </a>
+  <a href="chat.html">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.4 8.4 0 01-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.4 8.4 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+    Chat
+  </a>
+  <a href="perfil.html">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+    Perfil
+  </a>
+</nav>
+
+<script src="js/main.js"></script>
+<script src="js/aprender.js"></script>
+</body>
+</html>

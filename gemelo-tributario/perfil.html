@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perfil — Gemelo Tributario</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="brand">
+        <svg class="brand-mark" width="34" height="34" viewBox="0 0 40 40" fill="none">
+          <rect x="4" y="7" width="20" height="20" rx="6" stroke="#F17A47" stroke-width="2.2"/>
+          <rect x="16" y="13" width="20" height="20" rx="6" fill="#0A1628" stroke="#F17A47" stroke-width="2.2"/>
+          <circle cx="26" cy="23" r="2" fill="#F17A47"/>
+        </svg>
+        <div class="brand-name">Gemelo<br>Tributario</div>
+      </div>
+      <div class="regime-pill">
+        <div><span class="label">Régimen actual</span><span class="value" id="sidebar-regimen">RIMPE Emprendedor</span></div>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F17A47" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+    </div>
+
+    <nav class="nav-list">
+      <a href="dashboard.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+        Inicio
+      </a>
+      <a href="calculadora.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h1M12 11h1M16 11h1M8 15h1M12 15h1M16 15h1M8 19h1M12 19h1"/></svg>
+        Calculadora
+      </a>
+      <a href="recordatorios.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0112 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 21a2 2 0 004 0"/></svg>
+        Recordatorios
+      </a>
+      <a href="aprender.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5.5A2.5 2.5 0 015.5 3H12v18H5.5A2.5 2.5 0 013 18.5v-13z"/><path d="M21 5.5A2.5 2.5 0 0018.5 3H12v18h6.5a2.5 2.5 0 002.5-2.5v-13z"/></svg>
+        Aprender
+      </a>
+      <a href="chat.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.4 8.4 0 01-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.4 8.4 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+        Gemelo Chat
+      </a>
+      <a href="perfil.html" class="nav-item active">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+        Perfil
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <span class="status-dot"></span>
+      <p>Gemelo Tributario<br><strong>disponible 24/7</strong></p>
+    </div>
+  </aside>
+
+  <header class="topbar-mobile">
+    <div class="brand">
+      <svg class="brand-mark" width="30" height="30" viewBox="0 0 40 40" fill="none">
+        <rect x="4" y="7" width="20" height="20" rx="6" stroke="#F17A47" stroke-width="2.2"/>
+        <rect x="16" y="13" width="20" height="20" rx="6" fill="#0A1628" stroke="#F17A47" stroke-width="2.2"/>
+        <circle cx="26" cy="23" r="2" fill="#F17A47"/>
+      </svg>
+      <div class="brand-name">Gemelo Tributario</div>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="page-head">
+      <div>
+        <span class="eyebrow">Perfil</span>
+        <h1>Tu cuenta</h1>
+        <p class="subtitle">Gestiona tus datos, régimen tributario y preferencias de notificación.</p>
+      </div>
+    </div>
+
+    <div class="grid grid-2" style="align-items:start;">
+
+      <div class="card card-pad">
+        <div class="profile-head">
+          <div class="avatar-lg" id="avatar-iniciales">HL</div>
+          <div>
+            <h2 id="perfil-nombre-display">Heidy Landi</h2>
+            <p id="perfil-regimen-display">RIMPE Emprendedor</p>
+          </div>
+        </div>
+
+        <form id="form-perfil">
+          <div class="field">
+            <label for="perfil-nombre">Nombre completo</label>
+            <input type="text" id="perfil-nombre" class="input" placeholder="Tu nombre">
+          </div>
+          <div class="field">
+            <label for="perfil-negocio">Nombre del negocio</label>
+            <input type="text" id="perfil-negocio" class="input" placeholder="Nombre de tu emprendimiento">
+          </div>
+          <div class="field">
+            <label for="perfil-regimen">Régimen tributario</label>
+            <select id="perfil-regimen" class="select">
+              <option value="rimpe_emprendedor">RIMPE Emprendedor</option>
+              <option value="rimpe_negocio_popular">RIMPE Negocio Popular</option>
+              <option value="general">Régimen General</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block mt-16">Guardar cambios</button>
+        </form>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div class="card card-pad">
+          <h3 style="font-size:14px;margin-bottom:6px;">Preferencias</h3>
+          <p class="text-muted" style="font-size:12.5px;margin-bottom:6px;">Personaliza cómo te acompaña Gemelo Tributario.</p>
+
+          <div class="toggle-row">
+            <div><h4>Recordatorios por correo</h4><p>Recibe un aviso antes de cada fecha límite.</p></div>
+            <label class="switch"><input type="checkbox" data-pref="email" checked><span class="track"><span class="thumb"></span></span></label>
+          </div>
+          <div class="toggle-row">
+            <div><h4>Alertas de cambios normativos</h4><p>Entérate cuando el SRI actualice una resolución.</p></div>
+            <label class="switch"><input type="checkbox" data-pref="normativa" checked><span class="track"><span class="thumb"></span></span></label>
+          </div>
+          <div class="toggle-row">
+            <div><h4>Lenguaje simple</h4><p>Muestra explicaciones sin tecnicismos contables.</p></div>
+            <label class="switch"><input type="checkbox" data-pref="lenguaje" checked><span class="track"><span class="thumb"></span></span></label>
+          </div>
+          <div class="toggle-row">
+            <div><h4>Consejos semanales</h4><p>Un tip tributario cada semana en tu correo.</p></div>
+            <label class="switch"><input type="checkbox" data-pref="tips"><span class="track"><span class="thumb"></span></span></label>
+          </div>
+        </div>
+
+        <div class="disclaimer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></svg>
+          <span>Los datos de este perfil se guardan solo en tu navegador (localStorage), ya que el prototipo no cuenta con una base de datos real.</span>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<nav class="bottom-nav">
+  <a href="dashboard.html">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+    Inicio
+  </a>
+  <a href="calculadora.html">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h1M12 11h1M16 11h1"/></svg>
+    Calc.
+  </a>
+  <a href="recordatorios.html">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0112 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 21a2 2 0 004 0"/></svg>
+    Fechas
+  </a>
+  <a href="aprender.html">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5.5A2.5 2.5 0 015.5 3H12v18H5.5A2.5 2.5 0 013 18.5v-13z"/><path d="M21 5.5A2.5 2.5 0 0018.5 3H12v18h6.5a2.5 2.5 0 002.5-2.5v-13z"/></svg>
+    Aprender
+  </a>
+  <a href="chat.html">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.4 8.4 0 01-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.4 8.4 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+    Chat
+  </a>
+  <a href="perfil.html" class="active">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+    Perfil
+  </a>
+</nav>
+
+<script src="js/main.js"></script>
+<script src="js/perfil.js"></script>
+</body>
+</html>

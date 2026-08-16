@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de impuestos — Gemelo Tributario</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="brand">
+        <svg class="brand-mark" width="34" height="34" viewBox="0 0 40 40" fill="none">
+          <rect x="4" y="7" width="20" height="20" rx="6" stroke="#F17A47" stroke-width="2.2"/>
+          <rect x="16" y="13" width="20" height="20" rx="6" fill="#0A1628" stroke="#F17A47" stroke-width="2.2"/>
+          <circle cx="26" cy="23" r="2" fill="#F17A47"/>
+        </svg>
+        <div class="brand-name">Gemelo<br>Tributario</div>
+      </div>
+      <div class="regime-pill">
+        <div><span class="label">Régimen actual</span><span class="value">RIMPE Emprendedor</span></div>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F17A47" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+    </div>
+
+    <nav class="nav-list">
+      <a href="dashboard.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+        Inicio
+      </a>
+      <a href="calculadora.html" class="nav-item active">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h1M12 11h1M16 11h1M8 15h1M12 15h1M16 15h1M8 19h1M12 19h1"/></svg>
+        Calculadora
+      </a>
+      <a href="recordatorios.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0112 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 21a2 2 0 004 0"/></svg>
+        Recordatorios
+      </a>
+      <a href="aprender.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5.5A2.5 2.5 0 015.5 3H12v18H5.5A2.5 2.5 0 013 18.5v-13z"/><path d="M21 5.5A2.5 2.5 0 0018.5 3H12v18h6.5a2.5 2.5 0 002.5-2.5v-13z"/></svg>
+        Aprender
+      </a>
+      <a href="chat.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.4 8.4 0 01-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.4 8.4 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+        Gemelo Chat
+      </a>
+      <a href="perfil.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+        Perfil
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <span class="status-dot"></span>
+      <p>Gemelo Tributario<br><strong>disponible 24/7</strong></p>
+    </div>
+  </aside>
+
+  <header class="topbar-mobile">
+    <div class="brand">
+      <svg class="brand-mark" width="30" height="30" viewBox="0 0 40 40" fill="none">
+        <rect x="4" y="7" width="20" height="20" rx="6" stroke="#F17A47" stroke-width="2.2"/>
+        <rect x="16" y="13" width="20" height="20" rx="6" fill="#0A1628" stroke="#F17A47" stroke-width="2.2"/>
+        <circle cx="26" cy="23" r="2" fill="#F17A47"/>
+      </svg>
+      <div class="brand-name">Gemelo Tributario</div>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="page-head">
+      <div>
+        <span class="eyebrow">Calculadora</span>
+        <h1>Calculadora de impuestos</h1>
+        <p class="subtitle">Simula IVA, Renta y Retenciones en la fuente según tu régimen tributario.</p>
+      </div>
+    </div>
+
+    <div class="grid grid-2" style="align-items:start;">
+
+      <div class="card card-pad">
+
+        <div class="step-label"><span class="n">1</span>Selecciona tu régimen</div>
+        <div class="field" style="margin-bottom:0;">
+          <select id="regimen" class="select">
+            <option value="rimpe_emprendedor" selected>RIMPE Emprendedor</option>
+            <option value="rimpe_negocio_popular">RIMPE Negocio Popular</option>
+            <option value="general">Régimen General</option>
+          </select>
+          <p class="hint" id="nota-regimen"></p>
+        </div>
+
+        <div class="step-label"><span class="n">2</span>¿Qué impuesto deseas calcular?</div>
+        <div class="segmented" id="segmented-impuesto">
+          <button type="button" class="active" data-impuesto="iva">IVA</button>
+          <button type="button" data-impuesto="renta">Renta</button>
+          <button type="button" data-impuesto="retenciones">Retenciones</button>
+        </div>
+
+        <div class="step-label"><span class="n">3</span>Ingresa tus datos</div>
+
+        <div id="panel-iva" class="panel-impuesto">
+          <div class="field">
+            <label for="iva-ingresos">Ingresos gravados (sin IVA)</label>
+            <div class="input-prefix"><span>$</span><input type="number" min="0" step="0.01" id="iva-ingresos" class="input" placeholder="0.00" value="5000"></div>
+          </div>
+          <div class="field">
+            <label for="iva-compras">Compras gravadas (con derecho a crédito)</label>
+            <div class="input-prefix"><span>$</span><input type="number" min="0" step="0.01" id="iva-compras" class="input" placeholder="0.00" value="2800"></div>
+          </div>
+        </div>
+
+        <div id="panel-renta" class="panel-impuesto hidden">
+          <div class="field">
+            <label for="renta-ingresos">Ingresos brutos anuales</label>
+            <div class="input-prefix"><span>$</span><input type="number" min="0" step="0.01" id="renta-ingresos" class="input" placeholder="0.00" value="28000"></div>
+          </div>
+          <div class="field">
+            <label for="renta-gastos">Gastos deducibles anuales</label>
+            <div class="input-prefix"><span>$</span><input type="number" min="0" step="0.01" id="renta-gastos" class="input" placeholder="0.00" value="9000"></div>
+            <p class="hint">Incluye costos y gastos relacionados con la actividad económica.</p>
+          </div>
+        </div>
+
+        <div id="panel-retenciones" class="panel-impuesto hidden">
+          <div class="field">
+            <label for="tipo-retencion">Tipo de retención</label>
+            <select id="tipo-retencion" class="select">
+              <option value="bienes">Compra de bienes (1.75%)</option>
+              <option value="servicios">Servicios no profesionales (2%)</option>
+              <option value="profesionales">Honorarios profesionales (10%)</option>
+              <option value="arriendo">Arrendamiento de inmuebles (8%)</option>
+              <option value="publicidad">Publicidad y comunicación (1%)</option>
+              <option value="transporte">Transporte de carga/pasajeros (1%)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="retencion-base">Valor de la factura (base imponible)</label>
+            <div class="input-prefix"><span>$</span><input type="number" min="0" step="0.01" id="retencion-base" class="input" placeholder="0.00" value="450"></div>
+            <p class="hint">Porcentaje a aplicar: <strong id="pct-retencion-preview">1.75%</strong></p>
+          </div>
+        </div>
+
+        <button id="btn-calcular" class="btn btn-primary btn-block mt-16">Calcular</button>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div class="card card-pad">
+          <h3 style="font-size:14px;margin-bottom:14px;">Resultado</h3>
+          <div class="result-box" id="resultado-box">
+            <div class="result-empty">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h3M13 11h3M8 15h3M13 15h3"/></svg>
+              <p>Ingresa tus datos y presiona <strong>Calcular</strong> para ver el resultado referencial.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-pad">
+          <h3 style="font-size:13.5px;margin-bottom:4px;">Tabla progresiva de Renta (referencial)</h3>
+          <p class="text-muted" style="font-size:12px;">Se resalta el tramo aplicado luego de calcular.</p>
+          <table class="bracket-table">
+            <thead><tr><th>Base imponible anual</th><th>Tarifa</th></tr></thead>
+            <tbody id="tabla-renta-body"></tbody>
+          </table>
+        </div>
+
+        <div class="disclaimer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></svg>
+          <span>Este cálculo es referencial y educativo. Verifica siempre la tabla vigente en sri.gob.ec o con un profesional autorizado antes de declarar.</span>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<nav class="bottom-nav">
+  <a href="dashboard.html">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+    Inicio
+  </a>
+  <a href="calculadora.html" class="active">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h1M12 11h1M16 11h1"/></svg>
+    Calc.
+  </a>
+  <a href="recordatorios.html">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0112 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 21a2 2 0 004 0"/></svg>
+    Fechas
+  </a>
+  <a href="aprender.html">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5.5A2.5 2.5 0 015.5 3H12v18H5.5A2.5 2.5 0 013 18.5v-13z"/><path d="M21 5.5A2.5 2.5 0 0018.5 3H12v18h6.5a2.5 2.5 0 002.5-2.5v-13z"/></svg>
+    Aprender
+  </a>
+  <a href="chat.html">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.4 8.4 0 01-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.4 8.4 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+    Chat
+  </a>
+  <a href="perfil.html">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+    Perfil
+  </a>
+</nav>
+
+<script src="js/main.js"></script>
+<script src="js/calculadora.js"></script>
+</body>
+</html>

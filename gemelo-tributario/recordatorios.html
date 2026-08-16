@@ -10,13 +10,14 @@
 
 <div class="app-shell">
 
-    <aside class="sidebar">
+  <!-- ========== SIDEBAR (sin cambios) ========== -->
+  <aside class="sidebar">
     <div class="sidebar-header">
       <div class="brand">
         <svg class="brand-mark" width="34" height="34" viewBox="0 0 40 40" fill="none">
-          <rect x="4" y="7" width="20" height="20" rx="6" stroke="#F17A47" stroke-width="2.2"/>
-          <rect x="16" y="13" width="20" height="20" rx="6" fill="#0A1628" stroke="#F17A47" stroke-width="2.2"/>
-          <circle cx="26" cy="23" r="2" fill="#F17A47"/>
+          <rect x="4" y="7" width="20" height="20" rx="6" stroke="#2323F5" stroke-width="2.2"/>
+          <rect x="16" y="13" width="20" height="20" rx="6" fill="#0A1628" stroke="#2323F5" stroke-width="2.2"/>
+          <circle cx="26" cy="23" r="2" fill="#2323F5"/>
         </svg>
         <div class="brand-name">Gemelo<br>Tributario</div>
       </div>
@@ -29,7 +30,7 @@
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18v13H3z"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
         </div>
         <div class="regime-card-text">
-          <span class="value" id="sidebar-regimen">RIMPE Emprendedor</span>
+          <span class="value">RIMPE Emprendedor</span>
         </div>
         <svg class="chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg>
       </div>
@@ -65,16 +66,16 @@
 
     <div class="sidebar-mascot">
       <svg width="56" height="56" viewBox="0 0 80 80" fill="none">
-        <line x1="40" y1="14" x2="40" y2="5" stroke="#F17A47" stroke-width="3" stroke-linecap="round"/>
-        <circle cx="40" cy="4" r="3.4" fill="#F17A47"/>
+        <line x1="40" y1="14" x2="40" y2="5" stroke="#2323F5" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="40" cy="4" r="3.4" fill="#2323F5"/>
         <rect x="6" y="36" width="10" height="22" rx="5" fill="rgba(255,255,255,.1)" stroke="#5B5BFA" stroke-width="2"/>
-        <path d="M64 44q10-3 8-15" stroke="#F17A47" stroke-width="4" stroke-linecap="round" fill="none"/>
-        <circle cx="72" cy="27" r="5" fill="#F17A47"/>
+        <path d="M64 44q10-3 8-15" stroke="#2323F5" stroke-width="4" stroke-linecap="round" fill="none"/>
+        <circle cx="72" cy="27" r="5" fill="#2323F5"/>
         <rect x="14" y="14" width="52" height="48" rx="18" fill="rgba(255,255,255,.08)" stroke="#5B5BFA" stroke-width="2.4"/>
         <rect x="22" y="24" width="36" height="26" rx="12" fill="#0A1628"/>
         <circle cx="33" cy="37" r="3.4" fill="#5B5BFA"/>
         <circle cx="47" cy="37" r="3.4" fill="#5B5BFA"/>
-        <path d="M33 44q7 4 14 0" stroke="#F17A47" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <path d="M33 44q7 4 14 0" stroke="#2323F5" stroke-width="2" stroke-linecap="round" fill="none"/>
         <rect x="24" y="62" width="8" height="7" rx="3" fill="rgba(255,255,255,.15)"/>
         <rect x="48" y="62" width="8" height="7" rx="3" fill="rgba(255,255,255,.15)"/>
       </svg>
@@ -84,133 +85,380 @@
     </div>
   </aside>
 
+  <!-- ========== TOPBAR MÓVIL ========== -->
   <header class="topbar-mobile">
     <div class="brand">
       <svg class="brand-mark" width="30" height="30" viewBox="0 0 40 40" fill="none">
-        <rect x="4" y="7" width="20" height="20" rx="6" stroke="#F17A47" stroke-width="2.2"/>
-        <rect x="16" y="13" width="20" height="20" rx="6" fill="#0A1628" stroke="#F17A47" stroke-width="2.2"/>
-        <circle cx="26" cy="23" r="2" fill="#F17A47"/>
+        <rect x="4" y="7" width="20" height="20" rx="6" stroke="#2323F5" stroke-width="2.2"/>
+        <rect x="16" y="13" width="20" height="20" rx="6" fill="#0A1628" stroke="#2323F5" stroke-width="2.2"/>
+        <circle cx="26" cy="23" r="2" fill="#2323F5"/>
       </svg>
       <div class="brand-name">Gemelo Tributario</div>
     </div>
+    <div class="head-actions">
+      <button class="icon-btn" id="btnNotifMobile" aria-label="Notificaciones">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0112 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 21a2 2 0 004 0"/></svg>
+        <span class="icon-btn-badge">2</span>
+      </button>
+    </div>
   </header>
 
+  <!-- ========== CONTENIDO PRINCIPAL ========== -->
   <main class="main">
+
+    <!-- Encabezado -->
     <div class="page-head">
-      <div>
-        <span class="eyebrow">Recordatorios</span>
-        <h1>Fechas clave y obligaciones</h1>
-        <p class="subtitle">Todo lo que necesitas declarar, organizado según tu régimen tributario.</p>
-      </div>
-    </div>
-
-    <div class="tabs">
-      <button class="tab active" data-target="tab-proximos">Próximos</button>
-      <button class="tab" data-target="tab-historial">Historial</button>
-    </div>
-
-    <div id="tab-proximos" class="tab-panel">
-
-      <div class="empty-state">
-        <div class="check">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      <div style="display:flex; align-items:center; gap:16px;">
+        <div class="action-icon icon-purple" style="width:52px; height:52px; border-radius:14px;">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/><path d="M9 15l2 2 4-4"/></svg>
         </div>
         <div>
-          <strong>¡Todo al día!</strong>
-          <p>No tienes obligaciones vencidas por el momento.</p>
+          <h1>Fechas clave y obligaciones</h1>
+          <p class="subtitle">Todo lo que necesitas declarar, organizado según tu régimen tributario.</p>
         </div>
       </div>
 
-      <div class="reminder-list">
-
-        <div class="card reminder-item urgent">
-          <div class="date-block"><span class="mon">May</span><span class="day">10</span></div>
-          <div class="reminder-body">
-            <h4>Declaración de IVA Mensual</h4>
-            <p>Fecha límite: 10 de mayo · según noveno dígito del RUC</p>
+      <div class="head-actions">
+        <button class="icon-btn" id="btnNotif" aria-label="Notificaciones">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0112 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 21a2 2 0 004 0"/></svg>
+          <span class="icon-btn-badge">2</span>
+        </button>
+        <div class="dropdown-panel notif-panel" id="notifPanel">
+          <div class="notif-head">Notificaciones</div>
+          <div class="notif-item">
+            <strong>Tu IVA vence pronto</strong>
+            <span>Faltan 3 días para el 10 de mayo</span>
           </div>
-          <button class="btn btn-outline btn-sm btn-agregar-calendario" data-id="iva-mensual">Agregar a mi calendario</button>
+          <div class="notif-item">
+            <strong>Nuevo contenido en Aprender</strong>
+            <span>Video sobre el Anexo Transaccional</span>
+          </div>
         </div>
 
-        <div class="card reminder-item">
-          <div class="date-block"><span class="mon">May</span><span class="day">28</span></div>
-          <div class="reminder-body">
-            <h4>Anexo Transaccional Simplificado</h4>
-            <p>Fecha límite: 28 de mayo · aplica si llevas contabilidad</p>
+        <button class="icon-btn" id="btnHelp" aria-label="Ayuda">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.5 9a2.5 2.5 0 015 .5c0 1.5-2 1.7-2.3 3.3"/><line x1="12" y1="17" x2="12" y2="17.1"/></svg>
+        </button>
+
+        <button class="user-chip" id="btnUser">
+          <div class="user-avatar">H</div>
+          <span class="user-name">Heidy</span>
+          <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="dropdown-panel" id="userPanel">
+          <a href="perfil.html">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+            Mi perfil
+          </a>
+          <a href="perfil.html">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.1a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.1a1.7 1.7 0 001.5-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.5 1h.1a2 2 0 110 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg>
+            Configuración
+          </a>
+          <button type="button">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            Cerrar sesión
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Próxima obligación + Resumen rápido ===== -->
+    <div class="grid grid-2" style="margin-bottom:24px; align-items:stretch;">
+      <div class="card next-obligation" style="background:var(--purple-100); border:none;">
+        <div class="ic">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/><path d="M9 15l2 2 4-4"/></svg>
+        </div>
+        <div class="body">
+          <span class="lbl">Tu próxima obligación</span>
+          <h3>Declaración de IVA mensual</h3>
+          <span class="meta">Vence en 3 días · 10 de mayo</span>
+        </div>
+        <button class="btn btn-outline btn-sm" style="background:#fff; flex-shrink:0;">Ver detalle</button>
+      </div>
+
+      <div class="card quick-summary" style="background:var(--purple-100); border:none;">
+        <div>
+          <h4>Resumen rápido</h4>
+          <div class="quick-summary-stat ok">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="8 12 11 15 16 9"/></svg>
+            <span>4 obligaciones próximas</span>
           </div>
-          <button class="btn btn-outline btn-sm btn-agregar-calendario" data-id="ats">Agregar a mi calendario</button>
+          <div class="quick-summary-stat warn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="13"/><line x1="12" y1="16" x2="12" y2="16.1"/></svg>
+            <span>0 vencidas</span>
+          </div>
+        </div>
+        <svg class="deco" width="90" height="90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/><circle cx="16" cy="16" r="4"/><path d="M16 14.5V16l1 1"/></svg>
+      </div>
+    </div>
+
+    <!-- ===== Tabs ===== -->
+    <div class="tabs">
+      <button class="tab active" data-tab="proximas">Próximas</button>
+      <button class="tab" data-tab="historial">Historial</button>
+    </div>
+
+    <!-- ===== Filtro (se superpone sobre la columna derecha) ===== -->
+    <div class="filter-row">
+      <select class="input select filter-select" id="filterEstado">
+        <option value="all">Todas las obligaciones</option>
+        <option value="proxima">Próximas</option>
+        <option value="pendiente">Pendientes</option>
+        <option value="vencida">Vencidas</option>
+      </select>
+    </div>
+
+    <!-- ===== Contenido: lista + columna lateral ===== -->
+    <div class="reminders-layout" style="display:grid; grid-template-columns:1fr 340px; gap:24px; align-items:start;">
+
+      <!-- Lista de obligaciones -->
+      <div>
+        <div class="reminder-list" id="tabProximas">
+
+          <!-- 1. Declaración de IVA mensual -->
+          <div class="card reminder-item urgent b-proxima" data-status="proxima">
+            <div class="date-block">
+              <span class="mon">May</span>
+              <span class="day">10</span>
+            </div>
+            <div class="reminder-type-icon icon-orange">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M14 3v5h5"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+            </div>
+            <div class="reminder-body">
+              <h4>Declaración de IVA Mensual</h4>
+              <p>Fecha límite: 10 de mayo · según noveno dígito del RUC</p>
+              <div style="display:flex; align-items:center; gap:10px; margin-top:6px; flex-wrap:wrap;">
+                <span class="status-tag st-proxima">Próxima</span>
+                <span style="display:inline-flex; align-items:center; gap:4px; font-size:12px; color:var(--text-500);">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+                  Faltan 3 días
+                </span>
+              </div>
+            </div>
+            <div class="reminder-actions">
+              <button class="btn btn-outline btn-sm btn-detalle">Ver detalle</button>
+              <button class="btn btn-outline btn-sm btn-agregar-calendario" data-id="iva-mensual">Agregar a mi calendario</button>
+            </div>
+            <div class="reminder-detail">
+              Debes declarar el IVA de tus ventas y compras del mes anterior a través del formulario correspondiente en el SRI, según el noveno dígito de tu RUC.
+            </div>
+          </div>
+
+          <!-- 2. Anexo Transaccional Simplificado -->
+          <div class="card reminder-item b-pendiente" data-status="pendiente">
+            <div class="date-block">
+              <span class="mon">May</span>
+              <span class="day">28</span>
+            </div>
+            <div class="reminder-type-icon icon-purple">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M14 3v5h5"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+            </div>
+            <div class="reminder-body">
+              <h4>Anexo Transaccional Simplificado</h4>
+              <p>Fecha límite: 28 de mayo · aplica si llevas contabilidad</p>
+              <div style="display:flex; align-items:center; gap:10px; margin-top:6px; flex-wrap:wrap;">
+                <span class="status-tag st-pendiente">Pendiente</span>
+                <span style="display:inline-flex; align-items:center; gap:4px; font-size:12px; color:var(--text-500);">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+                  Faltan 21 días
+                </span>
+              </div>
+            </div>
+            <div class="reminder-actions">
+              <button class="btn btn-outline btn-sm btn-detalle">Ver detalle</button>
+              <button class="btn btn-outline btn-sm btn-agregar-calendario" data-id="ats">Agregar a mi calendario</button>
+            </div>
+            <div class="reminder-detail">
+              El ATS resume tus compras, ventas y retenciones del mes. Aplica si llevas contabilidad obligatoria.
+            </div>
+          </div>
+
+          <!-- 3. Pago de Impuesto a la Renta — Anticipo 1 -->
+          <div class="card reminder-item b-pendiente" data-status="pendiente">
+            <div class="date-block">
+              <span class="mon">Jun</span>
+              <span class="day">10</span>
+            </div>
+            <div class="reminder-type-icon icon-purple">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><circle cx="12" cy="13.5" r="2.5"/></svg>
+            </div>
+            <div class="reminder-body">
+              <h4>Pago de Impuesto a la Renta — Anticipo 1</h4>
+              <p>Fecha límite: 10 de junio</p>
+              <div style="display:flex; align-items:center; gap:10px; margin-top:6px; flex-wrap:wrap;">
+                <span class="status-tag st-pendiente">Pendiente</span>
+                <span style="display:inline-flex; align-items:center; gap:4px; font-size:12px; color:var(--text-500);">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+                  Faltan 34 días
+                </span>
+              </div>
+            </div>
+            <div class="reminder-actions">
+              <button class="btn btn-outline btn-sm btn-detalle">Ver detalle</button>
+              <button class="btn btn-outline btn-sm btn-agregar-calendario" data-id="renta-anticipo1">Agregar a mi calendario</button>
+            </div>
+            <div class="reminder-detail">
+              Primer anticipo del Impuesto a la Renta, calculado sobre la base del ejercicio fiscal anterior.
+            </div>
+          </div>
+
+          <!-- 4. Declaración de Retenciones en la Fuente -->
+          <div class="card reminder-item b-pendiente" data-status="pendiente">
+            <div class="date-block">
+              <span class="mon">Jul</span>
+              <span class="day">15</span>
+            </div>
+            <div class="reminder-type-icon icon-purple">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M14 3v5h5"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
+            </div>
+            <div class="reminder-body">
+              <h4>Declaración de Retenciones en la Fuente</h4>
+              <p>Fecha límite: 15 de julio</p>
+              <div style="display:flex; align-items:center; gap:10px; margin-top:6px; flex-wrap:wrap;">
+                <span class="status-tag st-pendiente">Pendiente</span>
+                <span style="display:inline-flex; align-items:center; gap:4px; font-size:12px; color:var(--text-500);">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+                  Faltan 69 días
+                </span>
+              </div>
+            </div>
+            <div class="reminder-actions">
+              <button class="btn btn-outline btn-sm btn-detalle">Ver detalle</button>
+              <button class="btn btn-outline btn-sm btn-agregar-calendario" data-id="retenciones-julio">Agregar a mi calendario</button>
+            </div>
+            <div class="reminder-detail">
+              Declaración mensual de las retenciones de IVA y Renta que hayas efectuado a tus proveedores.
+            </div>
+          </div>
+
         </div>
 
-        <div class="card reminder-item">
-          <div class="date-block"><span class="mon">Jun</span><span class="day">10</span></div>
-          <div class="reminder-body">
-            <h4>Pago de Impuesto a la Renta — Anticipo 1</h4>
-            <p>Fecha límite: 10 de junio</p>
+        <!-- Historial (vacío por ahora) -->
+        <div class="reminder-list hidden" id="tabHistorial">
+          <div class="card" style="padding:40px 20px; text-align:center; color:var(--text-500); font-size:13.5px;">
+            Aún no tienes obligaciones completadas en tu historial.
           </div>
-          <button class="btn btn-outline btn-sm btn-agregar-calendario" data-id="renta-anticipo1">Agregar a mi calendario</button>
+        </div>
+      </div>
+
+      <!-- Columna lateral -->
+      <div style="display:flex; flex-direction:column; gap:20px;">
+
+        <!-- Calendario mayo 2026 -->
+        <div class="card mini-calendar">
+          <div class="mc-head">
+            <strong>Mayo 2026</strong>
+            <div class="mc-nav">
+              <button aria-label="Mes anterior">‹</button>
+              <button aria-label="Mes siguiente">›</button>
+            </div>
+          </div>
+          <div class="mc-grid">
+            <div class="dow">Lun</div>
+            <div class="dow">Mar</div>
+            <div class="dow">Mié</div>
+            <div class="dow">Jue</div>
+            <div class="dow">Vie</div>
+            <div class="dow">Sáb</div>
+            <div class="dow">Dom</div>
+
+            <div class="day muted">28</div>
+            <div class="day muted">29</div>
+            <div class="day muted">30</div>
+            <div class="day">1</div>
+            <div class="day">2</div>
+            <div class="day">3</div>
+            <div class="day">4</div>
+
+            <div class="day">5</div>
+            <div class="day">6</div>
+            <div class="day">7</div>
+            <div class="day">8</div>
+            <div class="day">9</div>
+            <div class="day today">10</div>
+            <div class="day">11</div>
+
+            <div class="day">12</div>
+            <div class="day">13</div>
+            <div class="day">14</div>
+            <div class="day">15</div>
+            <div class="day">16</div>
+            <div class="day">17</div>
+            <div class="day">18</div>
+
+            <div class="day">19</div>
+            <div class="day">20</div>
+            <div class="day">21</div>
+            <div class="day">22</div>
+            <div class="day">23</div>
+            <div class="day">24</div>
+            <div class="day">25</div>
+
+            <div class="day">26</div>
+            <div class="day">27</div>
+            <div class="day" style="background:var(--orange-100); color:var(--orange-500); font-weight:700;">28</div>
+            <div class="day">29</div>
+            <div class="day">30</div>
+            <div class="day">31</div>
+            <div class="day muted">1</div>
+          </div>
+
+          <div class="mc-legend">
+            <span><i class="c-proxima"></i> Próxima</span>
+            <span><i class="c-pendiente"></i> Pendiente</span>
+            <span><i class="c-completada"></i> Completada</span>
+            <span><i class="c-vencida"></i> Vencida</span>
+          </div>
         </div>
 
-        <div class="card reminder-item">
-          <div class="date-block"><span class="mon">Jul</span><span class="day">15</span></div>
-          <div class="reminder-body">
-            <h4>Declaración de Retenciones en la Fuente</h4>
-            <p>Fecha límite: 15 de julio</p>
+        <!-- ¿Sabías que? -->
+        <div class="recommend-banner">
+          <div class="star">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </svg>
           </div>
-          <button class="btn btn-outline btn-sm btn-agregar-calendario" data-id="retenciones-julio">Agregar a mi calendario</button>
+          <div class="body">
+            <strong>¿Sabías que?</strong>
+            <p>Presentar tus obligaciones a tiempo evita multas e intereses.</p>
+          </div>
+          <a href="#">Más información →</a>
+        </div>
+
+        <!-- Recomendación de Gemelo Tributario -->
+        <div class="recommend-banner" style="background:var(--orange-100); border-color:var(--orange-400);">
+          <div class="star" style="background:#fff; color:var(--orange-500);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+            </svg>
+          </div>
+          <div class="body">
+            <strong style="color:var(--orange-500);">Recomendación de Gemelo Tributario</strong>
+            <p style="color:var(--text-900);">Revisa tus compras y ventas antes de presentar tu declaración de IVA.</p>
+          </div>
+          <a href="calculadora.html" class="btn btn-primary btn-sm">Ir a Calculadora</a>
         </div>
 
       </div>
     </div>
 
-    <div id="tab-historial" class="tab-panel hidden">
-      <div class="reminder-list">
-
-        <div class="card reminder-item">
-          <div class="date-block"><span class="mon">Abr</span><span class="day">10</span></div>
-          <div class="reminder-body">
-            <h4>Declaración de IVA Mensual</h4>
-            <p>Presentada el 8 de abril de 2025</p>
-          </div>
-          <span class="badge-done">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Cumplida
-          </span>
-        </div>
-
-        <div class="card reminder-item">
-          <div class="date-block"><span class="mon">Mar</span><span class="day">28</span></div>
-          <div class="reminder-body">
-            <h4>Anexo Transaccional Simplificado</h4>
-            <p>Presentado el 27 de marzo de 2025</p>
-          </div>
-          <span class="badge-done">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Cumplida
-          </span>
-        </div>
-
-        <div class="card reminder-item">
-          <div class="date-block"><span class="mon">Mar</span><span class="day">10</span></div>
-          <div class="reminder-body">
-            <h4>Declaración de IVA Mensual</h4>
-            <p>Presentada el 9 de marzo de 2025</p>
-          </div>
-          <span class="badge-done">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Cumplida
-          </span>
-        </div>
-
+    <!-- ===== Todo al día ===== -->
+    <div class="empty-state" style="margin-top:24px;">
+      <div class="check">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
+      <div>
+        <strong>¡Todo al día!</strong>
+        <p>No tienes obligaciones vencidas. Sigue así para mantener tus finanzas en orden.</p>
+      </div>
+      <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="var(--green-600)" stroke-width="1.4" style="margin-left:auto; opacity:.5; flex-shrink:0;">
+        <rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v2h6V3"/><polyline points="9 12 11 14 15 10"/>
+      </svg>
     </div>
 
-    <div class="disclaimer mt-24">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></svg>
-      <span>Fechas ilustrativas para este prototipo. "Agregar a mi calendario" solo simula la acción y no crea un evento real.</span>
-    </div>
   </main>
 </div>
 
+<!-- ========== BOTTOM NAV (móvil) ========== -->
 <nav class="bottom-nav">
   <a href="dashboard.html">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>

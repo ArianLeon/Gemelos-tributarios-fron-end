@@ -20,10 +20,20 @@
         </svg>
         <div class="brand-name">Gemelo<br>Tributario</div>
       </div>
-      <div class="regime-pill">
-        <div><span class="label">Régimen actual</span><span class="value" id="sidebar-regimen">RIMPE Emprendedor</span></div>
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F17A47" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg>
+    </div>
+
+    <span class="sidebar-caption">Segmento actual</span>
+    <div class="regime-card" style="cursor:default;">
+      <div class="regime-card-top">
+        <div class="regime-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18v13H3z"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+        </div>
+        <div class="regime-card-text">
+          <span class="value" id="sidebar-regimen">RIMPE Emprendedor</span>
+        </div>
       </div>
+      <span class="regime-status"><span class="dot"></span>Activo</span>
+      <p style="font-size:10px;color:rgba(255,255,255,.4);margin:8px 0 0;" id="regime-updated">Actualizado: hoy</p>
     </div>
 
     <nav class="nav-list">
@@ -53,9 +63,24 @@
       </a>
     </nav>
 
-    <div class="sidebar-footer">
-      <span class="status-dot"></span>
-      <p>Gemelo Tributario<br><strong>disponible 24/7</strong></p>
+    <div class="sidebar-mascot">
+      <svg width="56" height="56" viewBox="0 0 80 80" fill="none">
+        <line x1="40" y1="14" x2="40" y2="5" stroke="#F17A47" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="40" cy="4" r="3.4" fill="#F17A47"/>
+        <rect x="6" y="36" width="10" height="22" rx="5" fill="rgba(255,255,255,.1)" stroke="#5B5BFA" stroke-width="2"/>
+        <path d="M64 44q10-3 8-15" stroke="#F17A47" stroke-width="4" stroke-linecap="round" fill="none"/>
+        <circle cx="72" cy="27" r="5" fill="#F17A47"/>
+        <rect x="14" y="14" width="52" height="48" rx="18" fill="rgba(255,255,255,.08)" stroke="#5B5BFA" stroke-width="2.4"/>
+        <rect x="22" y="24" width="36" height="26" rx="12" fill="#0A1628"/>
+        <circle cx="33" cy="37" r="3.4" fill="#5B5BFA"/>
+        <circle cx="47" cy="37" r="3.4" fill="#5B5BFA"/>
+        <path d="M33 44q7 4 14 0" stroke="#F17A47" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <rect x="24" y="62" width="8" height="7" rx="3" fill="rgba(255,255,255,.15)"/>
+        <rect x="48" y="62" width="8" height="7" rx="3" fill="rgba(255,255,255,.15)"/>
+      </svg>
+      <div class="m-title">Gemelo Tributario</div>
+      <div class="m-sub">Tu asistente tributario inteligente siempre contigo</div>
+      <div class="m-status"><span class="dot"></span>Disponible 24/7</div>
     </div>
   </aside>
 
@@ -75,7 +100,36 @@
       <div>
         <span class="eyebrow">Perfil</span>
         <h1>Tu cuenta</h1>
-        <p class="subtitle">Gestiona tus datos, régimen tributario y preferencias de notificación.</p>
+        <p class="subtitle">Gestiona tus datos, régimen tributario, segmento y preferencias de notificación.</p>
+      </div>
+      <div class="head-actions">
+        <div style="position:relative;">
+          <button type="button" class="icon-btn" data-dropdown-toggle="notif-panel" aria-label="Notificaciones">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0112 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 21a2 2 0 004 0"/></svg>
+            <span class="icon-btn-badge">3</span>
+          </button>
+          <div class="dropdown-panel notif-panel" id="notif-panel">
+            <div class="notif-head">Notificaciones</div>
+            <div class="notif-item"><strong>Declaración de IVA próxima</strong><span>Vence en 3 días · 10 de mayo</span></div>
+            <div class="notif-item"><strong>Nueva guía disponible</strong><span>RIMPE Emprendedor: cambios 2026</span></div>
+            <div class="notif-item"><strong>Consejo semanal</strong><span>Revisa tus comprobantes antes de declarar</span></div>
+          </div>
+        </div>
+        <a href="aprender.html" class="icon-btn" aria-label="Ayuda">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.5 9a2.5 2.5 0 015 .5c0 1.5-2 1.5-2.5 3"/><path d="M12 17h.01"/></svg>
+        </a>
+        <div style="position:relative;">
+          <button type="button" class="user-chip" data-dropdown-toggle="user-panel">
+            <span class="user-avatar" id="topbar-avatar">H</span>
+            <span class="user-name" id="topbar-nombre">Heidy</span>
+            <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="dropdown-panel" id="user-panel">
+            <a href="dashboard.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>Inicio</a>
+            <a href="recordatorios.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0112 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 21a2 2 0 004 0"/></svg>Recordatorios</a>
+            <a href="index.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>Cerrar sesión</a>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -99,14 +153,59 @@
             <label for="perfil-negocio">Nombre del negocio</label>
             <input type="text" id="perfil-negocio" class="input" placeholder="Nombre de tu emprendimiento">
           </div>
-          <div class="field">
-            <label for="perfil-regimen">Régimen tributario</label>
-            <select id="perfil-regimen" class="select">
-              <option value="rimpe_emprendedor">RIMPE Emprendedor</option>
-              <option value="rimpe_negocio_popular">RIMPE Negocio Popular</option>
-              <option value="general">Régimen General</option>
-            </select>
+
+          <h3 style="font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--text-500);margin:24px 0 14px;">Tu segmento tributario</h3>
+
+          <div class="regime-select-row">
+            <div class="field select-with-icon" style="margin-bottom:0;">
+              <label for="perfil-regimen">¿A qué régimen perteneces?</label>
+              <span class="tile">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18v13H3z"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+              </span>
+              <select id="perfil-regimen" class="select">
+                <option value="rimpe_negocio_popular">RIMPE – Negocio Popular</option>
+                <option value="rimpe_emprendedor">RIMPE – Emprendedor</option>
+                <option value="general">Régimen General</option>
+                <option value="especial">Régimen/actividad especial</option>
+              </select>
+            </div>
+            <div class="info-chip" id="regimen-info-chip" style="background:var(--green-100);color:var(--green-600);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span id="regimen-info-text">Ingresos brutos superiores a USD 20.000 y hasta USD 300.000 anuales.</span>
+            </div>
           </div>
+
+          <div class="grid grid-2" style="gap:16px;">
+            <div class="field">
+              <label for="perfil-tipo-contribuyente">¿Qué tipo de contribuyente eres?</label>
+              <select id="perfil-tipo-contribuyente" class="select">
+                <option value="">Selecciona tu segmento</option>
+                <option value="rimpe_negocio_popular">RIMPE – Negocio Popular</option>
+                <option value="rimpe_emprendedor">RIMPE – Emprendedor</option>
+                <option value="general_persona_natural">Régimen General – Persona Natural</option>
+                <option value="general_sociedad">Régimen General – Sociedad</option>
+                <option value="regimen_especial">Actividades / regímenes especiales</option>
+                <option value="nuevo_contribuyente">Nuevo contribuyente / emprendimiento</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="perfil-actividad">Actividad económica principal</label>
+              <select id="perfil-actividad" class="select">
+                <option value="servicios">Servicios</option>
+                <option value="comercio">Comercio</option>
+                <option value="manufactura">Manufactura / producción</option>
+                <option value="construccion">Construcción</option>
+                <option value="otra">Otra actividad</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="info-box" style="margin-bottom:4px;">
+            <ul>
+              <li>Esta información permite personalizar tu Gemelo Tributario y mostrarte solo las obligaciones y alertas correspondientes a tu régimen.</li>
+            </ul>
+          </div>
+
           <button type="submit" class="btn btn-primary btn-block mt-16">Guardar cambios</button>
         </form>
       </div>
@@ -132,11 +231,45 @@
             <div><h4>Consejos semanales</h4><p>Un tip tributario cada semana en tu correo.</p></div>
             <label class="switch"><input type="checkbox" data-pref="tips"><span class="track"><span class="thumb"></span></span></label>
           </div>
+          <div class="toggle-row">
+            <div><h4>Obligaciones de mi segmento</h4><p>Recibe recordatorios y alertas de tu régimen.</p></div>
+            <label class="switch"><input type="checkbox" data-pref="obligaciones_segmento" checked><span class="track"><span class="thumb"></span></span></label>
+          </div>
+          <div class="toggle-row">
+            <div><h4>Alertas de cambio de régimen</h4><p>Te avisamos si tus condiciones pueden generar un cambio.</p></div>
+            <label class="switch"><input type="checkbox" data-pref="cambio_regimen" checked><span class="track"><span class="thumb"></span></span></label>
+          </div>
         </div>
 
-        <div class="disclaimer">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></svg>
-          <span>Los datos de este perfil se guardan solo en tu navegador (localStorage), ya que el prototipo no cuenta con una base de datos real.</span>
+        
+      </div>
+    </div>
+
+    <div class="card card-pad mt-16">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px;">
+        <h3 style="font-size:15px;">Obligaciones principales de tu segmento</h3>
+        <a href="recordatorios.html" style="font-size:12.5px;font-weight:700;color:var(--orange-500);">Ver calendario completo →</a>
+      </div>
+      <div class="grid feature-strip" style="grid-template-columns:repeat(5,1fr);">
+        <div class="feature-item" style="padding:0;">
+          <span class="icon icon-green"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></span>
+          <div><strong>Declaración IVA</strong><span>Mensual o semestral según corresponda.</span></div>
+        </div>
+        <div class="feature-item" style="padding:0;">
+          <span class="icon icon-navy"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span>
+          <div><strong>Impuesto a la Renta</strong><span>Anual, según tu ingreso neto.</span></div>
+        </div>
+        <div class="feature-item" style="padding:0;">
+          <span class="icon icon-purple"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span>
+          <div><strong>Comprobantes electrónicos</strong><span>Emisión y registro obligatorio.</span></div>
+        </div>
+        <div class="feature-item" style="padding:0;">
+          <span class="icon icon-orange"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18v13H3z"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></span>
+          <div><strong>Retenciones</strong><span>Agente de retención cuando aplique.</span></div>
+        </div>
+        <div class="feature-item" style="padding:0;">
+          <span class="icon icon-green"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></span>
+          <div><strong>Otras obligaciones</strong><span>Anexos y reportes según normativa.</span></div>
         </div>
       </div>
     </div>

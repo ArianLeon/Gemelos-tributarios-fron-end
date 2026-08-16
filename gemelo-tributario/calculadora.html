@@ -10,7 +10,7 @@
 
 <div class="app-shell">
 
-  <aside class="sidebar">
+    <aside class="sidebar">
     <div class="sidebar-header">
       <div class="brand">
         <svg class="brand-mark" width="34" height="34" viewBox="0 0 40 40" fill="none">
@@ -20,11 +20,21 @@
         </svg>
         <div class="brand-name">Gemelo<br>Tributario</div>
       </div>
-      <div class="regime-pill">
-        <div><span class="label">Régimen actual</span><span class="value">RIMPE Emprendedor</span></div>
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F17A47" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg>
-      </div>
     </div>
+
+    <span class="sidebar-caption">Régimen actual</span>
+    <a href="perfil.html" class="regime-card">
+      <div class="regime-card-top">
+        <div class="regime-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18v13H3z"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+        </div>
+        <div class="regime-card-text">
+          <span class="value" id="sidebar-regimen">RIMPE Emprendedor</span>
+        </div>
+        <svg class="chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+      <span class="regime-status"><span class="dot"></span>Activo</span>
+    </a>
 
     <nav class="nav-list">
       <a href="dashboard.html" class="nav-item">
@@ -53,9 +63,24 @@
       </a>
     </nav>
 
-    <div class="sidebar-footer">
-      <span class="status-dot"></span>
-      <p>Gemelo Tributario<br><strong>disponible 24/7</strong></p>
+    <div class="sidebar-mascot">
+      <svg width="56" height="56" viewBox="0 0 80 80" fill="none">
+        <line x1="40" y1="14" x2="40" y2="5" stroke="#F17A47" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="40" cy="4" r="3.4" fill="#F17A47"/>
+        <rect x="6" y="36" width="10" height="22" rx="5" fill="rgba(255,255,255,.1)" stroke="#5B5BFA" stroke-width="2"/>
+        <path d="M64 44q10-3 8-15" stroke="#F17A47" stroke-width="4" stroke-linecap="round" fill="none"/>
+        <circle cx="72" cy="27" r="5" fill="#F17A47"/>
+        <rect x="14" y="14" width="52" height="48" rx="18" fill="rgba(255,255,255,.08)" stroke="#5B5BFA" stroke-width="2.4"/>
+        <rect x="22" y="24" width="36" height="26" rx="12" fill="#0A1628"/>
+        <circle cx="33" cy="37" r="3.4" fill="#5B5BFA"/>
+        <circle cx="47" cy="37" r="3.4" fill="#5B5BFA"/>
+        <path d="M33 44q7 4 14 0" stroke="#F17A47" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <rect x="24" y="62" width="8" height="7" rx="3" fill="rgba(255,255,255,.15)"/>
+        <rect x="48" y="62" width="8" height="7" rx="3" fill="rgba(255,255,255,.15)"/>
+      </svg>
+      <div class="m-title">Gemelo Tributario</div>
+      <div class="m-sub">Tu asistente tributario siempre contigo</div>
+      <div class="m-status"><span class="dot"></span>Disponible 24/7</div>
     </div>
   </aside>
 
@@ -175,33 +200,6 @@
     </div>
   </main>
 </div>
-
-<nav class="bottom-nav">
-  <a href="dashboard.html">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
-    Inicio
-  </a>
-  <a href="calculadora.html" class="active">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h1M12 11h1M16 11h1"/></svg>
-    Calc.
-  </a>
-  <a href="recordatorios.html">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0112 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 21a2 2 0 004 0"/></svg>
-    Fechas
-  </a>
-  <a href="aprender.html">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5.5A2.5 2.5 0 015.5 3H12v18H5.5A2.5 2.5 0 013 18.5v-13z"/><path d="M21 5.5A2.5 2.5 0 0018.5 3H12v18h6.5a2.5 2.5 0 002.5-2.5v-13z"/></svg>
-    Aprender
-  </a>
-  <a href="chat.html">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.4 8.4 0 01-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.4 8.4 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
-    Chat
-  </a>
-  <a href="perfil.html">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
-    Perfil
-  </a>
-</nav>
 
 <script src="js/main.js"></script>
 <script src="js/calculadora.js"></script>

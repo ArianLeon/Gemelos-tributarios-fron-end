@@ -43,3 +43,59 @@ function gtSet(key, value) {
     /* almacenamiento no disponible: se ignora en este prototipo */
   }
 }
+
+/** Etiquetas legibles para cada valor de régimen guardado */
+const GT_REGIMEN_LABELS = {
+  rimpe_emprendedor: 'RIMPE – Emprendedor',
+  rimpe_negocio_popular: 'RIMPE – Negocio Popular',
+  general: 'Régimen General',
+  especial: 'Régimen/actividad especial'
+};
+
+/** Abre/cierra los paneles desplegables del header (notificaciones, usuario).
+ *  No hace nada en páginas que no tengan estos elementos. */
+function initHeaderDropdowns() {
+  document.querySelectorAll('[data-dropdown-toggle]').forEach((toggle) => {
+    const panel = document.getElementById(toggle.getAttribute('data-dropdown-toggle'));
+    if (!panel) return;
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const willOpen = !panel.classList.contains('open');
+      document.querySelectorAll('.dropdown-panel.open').forEach((p) => p.classList.remove('open'));
+      document.querySelectorAll('[data-dropdown-toggle].open').forEach((t) => t.classList.remove('open'));
+      if (willOpen) {
+        panel.classList.add('open');
+        toggle.classList.add('open');
+      }
+    });
+  });
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.dropdown-panel.open').forEach((p) => p.classList.remove('open'));
+    document.querySelectorAll('[data-dropdown-toggle].open').forEach((t) => t.classList.remove('open'));
+  });
+}
+
+/** Sincroniza el nombre/iniciales del usuario en la barra superior, si existe en la página */
+function syncTopbarUser() {
+  const nombre = gtGet('perfil_nombre', 'Heidy Landi');
+  const iniciales = nombre.split(' ').filter(Boolean).slice(0, 2).map((p) => p[0].toUpperCase()).join('') || 'GT';
+  const avatarEl = document.getElementById('topbar-avatar');
+  if (avatarEl) avatarEl.textContent = iniciales;
+  const nameEl = document.getElementById('topbar-nombre');
+  if (nameEl) nameEl.textContent = nombre.split(' ')[0] || nombre;
+}
+
+/** Sincroniza el régimen mostrado en la tarjeta de la barra lateral, si existe en la página */
+function syncSidebarRegimen() {
+  const regimen = gtGet('perfil_regimen', 'rimpe_emprendedor');
+  const label = GT_REGIMEN_LABELS[regimen] || GT_REGIMEN_LABELS.rimpe_emprendedor;
+  document.querySelectorAll('#sidebar-regimen, #situation-regimen').forEach((el) => {
+    el.textContent = label;
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initHeaderDropdowns();
+  syncTopbarUser();
+  syncSidebarRegimen();
+});

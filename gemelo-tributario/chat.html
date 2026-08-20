@@ -10,7 +10,7 @@
 
 <div class="app-shell">
 
-    <aside class="sidebar">
+  <aside class="sidebar">
     <div class="sidebar-header">
       <div class="brand">
         <img src="img/sin_fondo.png" alt="Gemelo Tributario" class="brand-logo-img" style="height: 110px;width:auto;display:block;">
@@ -29,6 +29,7 @@
         <svg class="chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg>
       </div>
       <span class="regime-status"><span class="dot"></span>Activo</span>
+      <span class="regime-ruc">RUC: 1234567890001</span>
     </a>
 
     <nav class="nav-list">
@@ -56,7 +57,20 @@
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
         Perfil
       </a>
+      <a href="configuracion.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.1a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.1a1.7 1.7 0 001.5-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.5 1H21a2 2 0 110 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg>
+        Configuración
+      </a>
     </nav>
+
+    <div class="card-pad help-card">
+      <div class="help-card-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15v-3a8 8 0 0116 0v3"/><path d="M20 15a2 2 0 01-2 2h-1v-6h1a2 2 0 012 2z"/><path d="M4 15a2 2 0 002 2h1v-6H6a2 2 0 00-2 2z"/></svg>
+      </div>
+      <strong>¿Necesitas ayuda personalizada?</strong>
+      <p>Obtén asesoría con nuestros expertos tributarios.</p>
+      <a href="#" class="btn btn-outline btn-block btn-sm">Solicitar asesoría</a>
+    </div>
   </aside>
 
   <header class="topbar-mobile">
@@ -65,37 +79,269 @@
     </div>
   </header>
 
-  <main class="main" style="padding-left:0;padding-right:0;padding-top:0;padding-bottom:0;">
-    <div class="card chat-shell" style="border-radius:0;border:none;margin:0;">
+  <main class="main">
+    <div class="chat-page">
 
-      <div class="chat-header">
-        <div class="chat-avatar">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="7" width="16" height="12" rx="3"/><circle cx="9" cy="13" r="1.3" fill="currentColor"/><circle cx="15" cy="13" r="1.3" fill="currentColor"/><path d="M12 7V4M9 4h6"/></svg>
+      <!-- Encabezado -->
+      <div class="chat-topbar">
+        <div class="chat-topbar-left">
+          <div class="chat-avatar">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="7" width="16" height="12" rx="3"/><circle cx="9" cy="13" r="1.3" fill="currentColor"/><circle cx="15" cy="13" r="1.3" fill="currentColor"/><path d="M12 7V4M9 4h6"/></svg>
+          </div>
+          <div>
+            <h3>Gemelo Tributario</h3>
+            <p>En línea</p>
+          </div>
         </div>
-        <div>
-          <h3>Gemelo Tributario</h3>
-          <p>En línea</p>
+        <div class="head-actions">
+          <a href="recordatorios.html" class="obligations-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            Mis obligaciones del mes
+            <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+          <button type="button" class="icon-btn" aria-label="Notificaciones">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0112 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 21a2 2 0 004 0"/></svg>
+            <span class="icon-btn-badge">3</span>
+          </button>
         </div>
       </div>
 
-      <div class="chat-messages" id="chat-messages">
-        <div class="msg msg-bot">
-          <p>Estoy aquí para ayudarte con tus dudas tributarias 🙂 Pregúntame sobre IVA, Renta, RIMPE, retenciones o facturación.</p>
+      <!-- Hero de bienvenida -->
+      <div class="card chat-hero">
+        <div class="chat-hero-text">
+          <h2>👋 ¡Hola! Soy Gemelo 🤖</h2>
+          <p>Estoy aquí para ayudarte con tus dudas tributarias 🙂</p>
+          <p>Pregúntame sobre IVA, Renta, RIMPE, retenciones, facturación y más.</p>
+        </div>
+        <div class="chat-hero-visual">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="92" fill="var(--orange-100)"/>
+            <line x1="100" y1="28" x2="100" y2="14" stroke="var(--navy-950)" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="100" cy="10" r="6" fill="var(--orange-500)"/>
+            <rect x="55" y="30" width="90" height="78" rx="26" fill="#fff" stroke="var(--navy-950)" stroke-width="4"/>
+            <rect x="68" y="46" width="64" height="46" rx="18" fill="var(--navy-950)"/>
+            <circle cx="90" cy="69" r="6" fill="#fff"/>
+            <circle cx="112" cy="69" r="6" fill="#fff"/>
+            <path d="M92 82c4 4 12 4 16 0" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <rect x="70" y="112" width="60" height="52" rx="16" fill="#fff" stroke="var(--navy-950)" stroke-width="4"/>
+            <circle cx="100" cy="138" r="10" fill="var(--orange-500)"/>
+            <path d="M130 122c14-4 22-18 20-30" stroke="var(--navy-950)" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <circle cx="150" cy="92" r="9" fill="var(--navy-950)"/>
+            <path d="M70 130c-10 2-16 10-16 20" stroke="var(--navy-950)" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <circle cx="54" cy="150" r="8" fill="var(--navy-950)"/>
+            <path d="M165 55l3 8 8 3-8 3-3 8-3-8-8-3 8-3z" fill="var(--orange-500)"/>
+          </svg>
         </div>
       </div>
 
-      <div class="suggestion-row">
-        <button type="button" class="suggestion-chip">¿Cuándo debo declarar IVA?</button>
-        <button type="button" class="suggestion-chip">¿Qué es el RIMPE?</button>
-        <button type="button" class="suggestion-chip">¿Cuál es la diferencia con un contador?</button>
-      </div>
+      <!-- Grilla de temas -->
+      <h3 class="section-title">¿Qué necesitas resolver hoy?</h3>
+      <div class="grid topic-grid">
 
-      <form id="chat-form" class="chat-input-row">
-        <input type="text" id="chat-input" placeholder="Escribe tu pregunta..." autocomplete="off">
-        <button type="submit" class="send-btn" aria-label="Enviar">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        <button type="button" class="topic-card" data-question="Explícame sobre el IVA: declaraciones, cálculos, crédito tributario y multas.">
+          <div class="topic-card-head">
+            <span class="ic icon-orange">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9z"/><path d="M14 3v6h6"/><path d="M9 13h6M9 17h6M9 9h1"/></svg>
+            </span>
+            <span>IVA</span>
+          </div>
+          <ul>
+            <li>Declaraciones</li>
+            <li>Cálculos</li>
+            <li>Crédito tributario</li>
+            <li>Multas y sanciones</li>
+          </ul>
+          <svg class="go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="9 18 15 12 9 6"/></svg>
         </button>
-      </form>
+
+        <button type="button" class="topic-card" data-question="Explícame cómo se calcula el Impuesto a la Renta, las deducciones y quiénes están obligados.">
+          <div class="topic-card-head">
+            <span class="ic icon-amber">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M15 9.5c0-1.4-1.3-2.5-3-2.5s-3 1-3 2.3c0 3 6 1.4 6 4.4 0 1.4-1.3 2.5-3 2.5s-3-1-3-2.5"/></svg>
+            </span>
+            <span>Impuesto a la Renta</span>
+          </div>
+          <ul>
+            <li>Cálculo del impuesto</li>
+            <li>Deducciones</li>
+            <li>Sujetos obligados</li>
+            <li>Fechas importantes</li>
+          </ul>
+          <svg class="go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+
+        <button type="button" class="topic-card" data-question="¿Qué es el RIMPE, cuáles son sus obligaciones, comprobantes, límites y categorías?">
+          <div class="topic-card-head">
+            <span class="ic icon-purple">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+            </span>
+            <span>RIMPE</span>
+          </div>
+          <ul>
+            <li>¿Qué es el RIMPE?</li>
+            <li>Obligaciones</li>
+            <li>Comprobantes</li>
+            <li>Límites y categorías</li>
+          </ul>
+          <svg class="go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+
+        <button type="button" class="topic-card" data-question="Explícame sobre facturación electrónica, anulación de comprobantes y normativa vigente.">
+          <div class="topic-card-head">
+            <span class="ic icon-green">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h12v20l-3-2-3 2-3-2-3 2z"/><path d="M9 7h6M9 11h6M9 15h4"/></svg>
+            </span>
+            <span>Facturación</span>
+          </div>
+          <ul>
+            <li>Factura electrónica</li>
+            <li>Anulación</li>
+            <li>Errores frecuentes</li>
+            <li>Normativa vigente</li>
+          </ul>
+          <svg class="go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+
+        <button type="button" class="topic-card" data-question="Explícame sobre retención en la fuente: porcentajes, agentes de retención y cómo registrarla.">
+          <div class="topic-card-head">
+            <span class="ic icon-amber">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
+            </span>
+            <span>Retenciones</span>
+          </div>
+          <ul>
+            <li>Retención en la fuente</li>
+            <li>Porcentajes</li>
+            <li>Agentes de retención</li>
+            <li>Registro y reporte</li>
+          </ul>
+          <svg class="go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+
+        <button type="button" class="topic-card" data-question="Explícame sobre el IESS: aportes patronales, aportes personales, fondos de reserva y prestaciones.">
+          <div class="topic-card-head">
+            <span class="ic icon-navy">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12c0-3 3-5 7-5 1 0 2 .2 2.8.5L16 6l1 2.2 2 .3-.5 2c.3.6.5 1.3.5 2 0 3-3.5 5-7.8 5S4 15.5 4 13z"/><circle cx="9" cy="12" r=".8" fill="currentColor" stroke="none"/><path d="M6 17v2M13 17.5v1.8"/></svg>
+            </span>
+            <span>IESS</span>
+          </div>
+          <ul>
+            <li>Aportes patronales</li>
+            <li>Aportes personales</li>
+            <li>Fondos de reserva</li>
+            <li>Prestaciones</li>
+          </ul>
+          <svg class="go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+
+      </div>
+
+      <!-- Preguntas de régimen / frecuentes / consejo -->
+      <div class="grid quick-faq-grid">
+
+        <div class="card card-pad">
+          <div class="quick-faq-head">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+            <h4>Preguntas para tu régimen (RIMPE Emprendedor)</h4>
+          </div>
+          <div class="quick-faq-mini">
+            <button type="button" class="quick-faq-btn" data-question="¿Cuándo debo declarar IVA?">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+              ¿Cuándo debo declarar IVA?
+            </button>
+            <button type="button" class="quick-faq-btn" data-question="¿Cómo calculo mi Impuesto a la Renta?">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M15 9.5c0-1.4-1.3-2.5-3-2.5s-3 1-3 2.3c0 3 6 1.4 6 4.4 0 1.4-1.3 2.5-3 2.5s-3-1-3-2.5"/></svg>
+              ¿Cómo calculo mi Impuesto a la Renta?
+            </button>
+            <button type="button" class="quick-faq-btn" data-question="¿Qué comprobantes puedo emitir?">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h12v20l-3-2-3 2-3-2-3 2z"/><path d="M9 7h6M9 11h6M9 15h4"/></svg>
+              ¿Qué comprobantes puedo emitir?
+            </button>
+            <button type="button" class="quick-faq-btn" data-question="¿Qué obligaciones tengo este mes?">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0112 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 21a2 2 0 004 0"/></svg>
+              ¿Qué obligaciones tengo este mes?
+            </button>
+          </div>
+        </div>
+
+        <div class="card card-pad">
+          <div class="quick-faq-head">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a6 6 0 00-3 11c.6.5 1 1.2 1 2h4c0-.8.4-1.5 1-2a6 6 0 00-3-11z"/></svg>
+            <h4>Preguntas frecuentes para ti</h4>
+          </div>
+          <div class="quick-faq-list">
+            <button type="button" class="quick-faq-item" data-question="¿Qué obligaciones tengo este mes?">
+              <span class="ic icon-orange"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+              <span class="body"><strong>¿Qué obligaciones tengo este mes?</strong><span>Conoce tus vencimientos y deberes tributarios.</span></span>
+              <svg class="go" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <button type="button" class="quick-faq-item" data-question="¿Cuánto debo pagar de impuestos?">
+              <span class="ic icon-amber"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M15 9.5c0-1.4-1.3-2.5-3-2.5s-3 1-3 2.3c0 3 6 1.4 6 4.4 0 1.4-1.3 2.5-3 2.5s-3-1-3-2.5"/></svg></span>
+              <span class="body"><strong>¿Cuánto debo pagar de impuestos?</strong><span>Calcula de forma rápida y precisa.</span></span>
+              <svg class="go" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <button type="button" class="quick-faq-item" data-question="¿Cómo debo registrar esta factura?">
+              <span class="ic icon-green"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h12v20l-3-2-3 2-3-2-3 2z"/><path d="M9 7h6M9 11h6M9 15h4"/></svg></span>
+              <span class="body"><strong>¿Cómo debo registrar esta factura?</strong><span>Aprende el registro contable correcto.</span></span>
+              <svg class="go" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+            <button type="button" class="quick-faq-item" data-question="¿Qué pasa si no presento mi declaración a tiempo?">
+              <span class="ic" style="background:var(--red-100);color:var(--red-600);"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l10 18H2z"/><path d="M12 9v5M12 17h.01"/></svg></span>
+              <span class="body"><strong>¿Qué pasa si no presento mi declaración a tiempo?</strong><span>Conoce las multas y consecuencias.</span></span>
+              <svg class="go" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+          <a href="aprender.html" class="see-all-link">
+            Ver todas las preguntas frecuentes
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+        <div class="card tip-card-alt">
+          <div class="tip-head">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
+            Consejo de Gemelo
+          </div>
+          <div class="tip-illustration">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <rect x="20" y="14" width="46" height="62" rx="8" fill="#fff" stroke="var(--purple-600)" stroke-width="2"/>
+              <rect x="34" y="8" width="18" height="12" rx="3" fill="var(--purple-600)"/>
+              <line x1="30" y1="34" x2="56" y2="34" stroke="var(--border)" stroke-width="2"/>
+              <line x1="30" y1="44" x2="56" y2="44" stroke="var(--border)" stroke-width="2"/>
+              <line x1="30" y1="54" x2="48" y2="54" stroke="var(--border)" stroke-width="2"/>
+              <path d="M56 44l16 6v12c0 10-7 16-16 18-9-2-16-8-16-18V50z" fill="var(--orange-500)"/>
+              <path d="M62 62l6 6 10-10" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <p>Mantente al día con tus obligaciones tributarias y evita multas e intereses.</p>
+          <strong>¡La información te da tranquilidad!</strong>
+        </div>
+
+      </div>
+
+      <!-- Panel de conversación -->
+      <div class="card chat-panel" id="chat-panel-anchor">
+        <div class="chat-messages" id="chat-messages"></div>
+
+        <form id="chat-form" class="ask-gemelo-bar">
+          <div class="ask-gemelo-label">
+            <span class="ic">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>
+            </span>
+            <div>
+              <strong>Preguntar a Gemelo ✨</strong>
+              <span>Escribe tu caso con tus propias palabras. Gemelo Tributario analizará tu consulta y te explicará qué hacer paso a paso.</span>
+            </div>
+          </div>
+          <div class="ask-gemelo-input-wrap">
+            <input type="text" id="chat-input" placeholder="Escribe tu pregunta..." autocomplete="off">
+            <button type="submit" class="send-btn" aria-label="Enviar">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </div>
+        </form>
+      </div>
+
     </div>
   </main>
 </div>
@@ -129,5 +375,25 @@
 
 <script src="js/main.js"></script>
 <script src="js/chat.js"></script>
+<script>
+  /* Conecta las tarjetas de temas y preguntas rápidas con el motor de chat
+     existente (chat.js), sin modificar dicho archivo. */
+  document.addEventListener('DOMContentLoaded', () => {
+    const messages = document.getElementById('chat-messages');
+    const anchor = document.getElementById('chat-panel-anchor');
+
+    document.querySelectorAll('[data-question]').forEach((el) => {
+      el.addEventListener('click', () => {
+        const texto = el.getAttribute('data-question');
+        if (typeof enviarMensaje === 'function') {
+          enviarMensaje(texto, messages);
+        }
+        if (anchor) {
+          anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  });
+</script>
 </body>
 </html>

@@ -6,7 +6,8 @@ const GT_REGIMEN_INFO = {
   rimpe_negocio_popular: 'Ingresos brutos anuales de hasta USD 20.000. Cuota fija mensual y facturación simplificada.',
   rimpe_emprendedor: 'Ingresos brutos superiores a USD 20.000 y hasta USD 300.000 anuales.',
   general: 'Sin límite de ingresos. Declaración de IVA y Renta según el calendario general del SRI.',
-  especial: 'Aplica a actividades o sectores con un tratamiento tributario particular.'
+  especial: 'Aplica a actividades o sectores con un tratamiento tributario particular.',
+  estudiante: 'Estudiantes de contabilidad, tributación y otras ramas que estén relacionados'
 };
 
 document.addEventListener('DOMContentLoaded', () => {

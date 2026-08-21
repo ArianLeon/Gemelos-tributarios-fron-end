@@ -219,4 +219,52 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+
+  // ------------------------------------------------------------
+  // Extras de la nueva vista: texto del botón Calcular, limpiar
+  // campos y toasts de los botones decorativos. No modifica nada
+  // de la lógica de cálculo de arriba.
+  // ------------------------------------------------------------
+  const btnCalcularLabel = document.getElementById("btn-calcular-label");
+  const labelPorTipo = { iva: "Calcular IVA", renta: "Calcular Renta", retenciones: "Calcular Retención" };
+  calcTypeButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const tipo = btn.getAttribute("data-impuesto");
+      if (btnCalcularLabel && labelPorTipo[tipo]) {
+        btnCalcularLabel.textContent = labelPorTipo[tipo];
+      }
+    });
+  });
+
+  const btnLimpiar = document.getElementById("btn-limpiar");
+  if (btnLimpiar) {
+    btnLimpiar.addEventListener("click", () => {
+      document.querySelectorAll(".panel-impuesto input[type='number']").forEach(inp => { inp.value = ""; });
+      const tipoSel = document.getElementById("tipo-retencion");
+      if (tipoSel) tipoSel.selectedIndex = 0;
+      if (pctRetencionPreview) pctRetencionPreview.textContent = "1.75%";
+      if (resultadoBox) {
+        resultadoBox.innerHTML = `
+          <div class="result-empty">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h3M13 11h3M8 15h3M13 15h3"/></svg>
+            <p>Ingresa tus datos y presiona <strong>Calcular</strong> para ver el resultado referencial.</p>
+          </div>`;
+      }
+      if (cardTablaRenta) cardTablaRenta.style.display = "none";
+    });
+  }
+
+  document.querySelectorAll("[data-toast]").forEach(el => {
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      showToast(el.getAttribute("data-toast"));
+    });
+  });
+
+  const btnComoUsar = document.getElementById("btn-como-usar");
+  if (btnComoUsar) {
+    btnComoUsar.addEventListener("click", () => {
+      showToast("Selecciona qué quieres calcular, ingresa tus datos y presiona Calcular.");
+    });
+  }
 });

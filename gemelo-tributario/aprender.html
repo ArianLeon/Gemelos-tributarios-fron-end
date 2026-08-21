@@ -10,7 +10,7 @@
 
 <div class="app-shell">
 
-    <aside class="sidebar">
+  <aside class="sidebar">
     <div class="sidebar-header">
       <div class="brand">
         <img src="img/sin_fondo.png" alt="Gemelo Tributario" class="brand-logo-img" style="height: 110px;width:auto;display:block;">
@@ -66,14 +66,61 @@
   </header>
 
   <main class="main">
+
     <div class="page-head">
       <div>
         <span class="eyebrow">Aprender</span>
-        <h1>Guías y preguntas frecuentes</h1>
-        <p class="subtitle">Contenido pensado para emprendedores: lenguaje simple, sin tecnicismos innecesarios.</p>
+        <h1>Aprende sobre tus obligaciones tributarias 🎓</h1>
+        <p class="subtitle">Contenido sencillo para que entiendas y cumplas tus obligaciones.</p>
+      </div>
+      <div class="head-actions">
+        <button class="icon-btn" type="button" aria-label="Notificaciones">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0112 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 21a2 2 0 004 0"/></svg>
+          <span class="icon-btn-badge">3</span>
+        </button>
+        <button class="user-chip" type="button">
+          <span class="user-avatar">H</span>
+          <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
       </div>
     </div>
 
+    <!-- Progreso + CTA -->
+    <div class="learn-top-row">
+      <div class="card progress-card">
+        <div class="progress-card-top">
+          <span>Tu progreso</span>
+          <strong>60%</strong>
+        </div>
+        <div class="progress-track"><span style="width:60%"></span></div>
+        <span class="progress-note">6 de 10 temas completados</span>
+      </div>
+
+      <a href="#" class="card cta-card">
+        <span class="cta-ic">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="0.7" fill="currentColor"/></svg>
+        </span>
+        <span class="cta-text">
+          <strong>Sigue aprendiendo</strong>
+          <span>Cada tema te acerca a ser un experto tributario.</span>
+        </span>
+        <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </div>
+
+    <!-- Buscador -->
+    <label class="card learn-search">
+      <svg class="search-ic" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <span class="learn-search-field">
+        <input type="text" id="learnSearch" placeholder="¿Qué quieres aprender?">
+        <small>Ej. ¿Cómo calcular el IVA?</small>
+      </span>
+      <button class="search-btn" type="button" aria-label="Buscar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      </button>
+    </label>
+
+    <!-- Categorías -->
     <div class="category-row">
       <button class="category-chip active" data-categoria="todas">Todas</button>
       <button class="category-chip" data-categoria="iva">IVA</button>
@@ -82,54 +129,149 @@
       <button class="category-chip" data-categoria="facturacion">Facturación</button>
     </div>
 
-    <h3 style="font-size:14px;margin-bottom:14px;color:var(--text-700);">Videos recomendados</h3>
+    <!-- Banner recomendado -->
+    <a href="perfil.html" class="card recommend-banner">
+      <span class="rb-ic">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+      </span>
+      <span class="rb-text">
+        <span class="rb-eyebrow">Recomendado para ti</span>
+        <h3>Contenido para RIMPE Emprendedor</h3>
+        <p>Aprende sobre tus principales obligaciones tributarias.</p>
+      </span>
+      <span class="rb-links">
+        <span class="rb-link"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Fechas</span>
+        <span class="rb-link"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 5L5 19M7 7h.01M17 17h.01"/></svg>IVA</span>
+        <span class="rb-link"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-6 3 3 5-8"/></svg>Renta</span>
+        <span class="rb-link"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l3 3v17H6z"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>Facturación</span>
+      </span>
+      <span class="btn btn-primary">Ver todo <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></span>
+    </a>
+
+    <!-- Videos recomendados -->
+    <div class="section-head-row">
+      <h3>Videos recomendados</h3>
+      <a href="#" class="see-all-link">Ver todos <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></a>
+    </div>
     <div class="video-grid">
-      <div class="card video-card">
-        <div class="video-thumb">
-          <video controls preload="metadata">
-            <source src="Videos/¿Qué es el RIMPE y Cómo Funciona_(720P_HD).mp4" type="video/mp4">
-            Tu navegador no soporta la reproducción de video.
-          </video>
-        </div>
-        <div class="video-info">
-          <span>RIMPE</span>
-          <h4>¿Qué es el RIMPE y cómo funciona?</h4>
-        </div>
-      </div>
 
       <div class="card video-card">
         <div class="video-thumb">
-          <video controls preload="metadata">
-            <source src="Videos/Cómo se calcula el Impuesto a la Renta.mp4" type="video/mp4">
-            Tu navegador no soporta la reproducción de video.
-          </video>
-        </div>
-        <div class="video-info">
-          <span>Renta</span>
-          <h4>¿Cómo se calcula el Impuesto a la Renta?</h4>
-        </div>
-      </div>
-
-      <div class="card video-card">
-        <div class="video-thumb">
-          <video controls preload="metadata">
+          <video controls preload="metadata" playsinline>
             <source src="Videos/Todo sobre el IVA en Ecuador.mp4" type="video/mp4">
             Tu navegador no soporta la reproducción de video.
           </video>
+          <span class="video-cat-tag">IVA</span>
         </div>
         <div class="video-info">
           <span>IVA</span>
           <h4>Todo sobre el IVA en Ecuador</h4>
+          <p>Conoce qué es, cuándo se aplica y cómo calcularlo correctamente.</p>
+        </div>
+        <div class="video-meta-row">
+          <span class="level-badge">Principiante</span>
+          <span class="time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>7:10 min</span>
         </div>
       </div>
+
+      <div class="card video-card">
+        <div class="video-thumb">
+          <video controls preload="metadata" playsinline>
+            <source src="Videos/Cómo se calcula el Impuesto a la Renta.mp4" type="video/mp4">
+            Tu navegador no soporta la reproducción de video.
+          </video>
+          <span class="video-cat-tag">Renta</span>
+        </div>
+        <div class="video-info">
+          <span>Renta</span>
+          <h4>¿Cómo se calcula el Impuesto a la Renta?</h4>
+          <p>Aprende a calcular tu impuesto paso a paso con ejemplos prácticos.</p>
+        </div>
+        <div class="video-meta-row">
+          <span class="level-badge">Principiante</span>
+          <span class="time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>2:18 min</span>
+        </div>
+      </div>
+
+      <div class="card video-card">
+        <div class="video-thumb">
+          <video controls preload="metadata" playsinline>
+            <source src="Videos/¿Qué es el RIMPE y Cómo Funciona_(720P_HD).mp4" type="video/mp4">
+            Tu navegador no soporta la reproducción de video.
+          </video>
+          <span class="video-cat-tag">RIMPE</span>
+        </div>
+        <div class="video-info">
+          <span>RIMPE</span>
+          <h4>¿Qué es el RIMPE y cómo funciona?</h4>
+          <p>Todo lo que necesitas saber si eres emprendedor.</p>
+        </div>
+        <div class="video-meta-row">
+          <span class="level-badge done"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Completado</span>
+          <span class="time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>2:07 min</span>
+        </div>
+      </div>
+
     </div>
 
-    <h3 style="font-size:14px;margin-bottom:14px;color:var(--text-700);">Preguntas frecuentes</h3>
+    <!-- Continúa recomendados -->
+    <div class="section-head-row">
+      <h3>Continúa recomendados</h3>
+    </div>
+    <div class="card continue-card">
+      <div class="continue-thumb">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 5L5 19M7 7h.01M17 17h.01"/></svg>
+      </div>
+      <div class="continue-body">
+        <h4>¿Qué es el IVA?</h4>
+        <div class="continue-track"><span style="width:70%"></span></div>
+        <div class="continue-meta-row">
+          <strong>IVA · 2 min</strong>
+          <span>70% completado</span>
+        </div>
+      </div>
+      <a href="#faq-iva-que-es" class="btn btn-primary">Continuar <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></a>
+    </div>
+
+    <!-- Casos reales -->
+    <div class="section-head-row">
+      <h3>Aprende con casos reales</h3>
+      <a href="#" class="see-all-link">Ver todos <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></a>
+    </div>
+    <div class="casos-grid">
+      <a href="calculadora.html" class="card caso-card">
+        <span class="caso-eyebrow">Caso 1</span>
+        <h4>Tengo ventas por $2.500</h4>
+        <p>Aprende cómo registrar tu venta, calcular IVA, retenciones y declarar correctamente.</p>
+        <span class="btn btn-outline">Ver caso <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></span>
+      </a>
+      <a href="perfil.html" class="card caso-card alt">
+        <span class="caso-eyebrow">Caso 2</span>
+        <h4>Soy emprendedor RIMPE</h4>
+        <p>Conoce tus obligaciones, cómo calcular tu impuesto y fechas importantes.</p>
+        <span class="btn btn-outline">Ver caso <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></span>
+      </a>
+    </div>
+
+    <!-- Preguntas frecuentes -->
+    <div class="section-head-row">
+      <h3>Preguntas frecuentes</h3>
+    </div>
     <div class="faq-list">
 
-      <div class="card faq-item" data-categoria="iva">
-        <button class="faq-question">
-          <div><h4>¿Qué es el IVA?</h4></div>
+      <div class="card faq-item" data-categoria="iva" id="faq-iva-que-es">
+        <button class="faq-question faq-question-rich">
+          <span class="faq-ic icon-purple">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 5L5 19M7 7h.01M17 17h.01"/></svg>
+          </span>
+          <span class="faq-q-text">
+            <h4>¿Qué es el IVA?</h4>
+            <p>Conoce qué es, cuándo se aplica y cómo calcularlo.</p>
+          </span>
+          <span class="faq-meta">
+            <span class="faq-cat cat-iva">IVA</span>
+            <span class="faq-time">2 min de lectura</span>
+          </span>
           <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="faq-answer"><div class="faq-answer-inner">
@@ -139,8 +281,18 @@
       </div>
 
       <div class="card faq-item" data-categoria="iva">
-        <button class="faq-question">
-          <div><h4>¿Cuándo debo declarar IVA?</h4></div>
+        <button class="faq-question faq-question-rich">
+          <span class="faq-ic icon-purple">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          </span>
+          <span class="faq-q-text">
+            <h4>¿Cuándo debo declarar IVA?</h4>
+            <p>Fechas de declaración según el noveno dígito de tu RUC.</p>
+          </span>
+          <span class="faq-meta">
+            <span class="faq-cat cat-iva">IVA</span>
+            <span class="faq-time">3 min de lectura</span>
+          </span>
           <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="faq-answer"><div class="faq-answer-inner">
@@ -150,8 +302,18 @@
       </div>
 
       <div class="card faq-item" data-categoria="rimpe">
-        <button class="faq-question">
-          <div><h4>¿Qué es el RIMPE?</h4></div>
+        <button class="faq-question faq-question-rich">
+          <span class="faq-ic icon-orange">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l1-5h16l1 5"/><path d="M4 9v10h16V9"/><path d="M9 21V13h6v8"/></svg>
+          </span>
+          <span class="faq-q-text">
+            <h4>¿Qué es el RIMPE?</h4>
+            <p>Entiende cómo funciona el régimen para emprendedores.</p>
+          </span>
+          <span class="faq-meta">
+            <span class="faq-cat cat-rimpe">RIMPE</span>
+            <span class="faq-time">4 min de lectura</span>
+          </span>
           <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="faq-answer"><div class="faq-answer-inner">
@@ -161,8 +323,18 @@
       </div>
 
       <div class="card faq-item" data-categoria="renta">
-        <button class="faq-question">
-          <div><h4>¿Cómo se calcula el Impuesto a la Renta?</h4></div>
+        <button class="faq-question faq-question-rich">
+          <span class="faq-ic icon-navy">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-6 3 3 5-8"/></svg>
+          </span>
+          <span class="faq-q-text">
+            <h4>¿Cómo se calcula el Impuesto a la Renta?</h4>
+            <p>Aprende el paso a paso para calcular tu impuesto.</p>
+          </span>
+          <span class="faq-meta">
+            <span class="faq-cat cat-renta">Renta</span>
+            <span class="faq-time">5 min de lectura</span>
+          </span>
           <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="faq-answer"><div class="faq-answer-inner">
@@ -172,8 +344,18 @@
       </div>
 
       <div class="card faq-item" data-categoria="facturacion">
-        <button class="faq-question">
-          <div><h4>¿Qué comprobantes debo emitir?</h4></div>
+        <button class="faq-question faq-question-rich">
+          <span class="faq-ic icon-green">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h9l3 3v17H6z"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>
+          </span>
+          <span class="faq-q-text">
+            <h4>¿Qué comprobantes debo emitir?</h4>
+            <p>Requisitos para respaldar tus ventas y servicios.</p>
+          </span>
+          <span class="faq-meta">
+            <span class="faq-cat cat-facturacion">Facturación</span>
+            <span class="faq-time">3 min de lectura</span>
+          </span>
           <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="faq-answer"><div class="faq-answer-inner">
@@ -183,8 +365,18 @@
       </div>
 
       <div class="card faq-item" data-categoria="facturacion">
-        <button class="faq-question">
-          <div><h4>¿Qué pasa si declaro tarde?</h4></div>
+        <button class="faq-question faq-question-rich">
+          <span class="faq-ic icon-green">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          </span>
+          <span class="faq-q-text">
+            <h4>¿Qué pasa si declaro tarde?</h4>
+            <p>Intereses y multas por presentar tu declaración fuera de fecha.</p>
+          </span>
+          <span class="faq-meta">
+            <span class="faq-cat cat-facturacion">Facturación</span>
+            <span class="faq-time">3 min de lectura</span>
+          </span>
           <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="faq-answer"><div class="faq-answer-inner">

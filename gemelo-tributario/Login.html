@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iniciar sesión — Gemelo Tributario</title>
+<meta name="description" content="Inicia sesión en Gemelo Tributario para ver tu estado tributario, tus alertas y tus cálculos.">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="auth-page">
+
+  <!-- ============================================================
+       PANEL DE MARCA (se oculta en pantallas angostas)
+       ============================================================ -->
+  <div class="auth-visual">
+    <div class="hero-dots"></div>
+
+    <a href="index.html" class="brand" style="position:relative;z-index:2;">
+      <img src="img/sin_fondo.png" alt="Gemelo Tributario" class="brand-logo-img" style="height:120px;width:auto;display:block;">
+    </a>
+
+    <div class="auth-visual-text" style="position:relative;z-index:2;">
+      <h2>Tu gemelo digital para el SRI, siempre contigo.</h2>
+      <p>Inicia sesión y retoma justo donde quedaste: tus obligaciones, tus cálculos y tus alertas, todo en un solo lugar.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       FORMULARIO DE INICIO DE SESIÓN
+       ============================================================ -->
+  <div class="auth-form-side">
+    <div class="auth-form-wrap">
+
+      <a href="index.html" class="auth-back">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Volver al inicio
+      </a>
+
+      <div class="auth-head">
+        <span class="eyebrow-mono">Bienvenido de nuevo</span>
+        <h1>Inicia sesión</h1>
+        <p>Ingresa tus datos para acceder a tu panel tributario.</p>
+      </div>
+
+      <form id="login-form" class="auth-form" novalidate>
+        <div class="field">
+          <label for="login-email">Correo electrónico</label>
+          <input type="email" id="login-email" class="input" placeholder="tucorreo@ejemplo.com" autocomplete="username">
+          <span class="field-error" id="login-email-error"></span>
+        </div>
+
+        <div class="field">
+          <label for="login-password">Contraseña</label>
+          <div class="input-password-wrap">
+            <input type="password" id="login-password" class="input" placeholder="Tu contraseña" autocomplete="current-password">
+            <button type="button" class="password-toggle" id="password-toggle" aria-label="Mostrar contraseña" aria-pressed="false">
+              <svg id="eye-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+          <span class="field-error" id="login-password-error"></span>
+        </div>
+
+        <div class="auth-row">
+          <label class="remember-check">
+            <input type="checkbox" id="remember-me">
+            <span class="check-box"></span>
+            Recuérdame
+          </label>
+          <a href="#" class="auth-link-sm">¿Olvidaste tu contraseña?</a>
+        </div>
+
+        <a href="dashboard.html" class="btn btn-primary btn-block">Iniciar sesión</a>
+      </form>
+
+      <p class="auth-footer-text">¿No tienes cuenta? <a href="#">Regístrate gratis</a></p>
+
+
+</div>
+
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

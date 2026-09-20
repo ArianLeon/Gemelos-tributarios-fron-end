@@ -1,104 +1,276 @@
-/* ============================================================
-   Perfil — Gemelo Tributario
-   ============================================================ */
 
-const GT_REGIMEN_INFO = {
-  rimpe_negocio_popular: 'Ingresos brutos anuales de hasta USD 20.000. Cuota fija mensual y facturación simplificada.',
-  rimpe_emprendedor: 'Ingresos brutos superiores a USD 20.000 y hasta USD 300.000 anuales.',
-  general: 'Sin límite de ingresos. Declaración de IVA y Renta según el calendario general del SRI.',
-  especial: 'Aplica a actividades o sectores con un tratamiento tributario particular.',
-  estudiante: 'Estudiantes de contabilidad, tributación y otras ramas que estén relacionados'
+const API_URL = 'http://localhost:8080/api';
+
+const idUsuario = localStorage.getItem('gt_id_usuario');
+if (!idUsuario) {
+  window.location.href = 'Login.html';
+}
+
+// Guardamos aqui lo que llega del backend para poder reenviarlo completo
+// en cada PUT (evita que un campo que el formulario no toca se borre).
+let usuarioActual = null;
+let perfilActual = null;
+
+const REGIMEN_INFO = {
+  RIMPE_NEGOCIO_POPULAR: 'Ingresos brutos anuales de hasta USD 20.000. Cuota fija y facturación simplificada.',
+  RIMPE_EMPRENDEDOR: 'Ingresos brutos superiores a USD 20.000 y hasta USD 300.000 anuales.',
+  GENERAL: 'Sin límite de ingresos. Declaración de IVA y Renta según el calendario general del SRI.'
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-  cargarPerfil();
-  document.getElementById('form-perfil').addEventListener('submit', guardarPerfil);
+const REGIMEN_LABEL = {
+  RIMPE_NEGOCIO_POPULAR: 'RIMPE – Negocio Popular',
+  RIMPE_EMPRENDEDOR: 'RIMPE – Emprendedor',
+  GENERAL: 'Régimen General'
+};
 
-  const selectRegimen = document.getElementById('perfil-regimen');
-  if (selectRegimen) {
-    selectRegimen.addEventListener('change', () => actualizarInfoRegimen(selectRegimen.value));
+/* ------------------------------------------------------------
+   Utilidades propias (antes vivian en main.js)
+   ------------------------------------------------------------ */
+function showToast(message) {
+  let toast = document.querySelector('.toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.innerHTML =
+      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>' +
+      '<span class="toast-text"></span>';
+    document.body.appendChild(toast);
   }
+  toast.querySelector('.toast-text').textContent = message;
+  toast.classList.add('show');
+  clearTimeout(showToast._timer);
+  showToast._timer = setTimeout(() => toast.classList.remove('show'), 2600);
+}
 
-  document.querySelectorAll('.switch input').forEach((sw) => {
-    sw.checked = gtGet('pref_' + sw.dataset.pref, sw.checked);
-    sw.addEventListener('change', () => {
-      gtSet('pref_' + sw.dataset.pref, sw.checked);
-      showToast(sw.checked ? 'Preferencia activada' : 'Preferencia desactivada');
+function initHeaderDropdowns() {
+  document.querySelectorAll('[data-dropdown-toggle]').forEach((toggle) => {
+    const panel = document.getElementById(toggle.getAttribute('data-dropdown-toggle'));
+    if (!panel) return;
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const willOpen = !panel.classList.contains('open');
+      document.querySelectorAll('.dropdown-panel.open').forEach((p) => p.classList.remove('open'));
+      document.querySelectorAll('[data-dropdown-toggle].open').forEach((t) => t.classList.remove('open'));
+      if (willOpen) {
+        panel.classList.add('open');
+        toggle.classList.add('open');
+      }
     });
+  });
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.dropdown-panel.open').forEach((p) => p.classList.remove('open'));
+    document.querySelectorAll('[data-dropdown-toggle].open').forEach((t) => t.classList.remove('open'));
+  });
+}
+
+/* ------------------------------------------------------------
+   Carga inicial
+   ------------------------------------------------------------ */
+document.addEventListener('DOMContentLoaded', () => {
+  initHeaderDropdowns();
+  cargarUsuario();
+  cargarPerfilTributario();
+  cargarNotificaciones();
+
+  document.getElementById('form-datos-personales').addEventListener('submit', guardarDatosPersonales);
+  document.getElementById('form-perfil-tributario').addEventListener('submit', guardarPerfilTributario);
+  document.getElementById('foto_archivo').addEventListener('change', subirFoto);
+  document.getElementById('regimen').addEventListener('change', (e) => actualizarInfoRegimen(e.target.value));
+
+  document.getElementById('cerrar-sesion').addEventListener('click', () => {
+    localStorage.removeItem('gt_id_usuario');
   });
 
   const updatedEl = document.getElementById('regime-updated');
-  if (updatedEl) {
-    const ahora = new Date();
-    const hora = ahora.toLocaleTimeString('es-EC', { hour: '2-digit', minute: '2-digit' });
-    updatedEl.textContent = 'Actualizado: hoy, ' + hora;
-  }
+  const ahora = new Date();
+  updatedEl.textContent = 'Actualizado: hoy, ' + ahora.toLocaleTimeString('es-EC', { hour: '2-digit', minute: '2-digit' });
 });
 
-function cargarPerfil() {
-  const nombre = gtGet('perfil_nombre', 'Heidy Landi');
-  const negocio = gtGet('perfil_negocio', 'Emprendimientos HL');
-  const regimen = gtGet('perfil_regimen', 'rimpe_emprendedor');
-  const tipoContribuyente = gtGet('perfil_tipo_contribuyente', '');
-  const actividad = gtGet('perfil_actividad', 'servicios');
+async function cargarUsuario() {
+  const res = await fetch(`${API_URL}/usuarios/${idUsuario}`);
+  if (!res.ok) {
+    showToast('No se pudo cargar tu cuenta.');
+    return;
+  }
+  usuarioActual = await res.json();
 
-  document.getElementById('perfil-nombre').value = nombre;
-  document.getElementById('perfil-negocio').value = negocio;
-  document.getElementById('perfil-regimen').value = regimen;
-  document.getElementById('perfil-tipo-contribuyente').value = tipoContribuyente;
-  const actividadEl = document.getElementById('perfil-actividad');
-  if (actividadEl) actividadEl.value = actividad;
+  document.getElementById('primer_nombre').value = usuarioActual.primerNombre || '';
+  document.getElementById('segundo_nombre').value = usuarioActual.segundoNombre || '';
+  document.getElementById('apellido_paterno').value = usuarioActual.apellidoPaterno || '';
+  document.getElementById('apellido_materno').value = usuarioActual.apellidoMaterno || '';
+  document.getElementById('correo').value = usuarioActual.correo || '';
+  document.getElementById('telefono').value = usuarioActual.telefono || '';
+  document.getElementById('fecha_nacimiento').value = usuarioActual.fechaNacimiento || '';
+  document.getElementById('direccion').value = usuarioActual.direccion || '';
 
-  actualizarCabecera(nombre, regimen);
-  actualizarInfoRegimen(regimen);
+  const nombreCompleto = [usuarioActual.primerNombre, usuarioActual.apellidoPaterno].filter(Boolean).join(' ');
+  document.getElementById('perfil-nombre-display').textContent = nombreCompleto || 'Sin nombre';
+  document.getElementById('topbar-nombre').textContent = usuarioActual.primerNombre || 'Usuario';
+
+  const iniciales = (usuarioActual.primerNombre?.[0] || '') + (usuarioActual.apellidoPaterno?.[0] || '');
+  document.getElementById('topbar-avatar').textContent = iniciales.toUpperCase() || 'GT';
+
+  if (usuarioActual.fotoUrl) {
+    mostrarFotoEnCirculo(usuarioActual.fotoUrl);
+  }
 }
 
-function guardarPerfil(e) {
-  e.preventDefault();
-  const nombre = document.getElementById('perfil-nombre').value.trim() || 'Sin nombre';
-  const negocio = document.getElementById('perfil-negocio').value.trim();
-  const regimen = document.getElementById('perfil-regimen').value;
-  const tipoContribuyente = document.getElementById('perfil-tipo-contribuyente').value;
-  const actividadEl = document.getElementById('perfil-actividad');
-  const actividad = actividadEl ? actividadEl.value : '';
+async function cargarPerfilTributario() {
+  const res = await fetch(`${API_URL}/perfiles-tributarios/usuario/${idUsuario}`);
+  if (!res.ok) {
+    showToast('Aún no tienes un perfil tributario registrado.');
+    return;
+  }
+  perfilActual = await res.json();
 
-  gtSet('perfil_nombre', nombre);
-  gtSet('perfil_negocio', negocio);
-  gtSet('perfil_regimen', regimen);
-  gtSet('perfil_tipo_contribuyente', tipoContribuyente);
-  gtSet('perfil_actividad', actividad);
+  document.getElementById('ruc_cedula').value = perfilActual.rucCedula || '';
+  document.getElementById('nombre_negocio').value = perfilActual.nombreNegocio || '';
+  document.getElementById('direccion_negocio').value = perfilActual.direccionNegocio || '';
+  document.getElementById('regimen').value = perfilActual.regimen;
+  document.getElementById('tipo_contribuyente').value = perfilActual.tipoContribuyente;
 
-  actualizarCabecera(nombre, regimen);
-  actualizarInfoRegimen(regimen);
-  if (typeof syncTopbarUser === 'function') syncTopbarUser();
-  if (typeof syncSidebarRegimen === 'function') syncSidebarRegimen();
-  showToast('Perfil guardado correctamente');
+  let condicion = 'no_obligado';
+  if (perfilActual.obligadoContabilidad) condicion = 'obligado';
+  else if (perfilActual.agenteRetencion) condicion = 'agente';
+  const radio = document.querySelector(`input[name="condicion_tributaria"][value="${condicion}"]`);
+  if (radio) radio.checked = true;
+
+  actualizarEncabezadoRegimen(perfilActual.regimen);
+  actualizarInfoRegimen(perfilActual.regimen);
 }
 
-function actualizarCabecera(nombre, regimen) {
-  const iniciales = nombre
-    .split(' ')
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((p) => p[0].toUpperCase())
-    .join('');
-  const avatar = document.getElementById('avatar-iniciales');
-  if (avatar) avatar.textContent = iniciales || 'GT';
+async function cargarNotificaciones() {
+  const res = await fetch(`${API_URL}/notificaciones/usuario/${idUsuario}`);
+  if (!res.ok) return;
+  const notificaciones = await res.json();
 
-  const nombreEl = document.getElementById('perfil-nombre-display');
-  if (nombreEl) nombreEl.textContent = nombre;
+  document.getElementById('notif-count').textContent = notificaciones.filter((n) => !n.leida).length;
 
-  const labels = (typeof GT_REGIMEN_LABELS !== 'undefined') ? GT_REGIMEN_LABELS : {
-    rimpe_emprendedor: 'RIMPE – Emprendedor',
-    rimpe_negocio_popular: 'RIMPE – Negocio Popular',
-    general: 'Régimen General',
-    especial: 'Régimen/actividad especial'
-  };
-  const regimenEl = document.getElementById('perfil-regimen-display');
-  if (regimenEl) regimenEl.textContent = labels[regimen] || regimen;
+  const lista = document.getElementById('notif-lista');
+  lista.innerHTML = '';
+  notificaciones.slice(0, 5).forEach((n) => {
+    const item = document.createElement('div');
+    item.className = 'notif-item';
+    item.innerHTML = `<strong>${n.titulo}</strong><span>${n.mensaje}</span>`;
+    lista.appendChild(item);
+  });
+}
+
+function actualizarEncabezadoRegimen(regimen) {
+  const label = REGIMEN_LABEL[regimen] || regimen;
+  document.getElementById('perfil-regimen-display').textContent = label;
+  document.getElementById('sidebar-regimen').textContent = label;
 }
 
 function actualizarInfoRegimen(regimen) {
-  const textEl = document.getElementById('regimen-info-text');
-  if (textEl) textEl.textContent = GT_REGIMEN_INFO[regimen] || GT_REGIMEN_INFO.rimpe_emprendedor;
+  document.getElementById('regimen-info-text').textContent = REGIMEN_INFO[regimen] || '';
+}
+
+function mostrarFotoEnCirculo(fotoUrl) {
+  const caja = document.getElementById('avatar-preview-box');
+  caja.innerHTML = `<img src="http://localhost:8080${fotoUrl}" alt="Foto de perfil">`;
+}
+
+/* ------------------------------------------------------------
+   Subir foto (se guarda al instante al elegir el archivo)
+   ------------------------------------------------------------ */
+async function subirFoto() {
+  const archivo = document.getElementById('foto_archivo').files[0];
+  if (!archivo) return;
+
+  // Vista previa inmediata, antes de que responda el servidor
+  const lector = new FileReader();
+  lector.onload = (e) => {
+    document.getElementById('avatar-preview-box').innerHTML = `<img src="${e.target.result}" alt="Foto de perfil">`;
+  };
+  lector.readAsDataURL(archivo);
+
+  const formData = new FormData();
+  formData.append('archivo', archivo);
+
+  try {
+    const res = await fetch(`${API_URL}/usuarios/${idUsuario}/foto`, { method: 'POST', body: formData });
+    if (!res.ok) throw new Error();
+    usuarioActual = await res.json();
+    showToast('Foto actualizada');
+  } catch {
+    showToast('No se pudo subir la foto');
+  }
+}
+
+/* ------------------------------------------------------------
+   Guardar datos personales
+   ------------------------------------------------------------ */
+async function guardarDatosPersonales(e) {
+  e.preventDefault();
+
+  const payload = {
+    primerNombre: document.getElementById('primer_nombre').value.trim(),
+    segundoNombre: document.getElementById('segundo_nombre').value.trim() || null,
+    apellidoPaterno: document.getElementById('apellido_paterno').value.trim(),
+    apellidoMaterno: document.getElementById('apellido_materno').value.trim() || null,
+    correo: document.getElementById('correo').value.trim(),
+    telefono: document.getElementById('telefono').value.trim() || null,
+    fechaNacimiento: document.getElementById('fecha_nacimiento').value || null,
+    direccion: document.getElementById('direccion').value.trim() || null,
+    fotoUrl: usuarioActual?.fotoUrl || null // se reenvia para que el PUT no la borre
+  };
+
+  const res = await fetch(`${API_URL}/usuarios/${idUsuario}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+
+  if (!res.ok) {
+    const err = await res.json().catch(() => null);
+    showToast(err?.mensaje || 'No se pudieron guardar los datos.');
+    return;
+  }
+
+  usuarioActual = await res.json();
+  document.getElementById('perfil-nombre-display').textContent =
+    [usuarioActual.primerNombre, usuarioActual.apellidoPaterno].filter(Boolean).join(' ');
+  document.getElementById('topbar-nombre').textContent = usuarioActual.primerNombre;
+  showToast('Datos personales guardados');
+}
+
+/* ------------------------------------------------------------
+   Guardar perfil tributario
+   ------------------------------------------------------------ */
+async function guardarPerfilTributario(e) {
+  e.preventDefault();
+  if (!perfilActual) {
+    showToast('No hay un perfil tributario que editar.');
+    return;
+  }
+
+  const condicion = document.querySelector('input[name="condicion_tributaria"]:checked')?.value;
+
+  const payload = {
+    ...perfilActual, // conserva rucCedula, novenoDigito, etc.
+    nombreNegocio: document.getElementById('nombre_negocio').value.trim() || null,
+    direccionNegocio: document.getElementById('direccion_negocio').value.trim() || null,
+    regimen: document.getElementById('regimen').value,
+    tipoContribuyente: document.getElementById('tipo_contribuyente').value,
+    obligadoContabilidad: condicion === 'obligado',
+    agenteRetencion: condicion === 'agente'
+  };
+
+  const res = await fetch(`${API_URL}/perfiles-tributarios/${perfilActual.idPerfil}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+
+  if (!res.ok) {
+    const err = await res.json().catch(() => null);
+    showToast(err?.mensaje || 'No se pudo guardar el perfil tributario.');
+    return;
+  }
+
+  perfilActual = await res.json();
+  actualizarEncabezadoRegimen(perfilActual.regimen);
+  actualizarInfoRegimen(perfilActual.regimen);
+  showToast('Perfil tributario guardado');
 }

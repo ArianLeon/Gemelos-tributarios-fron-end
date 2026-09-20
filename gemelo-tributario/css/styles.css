@@ -1640,3 +1640,9 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
 .modal-overlay.show .modal-box{transform:translateY(0);}
 .modal-box h3{font-size:16px;color:var(--text-900);margin-bottom:8px;}
 .modal-box p{font-size:13.5px;color:var(--text-500);margin-bottom:18px;line-height:1.5;}
+
+.input:disabled{
+  background:var(--bg);
+  color:var(--text-500);
+  cursor:not-allowed;
+}

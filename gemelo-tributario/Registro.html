@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro — Gemelo Tributario</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body style="min-height:100vh;display:flex;justify-content:center;align-items:center;padding:24px;">
+
+<div class="card card-pad" style="width:100%;max-width:560px;">
+
+  <div class="registro-header">
+    <img src="img/robotsolo.png" alt="Gemelo Tributario" class="registro-logo">
+    <p class="registro-header-title">Crea tu cuenta</p>
+    <p>Ingresa tus datos personales para continuar</p>
+  </div>
+
+  <form id="form-registro" novalidate>
+
+    <div class="avatar-upload-container">
+      <div class="avatar-circle-wrapper">
+        <label for="foto_archivo" class="avatar-circle" id="avatar-preview-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span>Subir foto</span>
+        </label>
+        <div class="camera-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        </div>
+        <input type="file" id="foto_archivo" name="fotoArchivo" accept="image/*" style="display:none;">
+      </div>
+    </div>
+
+    <div class="step-label">
+      <div class="n">1</div>
+      <span>Datos personales</span>
+    </div>
+
+    <div class="field">
+      <label for="ruc_cedula">RUC o Cédula</label>
+      <input class="input" type="text" id="ruc_cedula" name="ruc_cedula" placeholder="Ej: 0102030405001" required maxlength="13" pattern="[0-9]{10}|[0-9]{13}">
+    </div>
+
+    <div class="regime-select-row">
+      <div class="field">
+        <label for="primer_nombre">Primer nombre</label>
+        <input class="input" type="text" id="primer_nombre" name="primer_nombre" placeholder="Ej: Juan" required maxlength="80">
+      </div>
+      <div class="field">
+        <label for="segundo_nombre">Segundo nombre</label>
+        <input class="input" type="text" id="segundo_nombre" name="segundo_nombre" placeholder="Opcional" maxlength="80">
+      </div>
+    </div>
+
+    <div class="regime-select-row">
+      <div class="field">
+        <label for="apellido_paterno">Primer apellido</label>
+        <input class="input" type="text" id="apellido_paterno" name="apellido_paterno" placeholder="Ej: Pérez" required maxlength="80">
+      </div>
+      <div class="field">
+        <label for="apellido_materno">Segundo apellido</label>
+        <input class="input" type="text" id="apellido_materno" name="apellido_materno" placeholder="Opcional" maxlength="80">
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="correo">Correo electrónico</label>
+      <input class="input" type="email" id="correo" name="correo" placeholder="correo@ejemplo.com" required maxlength="150">
+    </div>
+
+    <div class="regime-select-row">
+      <div class="field">
+        <label for="telefono">Teléfono</label>
+        <input class="input" type="tel" id="telefono" name="telefono" placeholder="Ej: 0990000000" maxlength="10" required>
+      </div>
+      <div class="field">
+        <label for="fecha_nacimiento">Fecha de nacimiento</label>
+        <input class="input" type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="direccion">Dirección</label>
+      <input class="input" type="text" id="direccion" name="direccion" placeholder="Ej: Av. Ejemplo 123, Cuenca" maxlength="255" required>
+    </div>
+
+    <div class="field">
+      <label for="contrasena">Contraseña</label>
+      <div class="input-password-wrap">
+        <input class="input" type="password" id="contrasena" name="contrasena" placeholder="Ingrese su contraseña" required>
+        <button type="button" class="password-toggle" data-toggle-for="contrasena" aria-label="Mostrar contraseña">
+          <span class="icon-eye"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg></span>
+          <span class="icon-eye-off hidden"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a20.3 20.3 0 0 1 5.06-5.94M9.9 4.24A10.94 10.94 0 0 1 12 4c7 0 11 8 11 8a20.29 20.29 0 0 1-3.22 4.44"/><path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="confirmar_contrasena">Confirmar contraseña</label>
+      <div class="input-password-wrap">
+        <input class="input" type="password" id="confirmar_contrasena" name="confirmar_contrasena" placeholder="Repite tu contraseña" required>
+        <button type="button" class="password-toggle" data-toggle-for="confirmar_contrasena" aria-label="Mostrar contraseña">
+          <span class="icon-eye"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg></span>
+          <span class="icon-eye-off hidden"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a20.3 20.3 0 0 1 5.06-5.94M9.9 4.24A10.94 10.94 0 0 1 12 4c7 0 11 8 11 8a20.29 20.29 0 0 1-3.22 4.44"/><path d="M14.12 14.12a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="step-label">
+      <div class="n">2</div>
+      <span>Perfil tributario (SRI)</span>
+    </div>
+
+    <div class="field">
+      <label for="nombre_negocio">Nombre del negocio</label>
+      <input class="input" type="text" id="nombre_negocio" name="nombre_negocio" placeholder="Ej: Panadería El Trigo" maxlength="255" required>
+    </div>
+
+    <div class="field">
+      <label for="direccion_negocio">Dirección del negocio</label>
+      <input class="input" type="text" id="direccion_negocio" name="direccion_negocio" placeholder="Ej: Av. Ejemplo 123, Cuenca" maxlength="255" required>
+    </div>
+
+    <div class="field">
+      <label for="regimen">Régimen tributario</label>
+      <select class="select" id="regimen" name="regimen" required>
+        <option value="" disabled selected>Selecciona tu régimen</option>
+        <option value="RIMPE_NEGOCIO_POPULAR">RIMPE – Negocio Popular</option>
+        <option value="RIMPE_EMPRENDEDOR">RIMPE – Emprendedor</option>
+        <option value="GENERAL">Régimen General</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="tipo_contribuyente">Tipo de contribuyente</label>
+      <select class="select" id="tipo_contribuyente" name="tipo_contribuyente" required>
+        <option value="" disabled selected>Selecciona el tipo</option>
+        <option value="PERSONA_NATURAL">Persona Natural</option>
+        <option value="SOCIEDAD">Sociedad / Empresa</option>
+      </select>
+    </div>
+
+
+    <div class="form-row-checkboxes">
+  <label class="remember-check">
+    <input type="radio" id="obligado_contabilidad" name="condicion_tributaria" value="obligado" required>
+    <span class="check-box"></span>
+    Obligado a llevar contabilidad
+  </label>
+  <label class="remember-check">
+    <input type="radio" id="no_obligado_contabilidad" name="condicion_tributaria" value="no_obligado" required>
+    <span class="check-box"></span>
+    No obligado a llevar contabilidad
+  </label>
+  <label class="remember-check">
+    <input type="radio" id="agente_retencion" name="condicion_tributaria" value="agente" required>
+    <span class="check-box"></span>
+    Agente de retención
+  </label>
+</div>
+
+    <label class="remember-check mt-16">
+      <input type="checkbox" id="acepto_terminos" name="acepto_terminos" required>
+      <span class="check-box"></span>
+      Acepto los <a href="#" class="auth-link-sm">términos y condiciones</a> de Gemelo Tributario
+    </label>
+
+    <button type="submit" id="registro-submit" class="btn btn-primary btn-block mt-16">
+      <span class="btn-text">Crear cuenta</span>
+    </button>
+  </form>
+
+  <p class="auth-footer-text">
+    ¿Ya tienes una cuenta? <a href="Login.html">Inicia sesión</a>
+  </p>
+
+</div>
+
+<div class="modal-overlay" id="modal-error">
+  <div class="modal-box">
+    <h3>Campos incompletos</h3>
+    <p id="modal-error-mensaje"></p>
+    <button type="button" class="btn btn-primary btn-block" id="modal-error-cerrar">Entendido</button>
+  </div>
+</div>
+
+<script src="js/registro.js"></script>
+</body>
+</html>

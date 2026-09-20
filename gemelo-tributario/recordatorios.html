@@ -10,7 +10,6 @@
 
 <div class="app-shell">
 
-  <!-- ========== SIDEBAR (sin cambios) ========== -->
   <aside class="sidebar">
     <div class="sidebar-header">
       <div class="brand">
@@ -60,7 +59,7 @@
     </nav>
   </aside>
 
-  <!-- ========== TOPBAR MÓVIL ========== -->
+
   <header class="topbar-mobile">
     <div class="brand">
       <img src="img/logo_completo.png" alt="Gemelo Tributario" class="brand-logo-img brand-logo-img-sm" style="height:30px;width:auto;display:block;">
@@ -73,7 +72,7 @@
     </div>
   </header>
 
-  <!-- ========== CONTENIDO PRINCIPAL ========== -->
+
   <main class="main">
 
     <!-- Encabezado -->
@@ -131,7 +130,7 @@
       </div>
     </div>
 
-    <!-- ===== Próxima obligación + Resumen rápido ===== -->
+
     <div class="grid grid-2" style="margin-bottom:24px; align-items:stretch;">
       <div class="card next-obligation" style="background:var(--purple-100); border:none;">
         <div class="ic">
@@ -161,13 +160,13 @@
       </div>
     </div>
 
-    <!-- ===== Tabs ===== -->
+
     <div class="tabs">
       <button class="tab active" data-tab="proximas">Próximas</button>
       <button class="tab" data-tab="historial">Historial</button>
     </div>
 
-    <!-- ===== Filtro (se superpone sobre la columna derecha) ===== -->
+
     <div class="filter-row">
       <select class="input select filter-select" id="filterEstado">
         <option value="all">Todas las obligaciones</option>
@@ -177,7 +176,7 @@
       </select>
     </div>
 
-    <!-- ===== Contenido: lista + columna lateral ===== -->
+
     <div class="reminders-layout" style="display:grid; grid-template-columns:1fr 340px; gap:24px; align-items:start;">
 
       <!-- Lista de obligaciones -->
@@ -242,7 +241,7 @@
             </div>
           </div>
 
-          <!-- 3. Pago de Impuesto a la Renta — Anticipo 1 -->
+
           <div class="card reminder-item b-pendiente" data-status="pendiente">
             <div class="date-block">
               <span class="mon">Jun</span>
@@ -271,7 +270,7 @@
             </div>
           </div>
 
-          <!-- 4. Declaración de Retenciones en la Fuente -->
+
           <div class="card reminder-item b-pendiente" data-status="pendiente">
             <div class="date-block">
               <span class="mon">Jul</span>
@@ -302,7 +301,7 @@
 
         </div>
 
-        <!-- Historial (vacío por ahora) -->
+
         <div class="reminder-list hidden" id="tabHistorial">
           <div class="card" style="padding:40px 20px; text-align:center; color:var(--text-500); font-size:13.5px;">
             Aún no tienes obligaciones completadas en tu historial.
@@ -411,7 +410,7 @@
       </div>
     </div>
 
-    <!-- ===== Todo al día ===== -->
+    <!--Todo al día -->
     <div class="empty-state" style="margin-top:24px;">
       <div class="check">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -428,7 +427,7 @@
   </main>
 </div>
 
-<!-- ========== BOTTOM NAV (móvil) ========== -->
+
 <nav class="bottom-nav">
   <a href="dashboard.html">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>

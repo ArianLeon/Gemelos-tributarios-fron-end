@@ -1,7 +1,3 @@
-/* ============================================================
-   GEMELO TRIBUTARIO — Prototipo Web
-   Tokens de diseño
-   ============================================================ */
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
 
 :root{
@@ -78,9 +74,9 @@ img{max-width:100%;display:block;}
 @media (prefers-reduced-motion: reduce){
   .reveal{opacity:1;transform:none;transition:none;}
 }
-/* ============================================================
+
    Foco visible / accesibilidad
-   ============================================================ */
+
 a:focus-visible, button:focus-visible, input:focus-visible,
 select:focus-visible, textarea:focus-visible, .tab:focus-visible{
   outline:2px solid var(--orange-500);
@@ -88,9 +84,6 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
   border-radius:4px;
 }
 
-/* ============================================================
-   Marca / logomark
-   ============================================================ */
 .brand{display:flex;align-items:center;gap:12px;}
 .brand-mark{flex-shrink:0;}
 .brand-mark rect{stroke:var(--orange-500);}
@@ -98,21 +91,21 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
 .brand-name{font-family:var(--font-display);font-weight:700;font-size:17px;color:var(--text-inverse);line-height:1.1;}
 .brand-name span{display:block;font-size:11px;font-weight:500;color:var(--orange-400);letter-spacing:.06em;text-transform:uppercase;margin-top:2px;}
 
-/* ============================================================
-   Estructura general: sidebar + contenido
-   ============================================================ */
+/* Estructura general: sidebar + contenido*/
 .app-shell{display:flex;min-height:100vh;}
 
+/* REGLA CORREGIDA */
 .sidebar{
-  width:var(--sidebar-w);
-  flex-shrink:0;
-  background:var(--navy-950);
-  padding:28px 20px 24px;
-  display:flex;
-  flex-direction:column;
-  position:sticky;
-  top:0;
-  height:100vh;
+  width: var(--sidebar-w);
+  flex-shrink: 0;
+  background: var(--navy-950);
+  padding: 28px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  max-height: 100vh;     
+  overflow-y: auto;       
 }
 .sidebar-header{padding:0 4px 28px;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:20px;}
 
@@ -167,14 +160,10 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
 
 .topbar-mobile{display:none;}
 
-/* ============================================================
-   Bottom nav (móvil)
-   ============================================================ */
+/* Bottom nav (móvil) */
 .bottom-nav{display:none;}
 
-/* ============================================================
-   Encabezado de página
-   ============================================================ */
+/*Encabezado de página */
 .page-head{
   display:flex;
   align-items:flex-start;
@@ -195,9 +184,7 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
 }
 .page-head .subtitle{color:var(--text-500);font-size:14.5px;margin-top:6px;max-width:52ch;}
 
-/* ============================================================
-   Chip / etiqueta normativa — elemento firma del prototipo
-   ============================================================ */
+/*Chip / etiqueta normativa — elemento firma del prototipo */
 .norm-tag{
   display:inline-flex;
   align-items:center;
@@ -215,9 +202,7 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
 .norm-tag::before{content:'§';color:var(--orange-400);font-weight:700;}
 .norm-tag.light{background:var(--navy-900);}
 
-/* ============================================================
-   Tarjetas
-   ============================================================ */
+/*Tarjetas*/
 .card{
   background:var(--surface);
   border:1px solid var(--border);
@@ -286,9 +271,7 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
 }
 .disclaimer svg{flex-shrink:0;margin-top:1px;color:#C9821E;}
 
-/* ============================================================
-   Botones
-   ============================================================ */
+/*Botones */
 .btn{
   display:inline-flex;
   align-items:center;
@@ -315,9 +298,7 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
 .btn[disabled]{opacity:.5;cursor:not-allowed;}
 .btn-success{background:var(--green-600);color:#fff;}
 
-/* ============================================================
-   Formularios
-   ============================================================ */
+/* Formularios */
 .field{margin-bottom:16px;}
 .field label{
   display:block;font-size:12.5px;font-weight:600;color:var(--text-700);
@@ -382,9 +363,7 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
 }
 .segmented button.active{background:var(--navy-950);color:#fff;}
 
-/* ============================================================
-   Resultado calculadora
-   ============================================================ */
+/*Resultado calculadora*/
 .result-box{
   background:var(--navy-950);
   border-radius:var(--radius-md);
@@ -413,9 +392,7 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
 .bracket-table td{padding:7px 8px;border-bottom:1px solid var(--border);font-family:var(--font-mono);color:var(--text-700);}
 .bracket-table tr.hit td{background:var(--orange-100);color:var(--navy-950);font-weight:600;}
 
-/* ============================================================
-   Recordatorios
-   ============================================================ */
+/*Recordatorios */
 .tabs{display:flex;gap:6px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:4px;width:fit-content;margin-bottom:22px;}
 .tab{border:none;background:transparent;padding:9px 18px;border-radius:6px;font-size:13.5px;font-weight:600;color:var(--text-500);}
 .tab.active{background:var(--navy-950);color:#fff;}
@@ -446,9 +423,7 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
 .empty-state strong{font-size:14px;color:var(--text-900);display:block;}
 .empty-state p{font-size:12.5px;color:var(--text-700);margin-top:2px;}
 
-/* ============================================================
-   Aprender
-   ============================================================ */
+/*Aprender*/
 .category-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;}
 .category-chip{
   display:flex;align-items:center;gap:8px;
@@ -496,9 +471,7 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
 .faq-item.open .faq-answer{max-height:400px;}
 .faq-answer-inner{padding:0 20px 20px;font-size:13.5px;color:var(--text-700);line-height:1.6;}
 
-/* ============================================================
-   Chat
-   ============================================================ */
+/*Chat*/
 .chat-shell{
   display:flex;flex-direction:column;
   height:calc(100vh - 64px);
@@ -546,9 +519,7 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
 }
 .send-btn:hover{background:#1A1AC7;}
 
-/* ============================================================
-   Perfil
-   ============================================================ */
+/*Perfil*/
 .profile-head{display:flex;align-items:center;gap:18px;margin-bottom:26px;}
 .avatar-lg{
   width:68px;height:68px;border-radius:18px;background:var(--navy-950);color:var(--orange-400);
@@ -578,9 +549,7 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto;}
 .toast svg{color:var(--green-600);flex-shrink:0;}
 
-/* ============================================================
-   Landing (index.html)
-   ============================================================ */
+/* Landing (index.html)*/
 .landing{min-height:100vh;background:var(--navy-950);color:var(--text-inverse);display:flex;flex-direction:column;}
 .landing-nav{display:flex;align-items:center;justify-content:space-between;padding:26px 6vw;}
 .landing-hero{
@@ -675,9 +644,9 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
 .footer-bottom-links{display:flex;gap:16px;flex-wrap:wrap;}
 @media (max-width:900px){.footer-grid{grid-template-columns:1fr 1fr;}}
 @media (max-width:560px){.footer-grid{grid-template-columns:1fr;}}
-/* ============================================================
-   Landing — sección "Planes y servicios"
-   ============================================================ */
+
+
+/* Landing — sección "Planes y servicios"*/
 .landing-plans{
   padding:70px 6vw 10px;
   max-width:1280px;
@@ -739,9 +708,7 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
 
 
 
-/* ============================================================
-   Vista de inicio de sesión (login.html)
-   ============================================================ */
+/* Vista de inicio de sesión (login.html) */
 .auth-page{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;background:var(--surface);}
 
 .auth-visual{
@@ -801,15 +768,23 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
 }
 @keyframes btn-spin{to{transform:rotate(360deg);}}
 
+/* Registro — mismo patrón de carga que el botón de login */
+#registro-submit{position:relative;}
+#registro-submit.btn-loading .btn-text{visibility:hidden;}
+#registro-submit.btn-loading::after{
+  content:'';position:absolute;left:50%;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;
+  border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;
+  animation:btn-spin .6s linear infinite;
+}
+
+
 @media (max-width:960px){
   .auth-page{grid-template-columns:1fr;}
   .auth-visual{display:none;}
   .auth-form-side{padding-top:40px;}
 }
 
-/* ============================================================
-   Sidebar — régimen con ícono + suscripción + mascota
-   ============================================================ */
+/*Sidebar — régimen con ícono + suscripción + mascota*/
 .sidebar-caption{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin:0 4px 8px;}
 .regime-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-md);padding:12px;cursor:pointer;transition:border-color .15s ease,background .15s ease;width:100%;text-align:left;font:inherit;color:inherit;}
 .regime-card:hover{border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.09);}
@@ -838,9 +813,7 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
 .sidebar-mascot .m-status{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;color:var(--green-400);font-weight:600;margin-top:8px;}
 .sidebar-mascot .m-status .dot{width:5px;height:5px;border-radius:50%;background:var(--green-400);}
 
-/* ============================================================
-   Encabezado de página: acciones (campana / ayuda / usuario)
-   ============================================================ */
+/* Encabezado de página: acciones (campana / ayuda / usuario)*/
 .head-actions{display:flex;align-items:center;gap:10px;flex-shrink:0;position:relative;}
 .icon-btn{position:relative;width:40px;height:40px;border-radius:12px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-700);flex-shrink:0;}
 .icon-btn:hover{border-color:var(--navy-950);color:var(--navy-950);}
@@ -868,9 +841,7 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
 .notif-item span{font-size:11.5px;color:var(--text-500);}
 .notif-item:hover{background:var(--bg);}
 
-/* ============================================================
-   Situación tributaria / stats (Inicio)
-   ============================================================ */
+/*Situación tributaria / stats (Inicio)*/
 .situation-card{padding:22px;}
 .situation-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
 .situation-head h3{font-size:14.5px;color:var(--text-900);}
@@ -892,9 +863,7 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
 .stat-tile .num{font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--text-900);}
 .stat-tile .lbl{font-size:11px;color:var(--text-500);line-height:1.3;}
 
-/* ============================================================
-   Plan actual + ahorro anual (Inicio, columna derecha)
-   ============================================================ */
+/*Plan actual + ahorro anual (Inicio, columna derecha)*/
 .plan-summary{padding:22px;}
 .plan-summary-top{display:flex;align-items:center;gap:12px;margin-bottom:6px;}
 .plan-summary-icon{width:38px;height:38px;border-radius:11px;background:var(--purple-100);color:var(--purple-600);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
@@ -918,9 +887,7 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
 .savings-card p{font-size:12px;color:var(--text-700);margin-bottom:10px;}
 .savings-card a{font-size:12.5px;font-weight:700;color:var(--purple-600);display:inline-flex;align-items:center;gap:4px;}
 
-/* ============================================================
-   Soluciones tributarias (Inicio)
-   ============================================================ */
+/*Soluciones tributarias (Inicio)*/
 .solutions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
 .solution-card{padding:20px;display:flex;flex-direction:column;}
 .solution-card .sol-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
@@ -931,9 +898,7 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
 .solution-card ul li svg{color:var(--green-600);flex-shrink:0;}
 .solution-card .btn{margin-top:auto;}
 
-/* ============================================================
-   Banner de recomendación
-   ============================================================ */
+/*Banner de recomendación*/
 .recommend-banner{
   display:flex;align-items:center;gap:16px;padding:18px 22px;
   background:var(--amber-100);border:1px solid #FBE3C4;border-radius:var(--radius-md);
@@ -945,18 +910,14 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
 .recommend-banner .deco{color:var(--amber-600);opacity:.5;flex-shrink:0;display:none;}
 @media(min-width:700px){.recommend-banner .deco{display:block;}}
 
-/* ============================================================
-   Franja de confianza (features chicos)
-   ============================================================ */
+/*Franja de confianza (features chicos)*/
 .feature-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
 .feature-item{display:flex;align-items:center;gap:12px;padding:16px;}
 .feature-item .icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .feature-item strong{display:block;font-size:12.5px;color:var(--text-900);}
 .feature-item span{font-size:11px;color:var(--text-500);}
 
-/* ============================================================
-   Calculadora — wizard, tipos de cálculo, info box, resultado
-   ============================================================ */
+/*Calculadora — wizard, tipos de cálculo, info box, resultado*/
 .wizard-steps{display:flex;align-items:center;margin-bottom:26px;flex-wrap:wrap;gap:6px;}
 .wizard-step{display:flex;align-items:center;gap:9px;}
 .wizard-step .n{
@@ -1075,9 +1036,7 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
 .annual-sim-metric .val{font-size:14px;font-weight:700;color:var(--text-900);font-family:var(--font-mono);display:block;margin-top:1px;}
 .annual-sim .see-all{margin-left:auto;font-size:12.5px;font-weight:700;color:var(--orange-500);display:flex;align-items:center;gap:4px;}
 
-/* ============================================================
-   Recordatorios — hero, resumen, calendario mini
-   ============================================================ */
+/*Recordatorios — hero, resumen, calendario mini*/
 .next-obligation{display:flex;align-items:center;gap:16px;padding:20px 22px;flex-wrap:wrap;}
 .next-obligation .ic{width:44px;height:44px;border-radius:13px;background:var(--purple-100);color:var(--purple-600);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .next-obligation .body{flex:1;min-width:180px;}
@@ -1129,9 +1088,7 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
 .reminder-detail{flex-basis:100%;max-height:0;overflow:hidden;transition:max-height .25s ease;font-size:12.5px;color:var(--text-500);line-height:1.6;}
 .reminder-detail.open{max-height:120px;margin-top:12px;padding-top:12px;border-top:1px dashed var(--border);}
 
-/* ============================================================
-   Utilidades
-   ============================================================ */
+/*Utilidades*/
 .mt-8{margin-top:8px;}
 .mt-16{margin-top:16px;}
 .mt-24{margin-top:24px;}
@@ -1142,9 +1099,7 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
 .text-muted{color:var(--text-500);}
 .hidden{display:none !important;}
 
-/* ============================================================
-   Responsivo
-   ============================================================ */
+/* Responsivo*/
 @media (max-width:1080px){
   .grid-4{grid-template-columns:repeat(2,1fr);}
   .grid-3{grid-template-columns:repeat(2,1fr);}
@@ -1194,9 +1149,7 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
   .annual-sim-row{gap:16px;}
   .landing-plans{padding:50px 6vw 10px;}
 }
-/* ============================================================
-   Gemelo Chat — vista rediseñada (encabezado, hero, accesos)
-   ============================================================ */
+/*Gemelo Chat — vista rediseñada (encabezado, hero, accesos)*/
 .chat-page{display:flex;flex-direction:column;gap:22px;}
 
 .chat-topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
@@ -1320,9 +1273,7 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
 @media (max-width:560px){
   .topic-grid{grid-template-columns:1fr;}
 }
-/* ============================================================
-   Aprender — rediseño (progreso, búsqueda, recomendados, casos)
-   ============================================================ */
+/*Aprender — rediseño (progreso, búsqueda, recomendados, casos) */
 .learn-top-row{display:flex;gap:16px;margin-bottom:20px;flex-wrap:wrap;}
 
 .progress-card{flex:1;min-width:260px;padding:22px;}
@@ -1423,10 +1374,8 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
   .recommend-banner{padding:20px;}
 }
 
-/* ============================================================
-   Calculadora — rediseño (tiles grandes, resultado, resumen,
-   estado tributario, cálculos recientes, CTA chat)
-   ============================================================ */
+/*Calculadora — rediseño (tiles grandes, resultado, resumen,
+  estado tributario, cálculos recientes, CTA chat)*/
 .calc-head-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
 
 .calc-type-grid-lg{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px;}
@@ -1535,3 +1484,159 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
 }
 
 
+
+/*Panel de administrador*/
+.admin-kpi{padding:20px 20px 18px;border-left:3px solid var(--orange-500);}
+.admin-kpi.k-green{border-left-color:var(--green-600);}
+.admin-kpi.k-amber{border-left-color:var(--amber-600);}
+.admin-kpi.k-red{border-left-color:var(--red-600);}
+.admin-kpi .kpi-label{font-size:12.5px;color:var(--text-500);margin-bottom:10px;}
+.admin-kpi .kpi-value{font-family:var(--font-display);font-size:26px;font-weight:700;color:var(--text-900);}
+.admin-kpi .kpi-delta{font-size:12px;margin-top:8px;color:var(--text-500);}
+.admin-kpi .kpi-delta.up{color:var(--green-600);}
+.admin-kpi .kpi-delta.down{color:var(--red-600);}
+
+.panel-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--border);}
+.panel-head h3{font-size:14.5px;}
+.panel-head .link{font-size:12px;font-weight:700;color:var(--orange-500);}
+
+.admin-table{width:100%;border-collapse:collapse;font-size:13px;}
+.admin-table th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.03em;color:var(--text-500);font-weight:600;padding:10px 18px;border-bottom:1px solid var(--border);}
+.admin-table td{padding:12px 18px;border-bottom:1px solid var(--border);color:var(--text-900);}
+.admin-table tr:last-child td{border-bottom:none;}
+.admin-table .mono{font-family:var(--font-mono);font-size:12.5px;color:var(--text-500);}
+
+.status-pill{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:999px;white-space:nowrap;}
+.status-pill.ok{background:var(--green-100);color:var(--green-600);}
+.status-pill.warn{background:var(--orange-100);color:var(--orange-500);}
+.status-pill.due{background:var(--red-100);color:var(--red-600);}
+.status-pill.info{background:var(--purple-100);color:var(--purple-600);}
+
+.alert-list{display:flex;flex-direction:column;}
+.alert-item{display:flex;gap:12px;padding:13px 18px;border-bottom:1px solid var(--border);align-items:flex-start;}
+.alert-item:last-child{border-bottom:none;}
+.alert-dot{width:8px;height:8px;border-radius:50%;margin-top:5px;flex-shrink:0;background:var(--orange-500);}
+.alert-dot.amber{background:var(--amber-600);}
+.alert-dot.red{background:var(--red-600);}
+.alert-dot.green{background:var(--green-600);}
+.alert-item .t1{font-size:13px;font-weight:600;color:var(--text-900);}
+.alert-item .t2{font-size:12px;color:var(--text-500);margin-top:2px;}
+
+.admin-search{flex:1;max-width:340px;display:flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:9px 12px;color:var(--text-500);font-size:13px;}
+
+@media (max-width:900px){
+  .admin-search{display:none;}
+}
+
+/*Registro — encabezado con logo y subida de foto de perfil*/
+.registro-header{
+  text-align:center;
+  margin-bottom:24px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.registro-logo{
+  height:96px;
+  width:auto;
+  object-fit:contain;
+  margin-bottom:8px;
+}
+.registro-header-title{
+  font-family:var(--font-display);
+  font-size:20px;
+  font-weight:700;
+  color:var(--text-900);
+  margin:0;
+}
+
+.avatar-upload-container{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  margin-bottom:24px;
+}
+.avatar-circle-wrapper{
+  position:relative;
+  width:96px;
+  height:96px;
+  margin-bottom:8px;
+}
+.avatar-circle{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  background:var(--bg);
+  border:2px dashed var(--border);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  color:var(--text-500);
+  cursor:pointer;
+  overflow:hidden;
+  position:relative; 
+  transition:border-color .15s ease;
+}
+.avatar-circle:hover{border-color:var(--orange-500);}
+.avatar-circle img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  position:absolute;
+  inset:0;
+  border-radius:50%; 
+}
+.avatar-circle svg{
+  width:28px;
+  height:28px;
+  margin-bottom:4px;
+}
+.avatar-circle span{
+  font-size:9.5px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+}
+.camera-badge{
+  position:absolute;
+  bottom:0;
+  right:0;
+  width:30px;
+  height:30px;
+  background:var(--orange-500);
+  color:#fff;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 4px 10px rgba(35,35,245,.3);
+  cursor:pointer;
+  border:2px solid var(--surface);
+}
+
+.form-row-checkboxes{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin:20px 0;
+  background:var(--bg);
+  padding:14px;
+  border-radius:var(--radius-sm);
+  border:1px solid var(--border);
+}
+
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(10,22,40,.55);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .2s ease;z-index:300;padding:20px;
+}
+.modal-overlay.show{opacity:1;pointer-events:auto;}
+.modal-box{
+  background:var(--surface);border-radius:var(--radius-md);padding:28px;
+  max-width:340px;width:100%;text-align:center;box-shadow:var(--shadow-pop);
+  transform:translateY(10px);transition:transform .2s ease;
+}
+.modal-overlay.show .modal-box{transform:translateY(0);}
+.modal-box h3{font-size:16px;color:var(--text-900);margin-bottom:8px;}
+.modal-box p{font-size:13.5px;color:var(--text-500);margin-bottom:18px;line-height:1.5;}

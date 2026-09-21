@@ -777,6 +777,30 @@ select:focus-visible, textarea:focus-visible, .tab:focus-visible{
   animation:btn-spin .6s linear infinite;
 }
 
+auth-head{margin-bottom:32px;}
+.auth-head h1{font-size:26px;color:var(--text-900);margin:10px 0 8px;}
+
+.auth-form .input{border-radius:12px;}
+.auth-form .field{margin-bottom:20px;}
+.auth-form .btn-block{padding:14px 20px;}
+
+.btn-primary:hover{box-shadow:0 10px 24px -8px rgba(35,35,245,.65);}
+
+.auth-visual-text h2{line-height:1.35;margin-bottom:16px;}
+
+.auth-footer-text{margin-top:26px;}
+
+.auth-visual::after{
+  content:'';
+  position:absolute;
+  top:-10%;
+  left:-10%;
+  width:70%;
+  height:70%;
+  background:radial-gradient(circle, rgba(91,91,250,.25) 0%, transparent 70%);
+  z-index:1;
+  pointer-events:none;
+}
 
 @media (max-width:960px){
   .auth-page{grid-template-columns:1fr;}

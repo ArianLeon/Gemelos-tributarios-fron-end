@@ -10,10 +10,10 @@
 
 <div class="app-shell">
 
-    <aside class="sidebar">
+  <aside class="sidebar">
     <div class="sidebar-header">
       <div class="brand">
-          <img src="img/sin_fondo.png" alt="Gemelo Tributario" class="brand-logo-img" style="height: 110px;width:auto;display:block;">
+        <img src="img/sin_fondo.png" alt="Gemelo Tributario" class="brand-logo-img" style="height: 110px;width:auto;display:block;">
       </div>
     </div>
 
@@ -24,7 +24,7 @@
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18v13H3z"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
         </div>
         <div class="regime-card-text">
-          <span class="value" id="sidebar-regimen">RIMPE Emprendedor</span>
+          <span class="value" id="sidebar-regimen">—</span>
         </div>
         <svg class="chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg>
       </div>
@@ -77,22 +77,36 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M10 8l6 4-6 4V8z"/></svg>
           ¿Cómo usar la calculadora?
         </button>
-        <button class="icon-btn" type="button" aria-label="Notificaciones">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0112 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 21a2 2 0 004 0"/></svg>
-          <span class="icon-btn-badge">3</span>
-        </button>
-        <button class="user-chip" type="button">
-          <span class="user-avatar">H</span>
-          <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
+        <div style="position:relative;">
+          <button type="button" class="icon-btn" data-dropdown-toggle="notif-panel" aria-label="Notificaciones">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0112 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 21a2 2 0 004 0"/></svg>
+            <span class="icon-btn-badge" id="notif-count">0</span>
+          </button>
+          <div class="dropdown-panel notif-panel" id="notif-panel">
+            <div class="notif-head">Notificaciones</div>
+            <div id="notif-lista"></div>
+          </div>
+        </div>
+        <div style="position:relative;">
+          <button type="button" class="user-chip" data-dropdown-toggle="user-panel">
+            <span class="user-avatar" id="topbar-avatar">—</span>
+            <span class="user-name" id="topbar-nombre">—</span>
+            <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="dropdown-panel" id="user-panel">
+            <a href="dashboard.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>Inicio</a>
+            <a href="perfil.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>Mi perfil</a>
+            <a href="Login.html" id="cerrar-sesion"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>Cerrar sesión</a>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Régimen (oculto visualmente: se usa en el cálculo de Renta según el régimen actual) -->
+    <!-- Régimen real del usuario (oculto: solo se usa para decidir la fórmula de Renta) -->
     <select id="regimen" class="hidden" aria-hidden="true" tabindex="-1">
-      <option value="rimpe_emprendedor" selected>RIMPE Emprendedor</option>
-      <option value="rimpe_negocio_popular">RIMPE Negocio Popular</option>
-      <option value="general">Régimen General</option>
+      <option value="RIMPE_EMPRENDEDOR">RIMPE Emprendedor</option>
+      <option value="RIMPE_NEGOCIO_POPULAR">RIMPE Negocio Popular</option>
+      <option value="GENERAL">Régimen General</option>
     </select>
 
     <!-- ¿Qué quieres calcular? -->
@@ -116,12 +130,6 @@
         <strong>Retenciones</strong>
         <p>Calcula tus retenciones</p>
       </button>
-      <button type="button" class="calc-tile calc-type-btn" data-impuesto="precio">
-        <span class="check"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></span>
-        <span class="ic icon-navy"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.6 12l-8.3 8.3a2 2 0 01-2.8 0l-6-6a2 2 0 010-2.8L11.7 3.4a2 2 0 011.4-.6H19a2 2 0 012 2v6.4a2 2 0 01-.4 1.2z"/><circle cx="15.5" cy="8.5" r="1.5"/></svg></span>
-        <strong>Precio</strong>
-        <p>Calcula precio con o sin IVA</p>
-      </button>
     </div>
 
     <div class="grid grid-2" style="align-items:start;">
@@ -138,11 +146,11 @@
           </div>
           <div class="field">
             <label for="iva-ingresos">Ingresos gravados (sin IVA)</label>
-            <div class="input-prefix"><span>$</span><input type="number" min="0" step="0.01" id="iva-ingresos" class="input" placeholder="0.00" value="5000"></div>
+            <div class="input-prefix"><span>$</span><input type="number" min="0" step="0.01" id="iva-ingresos" class="input" placeholder="0.00"></div>
           </div>
           <div class="field">
             <label for="iva-compras">Compras gravadas (con derecho a crédito)</label>
-            <div class="input-prefix"><span>$</span><input type="number" min="0" step="0.01" id="iva-compras" class="input" placeholder="0.00" value="2800"></div>
+            <div class="input-prefix"><span>$</span><input type="number" min="0" step="0.01" id="iva-compras" class="input" placeholder="0.00"></div>
           </div>
         </div>
 
@@ -156,12 +164,12 @@
           </div>
           <div class="field">
             <label for="renta-ingresos">Ingresos brutos anuales</label>
-            <div class="input-prefix"><span>$</span><input type="number" min="0" step="0.01" id="renta-ingresos" class="input" placeholder="0.00" value="28000"></div>
+            <div class="input-prefix"><span>$</span><input type="number" min="0" step="0.01" id="renta-ingresos" class="input" placeholder="0.00"></div>
           </div>
           <div class="field">
             <label for="renta-gastos">Gastos deducibles anuales</label>
-            <div class="input-prefix"><span>$</span><input type="number" min="0" step="0.01" id="renta-gastos" class="input" placeholder="0.00" value="9000"></div>
-            <p class="hint">Incluye costos y gastos relacionados con la actividad económica.</p>
+            <div class="input-prefix"><span>$</span><input type="number" min="0" step="0.01" id="renta-gastos" class="input" placeholder="0.00"></div>
+            <p class="hint">Incluye costos y gastos relacionados con la actividad económica. Solo aplica al Régimen General.</p>
           </div>
         </div>
 
@@ -175,19 +183,12 @@
           </div>
           <div class="field">
             <label for="tipo-retencion">Tipo de retención</label>
-            <select id="tipo-retencion" class="select">
-              <option value="bienes">Compra de bienes (1.75%)</option>
-              <option value="servicios">Servicios no profesionales (2%)</option>
-              <option value="profesionales">Honorarios profesionales (10%)</option>
-              <option value="arriendo">Arrendamiento de inmuebles (8%)</option>
-              <option value="publicidad">Publicidad y comunicación (1%)</option>
-              <option value="transporte">Transporte de carga/pasajeros (1%)</option>
-            </select>
+            <select id="tipo-retencion" class="select"></select>
           </div>
           <div class="field">
             <label for="retencion-base">Valor de la factura (base imponible)</label>
-            <div class="input-prefix"><span>$</span><input type="number" min="0" step="0.01" id="retencion-base" class="input" placeholder="0.00" value="450"></div>
-            <p class="hint">Porcentaje a aplicar: <strong id="pct-retencion-preview">1.75%</strong></p>
+            <div class="input-prefix"><span>$</span><input type="number" min="0" step="0.01" id="retencion-base" class="input" placeholder="0.00"></div>
+            <p class="hint">Porcentaje a aplicar: <strong id="pct-retencion-preview">—</strong></p>
           </div>
         </div>
 
@@ -213,17 +214,13 @@
             </div>
           </div>
           <div class="result-actions">
-            <button type="button" class="btn btn-outline btn-sm" data-toast="Cálculo guardado en tu historial.">
+            <button type="button" class="btn btn-outline btn-sm" id="btn-guardar-calculo" disabled>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
               Guardar cálculo
             </button>
-            <button type="button" class="btn btn-outline btn-sm" data-toast="Función disponible próximamente.">
+            <button type="button" class="btn btn-outline btn-sm" id="btn-descargar-pdf">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
               Descargar PDF
-            </button>
-            <button type="button" class="btn btn-outline btn-sm btn-share" data-toast="Función disponible próximamente.">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
-              Compartir resultado
             </button>
           </div>
         </div>
@@ -233,23 +230,8 @@
             <h3 style="font-size:14px;">Tus próximas obligaciones</h3>
             <a href="recordatorios.html" style="font-size:12.5px;font-weight:700;color:var(--purple-600);">Ver calendario</a>
           </div>
-          <div class="mini-obligations">
-            <div class="mini-reminder">
-              <div class="mini-date"><span class="m">May</span><span class="d">10</span></div>
-              <div class="body"><strong>Declaración de IVA mensual</strong><span>Fecha límite según noveno dígito del RUC</span></div>
-            </div>
-            <div class="mini-reminder">
-              <div class="mini-date"><span class="m">May</span><span class="d">28</span></div>
-              <div class="body"><strong>Anexo Transaccional Simplificado</strong><span>Aplica si llevas contabilidad</span></div>
-            </div>
-            <div class="mini-reminder">
-              <div class="mini-date"><span class="m">Jun</span><span class="d">10</span></div>
-              <div class="body"><strong>Pago Impuesto a la Renta – Anticipo 1</strong><span>Fecha límite</span></div>
-            </div>
-            <div class="mini-reminder">
-              <div class="mini-date"><span class="m">Jul</span><span class="d">15</span></div>
-              <div class="body"><strong>Declaración de Retenciones en la Fuente</strong><span>Fecha límite</span></div>
-            </div>
+          <div class="mini-obligations" id="mini-obligaciones-lista">
+            <p class="text-muted" style="font-size:12.5px;">Cargando...</p>
           </div>
         </div>
 
@@ -267,26 +249,26 @@
     <!-- Resumen tributario + Estado tributario -->
     <div class="grid grid-2 mt-24" style="align-items:start;">
       <div class="card card-pad">
-        <h3 style="font-size:14px;margin-bottom:14px;">Resumen tributario <span class="text-muted" style="font-weight:500;font-size:12px;">(Estimado del período)</span></h3>
+        <h3 style="font-size:14px;margin-bottom:14px;">Resumen tributario <span class="text-muted" style="font-weight:500;font-size:12px;">(cálculos de esta sesión)</span></h3>
         <div class="summary-tiles">
           <div class="summary-tile tile-iva">
             <span class="lbl">IVA</span>
-            <span class="val">$ 450,00</span>
+            <span class="val" id="resumen-iva">$ 0,00</span>
             <span class="sub">A pagar</span>
           </div>
           <div class="summary-tile tile-ret">
             <span class="lbl">Retenciones</span>
-            <span class="val">$ 85,00</span>
+            <span class="val" id="resumen-retenciones">$ 0,00</span>
             <span class="sub">A pagar</span>
           </div>
           <div class="summary-tile tile-renta">
             <span class="lbl">Impuesto a la Renta</span>
-            <span class="val">$ 320,00</span>
+            <span class="val" id="resumen-renta">$ 0,00</span>
             <span class="sub">A pagar</span>
           </div>
           <div class="summary-tile tile-total">
             <span class="lbl">Total estimado</span>
-            <span class="val">$ 855,00</span>
+            <span class="val" id="resumen-total">$ 0,00</span>
           </div>
         </div>
         <div class="next-due-mini">
@@ -295,7 +277,7 @@
           </span>
           <div class="body">
             <span>Próximo vencimiento</span>
-            <strong>Declaración de IVA — según tu noveno dígito del RUC</strong>
+            <strong id="proximo-vencimiento-texto">Cargando...</strong>
           </div>
           <a href="recordatorios.html" class="btn btn-outline btn-sm">Ver calendario completo</a>
         </div>
@@ -303,27 +285,13 @@
 
       <div class="card card-pad">
         <h3 style="font-size:14px;margin-bottom:14px;">Estado tributario</h3>
-        <div class="status-list">
-          <div class="status-row">
-            <span class="ic icon-purple"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h1M12 11h1M16 11h1"/></svg></span>
-            <div class="body"><strong>IVA</strong><span>Obligación mensual</span></div>
-            <span class="status-pill ok">Al día</span>
-          </div>
-          <div class="status-row">
-            <span class="ic icon-green"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-6 3 3 5-8"/></svg></span>
-            <div class="body"><strong>Impuesto a la Renta</strong><span>Anual</span></div>
-            <span class="status-pill warn">Próximo</span>
-          </div>
-          <div class="status-row">
-            <span class="ic icon-orange"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="7" cy="7" r="3"/><circle cx="17" cy="17" r="3"/><path d="M6 18L18 6"/></svg></span>
-            <div class="body"><strong>Retenciones</strong><span>Obligación mensual</span></div>
-            <span class="status-pill pending">Pendiente</span>
-          </div>
+        <div class="status-list" id="estado-tributario-lista">
+          <p class="text-muted" style="font-size:12.5px;">Cargando...</p>
         </div>
         <div class="compliance-block">
-          <div class="compliance-top"><span>Cumplimiento tributario</span><span>80%</span></div>
-          <div class="compliance-track"><span style="width:80%"></span></div>
-          <p class="compliance-note">¡Vas muy bien! Sigue así.</p>
+          <div class="compliance-top"><span>Cumplimiento tributario</span><span id="cumplimiento-pct">—</span></div>
+          <div class="compliance-track"><span id="cumplimiento-barra" style="width:0%"></span></div>
+          <p class="compliance-note" id="cumplimiento-nota"></p>
         </div>
       </div>
     </div>
@@ -333,33 +301,9 @@
       <div class="card card-pad">
         <div class="flex items-center" style="justify-content:space-between;margin-bottom:6px;">
           <h3 style="font-size:14px;">Mis cálculos recientes</h3>
-          <a href="#" class="see-all-link" style="margin-top:0;">Ver todos <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></a>
         </div>
-        <div class="recent-calcs">
-          <div class="recent-calc-item">
-            <span class="ic icon-purple"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h1M12 11h1M16 11h1"/></svg></span>
-            <div class="body"><strong>IVA</strong><span>IVA a pagar</span></div>
-            <div class="amt"><strong>$ 450,00</strong><span>Hoy, 18 ago. 2026</span></div>
-            <button type="button" class="more" data-toast="Opciones disponibles próximamente." aria-label="Más opciones">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg>
-            </button>
-          </div>
-          <div class="recent-calc-item">
-            <span class="ic icon-orange"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="7" cy="7" r="3"/><circle cx="17" cy="17" r="3"/><path d="M6 18L18 6"/></svg></span>
-            <div class="body"><strong>Retenciones</strong><span>Total retenciones</span></div>
-            <div class="amt"><strong>$ 85,00</strong><span>18 ago. 2026</span></div>
-            <button type="button" class="more" data-toast="Opciones disponibles próximamente." aria-label="Más opciones">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg>
-            </button>
-          </div>
-          <div class="recent-calc-item">
-            <span class="ic icon-green"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-6 3 3 5-8"/></svg></span>
-            <div class="body"><strong>Impuesto a la Renta</strong><span>Estimado anual</span></div>
-            <div class="amt"><strong>$ 320,00</strong><span>15 ago. 2026</span></div>
-            <button type="button" class="more" data-toast="Opciones disponibles próximamente." aria-label="Más opciones">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg>
-            </button>
-          </div>
+        <div class="recent-calcs" id="calculos-recientes-lista">
+          <p class="text-muted" style="font-size:12.5px;">Aún no tienes cálculos guardados.</p>
         </div>
       </div>
 
@@ -389,34 +333,8 @@
       </div>
     </div>
 
-    <div class="card annual-sim mt-24">
-      <div class="annual-sim-head">
-        <h3>Simulador rápido anual (RIMPE Emprendedor)</h3>
-        <span class="badge-new">Nuevo</span>
-      </div>
-      <div class="annual-sim-row">
-        <div class="annual-sim-metric">
-          <span class="ic icon-green"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span>
-          <div><span class="lbl">Ingresos anualizados</span><span class="val">$ 60.000,00</span></div>
-        </div>
-        <div class="annual-sim-metric">
-          <span class="ic icon-purple"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l6 3"/></svg></span>
-          <div><span class="lbl">Fracción aplicable</span><span class="val">$50.000,01 – $75.000</span></div>
-        </div>
-        <div class="annual-sim-metric">
-          <span class="ic icon-orange"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="7" cy="7" r="3"/><circle cx="17" cy="17" r="3"/><path d="M6 18L18 6"/></svg></span>
-          <div><span class="lbl">Tarifa marginal</span><span class="val">2%</span></div>
-        </div>
-        <div class="annual-sim-metric">
-          <span class="ic icon-navy"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h1M12 11h1M16 11h1"/></svg></span>
-          <div><span class="lbl">Impuesto estimado anual</span><span class="val">$360,00 + excedente</span></div>
-        </div>
-        <a href="aprender.html" class="see-all">Ver tabla completa <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg></a>
-      </div>
-    </div>
-
     <!-- CTA Gemelo Chat -->
-    <a href="chat.html" class="card cta-chat-banner">
+    <a href="chat.html" class="card cta-chat-banner mt-24">
       <span class="ic">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 7V3"/><circle cx="9" cy="13" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="13" r="1.2" fill="currentColor" stroke="none"/><path d="M8 17h8"/></svg>
       </span>
@@ -433,7 +351,7 @@
   </main>
 </div>
 
-<script src="js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="js/calculadora.js"></script>
 </body>
 </html>

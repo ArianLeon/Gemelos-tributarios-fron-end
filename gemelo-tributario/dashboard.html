@@ -24,7 +24,7 @@
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18v13H3z"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
         </div>
         <div class="regime-card-text">
-          <span class="value" id="sidebar-regimen">RIMPE Emprendedor</span>
+          <span class="value" id="sidebar-regimen">—</span>
         </div>
         <svg class="chev" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="9 18 15 12 9 6"/></svg>
       </div>
@@ -68,7 +68,7 @@
   <main class="main">
     <div class="page-head">
       <div>
-        <span class="eyebrow">¡Hola, Heidy! 👋</span>
+        <span class="eyebrow" id="saludo-usuario">¡Hola! 👋</span>
         <h1>¿En qué podemos ayudarte hoy?</h1>
         <p class="subtitle">Revisa tus obligaciones, calcula tus impuestos y recibe orientación tributaria.</p>
       </div>
@@ -76,13 +76,11 @@
         <div style="position:relative;">
           <button type="button" class="icon-btn" data-dropdown-toggle="notif-panel" aria-label="Notificaciones">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0112 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 21a2 2 0 004 0"/></svg>
-            <span class="icon-btn-badge">3</span>
+            <span class="icon-btn-badge" id="notif-count">0</span>
           </button>
           <div class="dropdown-panel notif-panel" id="notif-panel">
             <div class="notif-head">Notificaciones</div>
-            <div class="notif-item"><strong>Declaración de IVA próxima</strong><span>Vence en 3 días · 10 de mayo</span></div>
-            <div class="notif-item"><strong>Nueva guía disponible</strong><span>RIMPE Emprendedor: cambios 2026</span></div>
-            <div class="notif-item"><strong>Consejo semanal</strong><span>Revisa tus comprobantes antes de declarar</span></div>
+            <div id="notif-lista"></div>
           </div>
         </div>
         <a href="aprender.html" class="icon-btn" aria-label="Ayuda">
@@ -90,25 +88,27 @@
         </a>
         <div style="position:relative;">
           <button type="button" class="user-chip" data-dropdown-toggle="user-panel">
-            <span class="user-avatar" id="topbar-avatar">H</span>
-            <span class="user-name" id="topbar-nombre">Heidy</span>
+            <span class="user-avatar" id="topbar-avatar">—</span>
+            <span class="user-name" id="topbar-nombre">—</span>
             <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
           <div class="dropdown-panel" id="user-panel">
             <a href="perfil.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>Mi perfil</a>
             <a href="recordatorios.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0112 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 21a2 2 0 004 0"/></svg>Recordatorios</a>
-            <a href="Login.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>Cerrar sesión</a>
+            <a href="Login.html" id="cerrar-sesion"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>Cerrar sesión</a>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="grid" style="grid-template-columns:1.1fr 1fr .9fr;align-items:start;">
+    <!-- Sin la tarjeta de plan: ahora son 2 columnas, la situacion tributaria
+         ocupa mas espacio porque es la info mas importante de un vistazo -->
+    <div class="grid" style="grid-template-columns:1.4fr 1fr;align-items:start;">
 
       <div class="card situation-card">
         <div class="situation-head">
           <h3>Mi situación tributaria</h3>
-          <span class="status-check">
+          <span class="status-check" id="situation-check">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
           </span>
         </div>
@@ -119,8 +119,8 @@
             </span>
             <div>
               <span class="lbl">Régimen actual</span>
-              <span class="val" id="situation-regimen">RIMPE Emprendedor</span>
-              <span class="status-ok">Sin obligaciones vencidas</span>
+              <span class="val" id="situation-regimen">—</span>
+              <span class="status-ok" id="situation-estado">—</span>
             </div>
           </div>
           <div class="situation-col">
@@ -129,8 +129,8 @@
             </span>
             <div>
               <span class="lbl">Próxima obligación</span>
-              <span class="val">Declaración de IVA mensual</span>
-              <span class="situation-due"><span class="days">Vence en 3 días</span></span>
+              <span class="val" id="proxima-obligacion-titulo">—</span>
+              <span class="situation-due"><span class="days" id="proxima-obligacion-dias">—</span></span>
             </div>
           </div>
         </div>
@@ -145,49 +145,25 @@
         <div class="stats-row">
           <div class="stat-tile">
             <span class="icon icon-purple"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></span>
-            <span class="num">4</span>
+            <span class="num" id="stat-proximas">—</span>
             <span class="lbl">Próximas obligaciones</span>
           </div>
           <div class="stat-tile">
             <span class="icon icon-green"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg></span>
-            <span class="num">0</span>
+            <span class="num" id="stat-vencidas">—</span>
             <span class="lbl">Vencidas</span>
           </div>
           <div class="stat-tile">
             <span class="icon icon-orange"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.4 8.4 0 01-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.4 8.4 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></span>
-            <span class="num">12/20</span>
-            <span class="lbl">Consultas utilizadas</span>
+            <span class="num" id="stat-consultas">—</span>
+            <span class="lbl">Consultas al chat</span>
           </div>
           <div class="stat-tile">
             <span class="icon icon-navy"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5.5A2.5 2.5 0 015.5 3H12v18H5.5A2.5 2.5 0 013 18.5v-13z"/><path d="M21 5.5A2.5 2.5 0 0018.5 3H12v18h6.5a2.5 2.5 0 002.5-2.5v-13z"/></svg></span>
-            <span class="num">5</span>
+            <span class="num" id="stat-guias">—</span>
             <span class="lbl">Guías guardadas</span>
           </div>
         </div>
-      </div>
-
-      <div class="card plan-summary">
-        <div class="plan-summary-top">
-          <span class="plan-summary-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 6.8L21 11l-6.6 2.2L12 20l-2.4-6.8L3 11l6.6-2.2z"/></svg>
-          </span>
-          <div>
-            <h4>Tu plan actual</h4>
-            <span class="plan-badge">Plan Premium</span>
-          </div>
-        </div>
-        <ul class="plan-benefits">
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Calculadora tributaria ilimitada</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Recordatorios y calendario</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Gemelo Chat (IA)</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Biblioteca de guías y recursos</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Soporte prioritario</li>
-        </ul>
-        <div class="usage-row">
-          <div class="lbl">Consultas a Gemelo Chat <strong>12 / 20</strong></div>
-          <div class="usage-bar"><span style="width:60%"></span></div>
-        </div>
-        <a href="perfil.html" class="btn btn-outline btn-block mt-16">Ver mi plan</a>
       </div>
     </div>
 
@@ -242,7 +218,6 @@
         <ul>
           <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Cursos en vivo y grabados</li>
           <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Material descargable</li>
-          <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Certificados de participación</li>
         </ul>
         <a href="aprender.html" class="btn btn-outline btn-block">Ver capacitaciones</a>
       </div>
@@ -255,7 +230,6 @@
         <ul>
           <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Atención 1 a 1</li>
           <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Análisis de tu caso</li>
-          <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Recomendaciones prácticas</li>
         </ul>
         <a href="chat.html" class="btn btn-outline btn-block">Solicitar asesoría</a>
       </div>
@@ -268,19 +242,18 @@
         <ul>
           <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Cumplimiento tributario</li>
           <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Outsourcing contable-tributario</li>
-          <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Capacitaciones empresariales</li>
         </ul>
         <a href="chat.html" class="btn btn-outline btn-block">Conocer servicios</a>
       </div>
     </div>
 
-    <div class="recommend-banner mt-24">
+    <div class="recommend-banner mt-24" id="recomendacion-banner">
       <span class="star">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 6.8L21 11l-6.6 2.2L12 20l-2.4-6.8L3 11l6.6-2.2z"/></svg>
       </span>
       <div class="body">
         <strong>Recomendación de Gemelo Tributario</strong>
-        <p>Te sugerimos revisar tus compras y ventas del período antes de presentar la declaración de IVA.</p>
+        <p id="recomendacion-texto">Revisa tus próximas obligaciones para no atrasarte con el SRI.</p>
       </div>
       <a href="calculadora.html" class="btn btn-primary btn-sm">Revisar mi IVA</a>
     </div>
@@ -304,7 +277,6 @@
       </div>
     </div>
 
-  
   </main>
 </div>
 
@@ -335,6 +307,6 @@
   </a>
 </nav>
 
-<script src="js/main.js"></script>
+<script src="js/dashboard.js"></script>
 </body>
 </html>

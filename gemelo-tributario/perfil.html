@@ -13,7 +13,7 @@
   <aside class="sidebar">
     <div class="sidebar-header">
       <div class="brand">
-        <img src="img/sin_fondo.png" alt="Gemelo Tributario" class="brand-logo-img" style="height:110px;width:auto;display:block;">
+        <img src="img/robotsolo.png" alt="Gemelo Tributario" class="brand-logo-img" style="height:110px;width:auto;display:block;">
       </div>
     </div>
 
@@ -95,7 +95,7 @@
           <div class="dropdown-panel" id="user-panel">
             <a href="dashboard.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>Inicio</a>
             <a href="recordatorios.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0112 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 21a2 2 0 004 0"/></svg>Recordatorios</a>
-            <a href="index.html" id="cerrar-sesion"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>Cerrar sesión</a>
+            <a href="Login.html" id="cerrar-sesion"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>Cerrar sesión</a>
           </div>
         </div>
       </div>
@@ -132,7 +132,7 @@
           <span>Datos personales</span>
         </div>
 
-        <form id="form-datos-personales">
+        <form id="form-datos-personales" novalidate>
           <div class="regime-select-row">
             <div class="field">
               <label for="primer_nombre">Primer nombre</label>
@@ -187,7 +187,7 @@
           <span>Perfil tributario (SRI)</span>
         </div>
 
-        <form id="form-perfil-tributario">
+        <form id="form-perfil-tributario" novalidate>
           <div class="field">
             <label for="ruc_cedula">RUC o Cédula</label>
             <input type="text" id="ruc_cedula" class="input" disabled>
@@ -284,7 +284,14 @@
   </a>
 </nav>
 
-<script src="js/main.js"></script>
+<div class="modal-overlay" id="modal-error">
+  <div class="modal-box">
+    <h3>Campos incompletos</h3>
+    <p id="modal-error-mensaje"></p>
+    <button type="button" class="btn btn-primary btn-block" id="modal-error-cerrar">Entendido</button>
+  </div>
+</div>
+
 <script src="js/perfil.js"></script>
 </body>
 </html>

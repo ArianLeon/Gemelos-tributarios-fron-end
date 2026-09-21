@@ -1,4 +1,3 @@
-
 const API_URL = 'http://localhost:8080/api';
 
 const idUsuario = localStorage.getItem('gt_id_usuario');
@@ -22,6 +21,92 @@ const REGIMEN_LABEL = {
   RIMPE_EMPRENDEDOR: 'RIMPE – Emprendedor',
   GENERAL: 'Régimen General'
 };
+
+/* ------------------------------------------------------------
+   Validaciones (mismo patrón que en registro.js): marca en rojo
+   los campos obligatorios vacios/invalidos y muestra un modal
+   explicando cual es el problema.
+   ------------------------------------------------------------ */
+function mostrarError(mensaje) {
+  document.getElementById('modal-error-mensaje').textContent = mensaje;
+  document.getElementById('modal-error').classList.add('show');
+}
+
+function marcarEstado(campo) {
+  if (campo.checkValidity()) {
+    campo.classList.remove('invalid');
+  } else {
+    campo.classList.add('invalid');
+  }
+}
+
+function obtenerNombreCampo(campo) {
+  if (campo.labels && campo.labels[0]) {
+    return campo.labels[0].textContent.trim();
+  }
+  const labelPadre = campo.closest('label');
+  if (labelPadre) {
+    return labelPadre.textContent.trim();
+  }
+  return 'Este campo';
+}
+
+function calcularEdad(fechaStr) {
+  const nacimiento = new Date(fechaStr);
+  const hoy = new Date();
+  let edad = hoy.getFullYear() - nacimiento.getFullYear();
+  const mes = hoy.getMonth() - nacimiento.getMonth();
+  if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())) edad--;
+  return edad;
+}
+
+function marcarGrupoRadio(valido) {
+  const contenedor = document.querySelector('#form-perfil-tributario .form-row-checkboxes');
+  if (contenedor) contenedor.style.borderColor = valido ? 'var(--border)' : 'var(--red-600)';
+}
+
+function validarFormulario(formulario) {
+  let primerInvalido = null;
+  let mensajeError = '';
+
+  const campos = formulario.querySelectorAll('input:not([type=radio]):not([type=checkbox]):not([type=file]):not([disabled]), select');
+
+  campos.forEach((campo) => {
+    marcarEstado(campo);
+    if (!campo.checkValidity() && !primerInvalido) {
+      primerInvalido = campo;
+      const nombre = obtenerNombreCampo(campo);
+      if (campo.validity.valueMissing) {
+        mensajeError = `El campo "${nombre}" es obligatorio.`;
+      } else {
+        mensajeError = `El campo "${nombre}" no es válido, revísalo.`;
+      }
+    }
+  });
+
+  // Validacion extra de edad minima, solo si el formulario tiene fecha de nacimiento
+  const fechaNacInput = formulario.querySelector('#fecha_nacimiento');
+  if (fechaNacInput && fechaNacInput.value && calcularEdad(fechaNacInput.value) < 15) {
+    fechaNacInput.classList.add('invalid');
+    if (!primerInvalido) {
+      primerInvalido = fechaNacInput;
+      mensajeError = 'La fecha de nacimiento es incorrecta: debes tener al menos 15 años.';
+    }
+  }
+
+  // Validacion extra del grupo de radios "condicion tributaria", si aplica
+  const gruposRadio = formulario.querySelectorAll('input[type=radio][required]');
+  if (gruposRadio.length) {
+    const condicionMarcada = formulario.querySelector('input[name="condicion_tributaria"]:checked');
+    marcarGrupoRadio(!!condicionMarcada);
+    if (!condicionMarcada && !primerInvalido) {
+      primerInvalido = gruposRadio[0];
+      mensajeError = 'Selecciona una opción en "Condición tributaria".';
+    }
+  }
+
+  return { primerInvalido, mensajeError };
+}
 
 /* ------------------------------------------------------------
    Utilidades propias (antes vivian en main.js)
@@ -77,6 +162,21 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('foto_archivo').addEventListener('change', subirFoto);
   document.getElementById('regimen').addEventListener('change', (e) => actualizarInfoRegimen(e.target.value));
 
+  document.getElementById('modal-error-cerrar').addEventListener('click', () => {
+    document.getElementById('modal-error').classList.remove('show');
+  });
+
+  // Quita el rojo de un campo en cuanto el usuario lo corrige
+  document.querySelectorAll('#form-datos-personales input, #form-perfil-tributario input, #form-perfil-tributario select')
+    .forEach((campo) => {
+      campo.addEventListener('input', () => {
+        if (campo.classList.contains('invalid')) marcarEstado(campo);
+      });
+      campo.addEventListener('change', () => {
+        if (campo.classList.contains('invalid')) marcarEstado(campo);
+      });
+    });
+
   document.getElementById('cerrar-sesion').addEventListener('click', () => {
     localStorage.removeItem('gt_id_usuario');
   });
@@ -107,8 +207,13 @@ async function cargarUsuario() {
   document.getElementById('perfil-nombre-display').textContent = nombreCompleto || 'Sin nombre';
   document.getElementById('topbar-nombre').textContent = usuarioActual.primerNombre || 'Usuario';
 
-  const iniciales = (usuarioActual.primerNombre?.[0] || '') + (usuarioActual.apellidoPaterno?.[0] || '');
-  document.getElementById('topbar-avatar').textContent = iniciales.toUpperCase() || 'GT';
+  const avatarTopbar = document.getElementById('topbar-avatar');
+  if (usuarioActual.fotoUrl) {
+    avatarTopbar.innerHTML = `<img src="http://localhost:8080${usuarioActual.fotoUrl}" alt="Foto de perfil" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
+  } else {
+    const iniciales = (usuarioActual.primerNombre?.[0] || '') + (usuarioActual.apellidoPaterno?.[0] || '');
+    avatarTopbar.textContent = iniciales.toUpperCase() || 'GT';
+  }
 
   if (usuarioActual.fotoUrl) {
     mostrarFotoEnCirculo(usuarioActual.fotoUrl);
@@ -192,6 +297,13 @@ async function subirFoto() {
     const res = await fetch(`${API_URL}/usuarios/${idUsuario}/foto`, { method: 'POST', body: formData });
     if (!res.ok) throw new Error();
     usuarioActual = await res.json();
+
+    // Actualiza también el circulo de arriba con la nueva foto
+    const avatarTopbar = document.getElementById('topbar-avatar');
+    if (usuarioActual.fotoUrl) {
+      avatarTopbar.innerHTML = `<img src="http://localhost:8080${usuarioActual.fotoUrl}" alt="Foto de perfil" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
+    }
+
     showToast('Foto actualizada');
   } catch {
     showToast('No se pudo subir la foto');
@@ -203,6 +315,13 @@ async function subirFoto() {
    ------------------------------------------------------------ */
 async function guardarDatosPersonales(e) {
   e.preventDefault();
+
+  const { primerInvalido, mensajeError } = validarFormulario(document.getElementById('form-datos-personales'));
+  if (primerInvalido) {
+    primerInvalido.focus();
+    mostrarError(mensajeError);
+    return;
+  }
 
   const payload = {
     primerNombre: document.getElementById('primer_nombre').value.trim(),
@@ -242,6 +361,13 @@ async function guardarPerfilTributario(e) {
   e.preventDefault();
   if (!perfilActual) {
     showToast('No hay un perfil tributario que editar.');
+    return;
+  }
+
+  const { primerInvalido, mensajeError } = validarFormulario(document.getElementById('form-perfil-tributario'));
+  if (primerInvalido) {
+    primerInvalido.focus();
+    mostrarError(mensajeError);
     return;
   }
 

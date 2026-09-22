@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recuperar contraseña — Gemelo Tributario</title>
+<meta name="description" content="Recupera el acceso a tu cuenta de Gemelo Tributario.">
+<link rel="stylesheet" href="css/styles.css">
+
+<style>
+  /* ------------------------------------------------------------
+     Estilos propios de la recuperación de contraseña.
+     Reutilizan las variables de color/tipografía de styles.css
+     (--orange-500, --text-900, --border, etc.) para que la vista
+     combine con el resto de la app sin duplicar el sistema de diseño.
+     ------------------------------------------------------------ */
+
+  /* Pasos (1. Correo -> 2. Código y nueva contraseña) */
+  .recuperar-step{display:none;}
+  .recuperar-step.active{display:block;}
+
+  /* Texto de ayuda arriba del paso 2, muestra a qué correo se envió */
+  .recuperar-info{
+    font-size:13px;color:var(--text-500);line-height:1.5;
+    background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);
+    padding:12px 14px;margin-bottom:22px;
+  }
+  .recuperar-info strong{color:var(--text-900);}
+
+  /* Input del código: espaciado entre dígitos, centrado, monoespaciado */
+  #codigo{
+    text-align:center;letter-spacing:8px;font-family:var(--font-mono);
+    font-size:20px;font-weight:600;
+  }
+
+  /* Reenviar código */
+  .recuperar-reenviar{
+    text-align:center;font-size:12.5px;color:var(--text-500);margin-top:16px;
+  }
+  .recuperar-reenviar button{
+    background:none;border:none;padding:0;font:inherit;font-weight:700;
+    color:var(--orange-500);cursor:pointer;
+  }
+  .recuperar-reenviar button:disabled{
+    color:var(--text-500);cursor:not-allowed;
+  }
+
+  /* Estado de éxito final (contraseña restablecida) */
+  .recuperar-exito{display:none;text-align:center;}
+  .recuperar-exito.active{display:block;}
+  .recuperar-exito-icono{
+    width:56px;height:56px;border-radius:50%;background:var(--green-100);
+    color:var(--green-600);display:flex;align-items:center;justify-content:center;
+    margin:0 auto 18px;
+  }
+
+  /* Mensaje general de error del paso (correo no llega, código malo, etc.) */
+  .recuperar-alerta{
+    display:none;font-size:12.5px;color:var(--red-600);background:var(--red-100);
+    border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:16px;line-height:1.4;
+  }
+  .recuperar-alerta.show{display:block;}
+
+  /* Spinner de carga reutilizando el mismo patrón que login/registro */
+  #recuperar-submit, #restablecer-submit{position:relative;}
+  #recuperar-submit.btn-loading .btn-text,
+  #restablecer-submit.btn-loading .btn-text{visibility:hidden;}
+  #recuperar-submit.btn-loading::after,
+  #restablecer-submit.btn-loading::after{
+    content:'';position:absolute;left:50%;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;
+    border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;
+    animation:btn-spin .6s linear infinite;
+  }
+</style>
+</head>
+<body>
+
+<div class="auth-page">
+
+  <!-- PANEL DE MARCA (se oculta en pantallas angostas) -->
+  <div class="auth-visual">
+    <div class="hero-dots"></div>
+
+    <a href="index.html" class="brand" style="position:relative;z-index:2;">
+      <img src="img/robotsolo.png" alt="Gemelo Tributario" class="brand-logo-img" style="height:120px;width:auto;display:block;">
+    </a>
+
+    <div class="auth-visual-text" style="position:relative;z-index:2;">
+      <h2>Recupera el acceso a tu espacio tributario.</h2>
+      <p>Te enviamos un código a tu correo para que puedas crear una nueva contraseña de forma segura.</p>
+    </div>
+  </div>
+
+  <!-- FORMULARIO DE RECUPERACIÓN -->
+  <div class="auth-form-side">
+    <div class="auth-form-wrap">
+
+      <a href="Login.html" class="auth-back">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        Volver a iniciar sesión
+      </a>
+
+      <!-- ===================== PASO 1: PEDIR CORREO ===================== -->
+      <div class="recuperar-step active" id="paso-correo">
+        <div class="auth-head">
+          <span class="eyebrow-mono">Recuperar acceso</span>
+          <h1>¿Olvidaste tu contraseña?</h1>
+          <p>Ingresa tu correo y te enviaremos un código para restablecerla.</p>
+        </div>
+
+        <div class="recuperar-alerta" id="correo-alerta"></div>
+
+        <form id="form-correo" class="auth-form" novalidate>
+          <div class="field">
+            <label for="recuperar-email">Correo electrónico</label>
+            <input type="email" id="recuperar-email" class="input" placeholder="tucorreo@ejemplo.com" autocomplete="username">
+            <span class="field-error" id="recuperar-email-error"></span>
+          </div>
+
+          <button type="submit" id="recuperar-submit" class="btn btn-primary btn-block">
+            <span class="btn-text">Enviar código</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- ===================== PASO 2: CÓDIGO + NUEVA CONTRASEÑA ===================== -->
+      <div class="recuperar-step" id="paso-codigo">
+        <div class="auth-head">
+          <span class="eyebrow-mono">Un paso más</span>
+          <h1>Crea tu nueva contraseña</h1>
+          <p>Revisa tu correo e ingresa el código que te enviamos.</p>
+        </div>
+
+        <div class="recuperar-info">
+          Enviamos un código de 6 dígitos a <strong id="correo-mostrado"></strong>. Expira en 15 minutos.
+        </div>
+
+        <div class="recuperar-alerta" id="codigo-alerta"></div>
+
+        <form id="form-codigo" class="auth-form" novalidate>
+          <div class="field">
+            <label for="codigo">Código de verificación</label>
+            <input type="text" id="codigo" class="input" placeholder="------" inputmode="numeric" maxlength="6" autocomplete="one-time-code">
+            <span class="field-error" id="codigo-error"></span>
+          </div>
+
+          <div class="field">
+            <label for="nueva-contrasena">Nueva contraseña</label>
+            <div class="input-password-wrap">
+              <input type="password" id="nueva-contrasena" class="input" placeholder="Mínimo 8 caracteres" autocomplete="new-password">
+              <button type="button" class="password-toggle" id="password-toggle-1" aria-label="Mostrar contraseña" aria-pressed="false">
+                <svg class="eye-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+            <span class="field-error" id="nueva-contrasena-error"></span>
+          </div>
+
+          <div class="field">
+            <label for="confirmar-contrasena">Confirmar nueva contraseña</label>
+            <div class="input-password-wrap">
+              <input type="password" id="confirmar-contrasena" class="input" placeholder="Repite tu contraseña" autocomplete="new-password">
+              <button type="button" class="password-toggle" id="password-toggle-2" aria-label="Mostrar contraseña" aria-pressed="false">
+                <svg class="eye-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+            <span class="field-error" id="confirmar-contrasena-error"></span>
+          </div>
+
+          <button type="submit" id="restablecer-submit" class="btn btn-primary btn-block">
+            <span class="btn-text">Restablecer contraseña</span>
+          </button>
+        </form>
+
+        <p class="recuperar-reenviar">
+          ¿No te llegó el código?
+          <button type="button" id="reenviar-btn">Reenviar código</button>
+        </p>
+      </div>
+
+      <!-- ===================== ESTADO FINAL: ÉXITO ===================== -->
+      <div class="recuperar-exito" id="paso-exito">
+        <div class="recuperar-exito-icono">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <div class="auth-head" style="text-align:center;">
+          <h1>¡Contraseña actualizada!</h1>
+          <p>Ya puedes iniciar sesión con tu nueva contraseña.</p>
+        </div>
+        <a href="Login.html" class="btn btn-primary btn-block">Ir a iniciar sesión</a>
+      </div>
+
+      <p class="auth-footer-text">¿No tienes cuenta? <a href="Registro.html">Regístrate gratis</a></p>
+
+    </div>
+  </div>
+
+</div>
+
+<script src="js/recuperar.js"></script>
+</body>
+</html>

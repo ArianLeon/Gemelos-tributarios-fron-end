@@ -161,6 +161,11 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('form-perfil-tributario').addEventListener('submit', guardarPerfilTributario);
   document.getElementById('foto_archivo').addEventListener('change', subirFoto);
   document.getElementById('regimen').addEventListener('change', (e) => actualizarInfoRegimen(e.target.value));
+  
+  document.getElementById('form-cambiar-contrasena').addEventListener('submit', cambiarContrasena);
+  activarToggleContrasena('toggle-contrasena-actual', document.getElementById('contrasena_actual'));
+  activarToggleContrasena('toggle-contrasena-nueva', document.getElementById('contrasena_nueva'));
+  activarToggleContrasena('toggle-contrasena-confirmar', document.getElementById('contrasena_confirmar'));
 
   document.getElementById('modal-error-cerrar').addEventListener('click', () => {
     document.getElementById('modal-error').classList.remove('show');
@@ -399,4 +404,109 @@ async function guardarPerfilTributario(e) {
   actualizarEncabezadoRegimen(perfilActual.regimen);
   actualizarInfoRegimen(perfilActual.regimen);
   showToast('Perfil tributario guardado');
+}
+
+
+/* ------------------------------------------------------------
+   NUEVO: Cambiar contraseña
+   ------------------------------------------------------------ */
+const EYE_OPEN = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
+const EYE_OFF = '<path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a20.3 20.3 0 0 1 5.06-5.94M9.9 4.24A10.94 10.94 0 0 1 12 4c7 0 11 8 11 8a20.3 20.3 0 0 1-3.22 4.4M14.12 14.12a3 3 0 1 1-4.24-4.24"/><path d="M1 1l22 22"/>';
+
+function activarToggleContrasena(botonId, inputEl) {
+  const boton = document.getElementById(botonId);
+  if (!boton || !inputEl) return;
+  boton.addEventListener('click', () => {
+    const icono = boton.querySelector('.eye-icon');
+    const mostrando = inputEl.type === 'text';
+    inputEl.type = mostrando ? 'password' : 'text';
+    icono.innerHTML = mostrando ? EYE_OPEN : EYE_OFF;
+    boton.setAttribute('aria-pressed', String(!mostrando));
+  });
+}
+
+async function cambiarContrasena(e) {
+  e.preventDefault();
+
+  const actualInput = document.getElementById('contrasena_actual');
+  const nuevaInput = document.getElementById('contrasena_nueva');
+  const confirmarInput = document.getElementById('contrasena_confirmar');
+
+  const contrasenaActual = actualInput.value;
+  const contrasenaNueva = nuevaInput.value;
+  const contrasenaConfirmar = confirmarInput.value;
+
+  if (!contrasenaActual) {
+    mostrarError('Ingresa tu contraseña actual.');
+    actualInput.focus();
+    return;
+  }
+    if (!contrasenaNueva) {
+    mostrarError('Ingresa una nueva contraseña.');
+    nuevaInput.focus();
+    return;
+  }
+  if (contrasenaConfirmar !== contrasenaNueva) {
+    mostrarError('Las contraseñas nuevas no coinciden.');
+    confirmarInput.focus();
+    return;
+  }
+  if (!usuarioActual?.correo) {
+    showToast('No se pudo verificar tu cuenta, recarga la página.');
+    return;
+  }
+
+  const boton = e.target.querySelector('button[type="submit"]');
+  if (boton) boton.disabled = true;
+
+  try {
+    const resLogin = await fetch(`${API_URL}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ correo: usuarioActual.correo, contrasenaHash: contrasenaActual })
+    });
+
+    if (!resLogin.ok) {
+      mostrarError('La contraseña actual no es correcta.');
+      actualInput.classList.add('invalid');
+      return;
+    }
+
+    const payload = {
+      primerNombre: usuarioActual.primerNombre,
+      segundoNombre: usuarioActual.segundoNombre || null,
+      apellidoPaterno: usuarioActual.apellidoPaterno,
+      apellidoMaterno: usuarioActual.apellidoMaterno || null,
+      correo: usuarioActual.correo,
+      telefono: usuarioActual.telefono || null,
+      fechaNacimiento: usuarioActual.fechaNacimiento || null,
+      direccion: usuarioActual.direccion || null,
+      fotoUrl: usuarioActual.fotoUrl || null,
+      contrasenaHash: contrasenaNueva
+    };
+
+    const res = await fetch(`${API_URL}/usuarios/${idUsuario}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => null);
+      mostrarError(err?.mensaje || 'No se pudo actualizar la contraseña.');
+      return;
+    }
+
+    usuarioActual = await res.json();
+    actualInput.value = '';
+    nuevaInput.value = '';
+    confirmarInput.value = '';
+    actualInput.classList.remove('invalid');
+    showToast('Contraseña actualizada');
+
+  } catch (error) {
+    showToast('No se pudo conectar con el servidor.');
+  } finally {
+    if (boton) boton.disabled = false;
+  }
 }

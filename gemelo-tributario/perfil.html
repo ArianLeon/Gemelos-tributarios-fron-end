@@ -254,6 +254,48 @@
       </div>
 
     </div>
+          <!-- ================= SEGURIDAD: CAMBIAR CONTRASEÑA ================= -->
+      <div class="card card-pad" style="margin-top:16px;">
+        <div class="step-label" style="margin-top:0;">
+          <div class="n">3</div>
+          <span>Seguridad</span>
+        </div>
+
+        <form id="form-cambiar-contrasena" novalidate>
+          <div class="field">
+            <label for="contrasena_actual">Contraseña actual</label>
+            <div class="input-password-wrap">
+              <input type="password" id="contrasena_actual" class="input" placeholder="Tu contraseña actual" autocomplete="current-password">
+              <button type="button" class="password-toggle" id="toggle-contrasena-actual" aria-label="Mostrar contraseña" aria-pressed="false">
+                <svg class="eye-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="regime-select-row">
+            <div class="field" style="margin-bottom:0;">
+              <label for="contrasena_nueva">Nueva contraseña</label>
+              <div class="input-password-wrap">
+                <input type="password" id="contrasena_nueva" class="input" placeholder="Nueva contraseña" autocomplete="new-password">
+                <button type="button" class="password-toggle" id="toggle-contrasena-nueva" aria-label="Mostrar contraseña" aria-pressed="false">
+                  <svg class="eye-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="field" style="margin-bottom:0;">
+              <label for="contrasena_confirmar">Confirmar nueva contraseña</label>
+              <div class="input-password-wrap">
+                <input type="password" id="contrasena_confirmar" class="input" placeholder="Repite la contraseña" autocomplete="new-password">
+                <button type="button" class="password-toggle" id="toggle-contrasena-confirmar" aria-label="Mostrar contraseña" aria-pressed="false">
+                  <svg class="eye-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block mt-16">Actualizar contraseña</button>
+        </form>
+      </div>
   </main>
 </div>
 

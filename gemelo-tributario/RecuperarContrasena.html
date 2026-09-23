@@ -8,13 +8,6 @@
 <link rel="stylesheet" href="css/styles.css">
 
 <style>
-  /* ------------------------------------------------------------
-     Estilos propios de la recuperación de contraseña.
-     Reutilizan las variables de color/tipografía de styles.css
-     (--orange-500, --text-900, --border, etc.) para que la vista
-     combine con el resto de la app sin duplicar el sistema de diseño.
-     ------------------------------------------------------------ */
-
   /* Pasos (1. Correo -> 2. Código y nueva contraseña) */
   .recuperar-step{display:none;}
   .recuperar-step.active{display:block;}
@@ -45,7 +38,7 @@
     color:var(--text-500);cursor:not-allowed;
   }
 
-  /* Estado de éxito final (contraseña restablecida) */
+
   .recuperar-exito{display:none;text-align:center;}
   .recuperar-exito.active{display:block;}
   .recuperar-exito-icono{
@@ -54,7 +47,7 @@
     margin:0 auto 18px;
   }
 
-  /* Mensaje general de error del paso (correo no llega, código malo, etc.) */
+
   .recuperar-alerta{
     display:none;font-size:12.5px;color:var(--red-600);background:var(--red-100);
     border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:16px;line-height:1.4;
@@ -77,12 +70,12 @@
 
 <div class="auth-page">
 
-  <!-- PANEL DE MARCA (se oculta en pantallas angostas) -->
+
   <div class="auth-visual">
     <div class="hero-dots"></div>
 
     <a href="index.html" class="brand" style="position:relative;z-index:2;">
-      <img src="img/robotsolo.png" alt="Gemelo Tributario" class="brand-logo-img" style="height:120px;width:auto;display:block;">
+      <img src="img/robotsolo.png" alt="Gemelo Tributario" class="brand-logo-img" style="height:200px;width:auto;display:block;">
     </a>
 
     <div class="auth-visual-text" style="position:relative;z-index:2;">

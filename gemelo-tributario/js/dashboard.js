@@ -116,7 +116,7 @@ async function cargarSituacionYResumen() {
 
   if (pendientesOProximas.length > 0) {
     const siguiente = pendientesOProximas[0];
-    document.getElementById('proxima-obligacion-titulo').textContent = siguiente.nombreObligacion || 'Obligación pendiente';
+        document.getElementById('proxima-obligacion-titulo').textContent = siguiente.obligacionCatalogo?.nombre || 'Obligación pendiente';
 
     const hoy = new Date();
     const vence = new Date(siguiente.fechaVencimiento);
@@ -145,8 +145,7 @@ async function cargarSituacionYResumen() {
   if (vencidas.length > 0) {
     recomendacion.textContent = 'Tienes obligaciones vencidas — revísalas antes de que generen multas.';
   } else if (pendientesOProximas.length > 0) {
-    recomendacion.textContent = `Tu próxima obligación es "${pendientesOProximas[0].nombreObligacion}". Revisa tus compras y ventas antes de declarar.`;
-  } else {
+            recomendacion.textContent = `Tu próxima obligación es "${pendientesOProximas[0].obligacionCatalogo?.nombre}". Revisa tus compras y ventas antes de declarar.`;
     recomendacion.textContent = 'Estás al día. Aprovecha para revisar guías nuevas en la sección Aprender.';
   }
 }

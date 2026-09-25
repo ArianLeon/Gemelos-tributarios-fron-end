@@ -812,6 +812,8 @@ auth-head{margin-bottom:32px;}
 
 /*Sidebar — régimen con ícono + suscripción + mascota*/
 .sidebar-caption{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin:0 4px 8px;}
+.nav-list .sidebar-caption{margin-top:14px;}
+.nav-list .sidebar-caption{margin-top:14px;}
 .regime-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-md);padding:12px;cursor:pointer;transition:border-color .15s ease,background .15s ease;width:100%;text-align:left;font:inherit;color:inherit;}
 .regime-card:hover{border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.09);}
 .regime-card-top{display:flex;align-items:center;gap:10px;}
@@ -1676,6 +1678,8 @@ auth-head{margin-bottom:32px;}
 .modal-overlay.show .modal-box{transform:translateY(0);}
 .modal-box h3{font-size:16px;color:var(--text-900);margin-bottom:8px;}
 .modal-box p{font-size:13.5px;color:var(--text-500);margin-bottom:18px;line-height:1.5;}
+.modal-box.form{max-width:560px;text-align:left;max-height:88vh;overflow-y:auto;}
+.modal-box.form h3{margin-bottom:18px;}
 
 .input:disabled{
   background:var(--bg);

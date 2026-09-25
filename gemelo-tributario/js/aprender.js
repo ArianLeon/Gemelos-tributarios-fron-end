@@ -15,7 +15,10 @@ const REGIMEN_LABEL = {
   GENERAL: 'Régimen General'
 };
 
-const TEMA_A_CATEGORIA = { IVA: 'iva', RENTA: 'renta', RIMPE: 'rimpe', FACTURACION: 'facturacion' };
+/** Convierte el nombre de un tema en el valor usado por data-categoria de los chips. */
+function categoriaDeTema(tema) {
+  return (tema || '').trim().toLowerCase();
+}
 
 let mapaCompletados = {}; // idGuia -> true/false
 
@@ -59,11 +62,12 @@ function initHeaderDropdowns() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   initHeaderDropdowns();
   cargarUsuario();
   cargarPerfil();
   cargarNotificaciones();
+  await cargarTemas();
   cargarContenido();
 
   document.getElementById('cerrar-sesion').addEventListener('click', () => {
@@ -72,6 +76,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('learnSearch').addEventListener('input', aplicarFiltros);
 });
+
+/** Trae los temas creados por el admin y arma los chips de categoría. */
+async function cargarTemas() {
+  const fila = document.getElementById('category-row');
+  try {
+    const res = await fetch(`${API_URL}/temas-guia`);
+    if (!res.ok) return;
+    const temas = await res.json();
+    temas.forEach((t) => {
+      const btn = document.createElement('button');
+      btn.className = 'category-chip';
+      btn.dataset.categoria = categoriaDeTema(t.nombre);
+      btn.textContent = t.nombre;
+      fila.appendChild(btn);
+    });
+  } catch (e) {
+    /* si falla, se queda solo el chip "Todas" */
+  }
+}
 
 /* ------------------------------------------------------------
    Usuario / perfil / notificaciones (mismo patron del resto de la app)
@@ -153,7 +176,7 @@ function pintarVideos(videos) {
 
   contenedor.innerHTML = '';
   videos.forEach((v) => {
-    const categoria = TEMA_A_CATEGORIA[v.tema] || 'todas';
+    const categoria = categoriaDeTema(v.tema);
     const completado = !!mapaCompletados[v.idGuia];
     const duracion = v.duracionMinutos ? `${v.duracionMinutos} min` : '';
 
@@ -177,7 +200,7 @@ function pintarVideos(videos) {
       <div class="video-meta-row">
         ${completado
           ? '<span class="level-badge done"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>Completado</span>'
-          : `<span class="level-badge">${v.nivel || 'Principiante'}</span>`}
+          : ''}
         <span class="time"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>${duracion}</span>
       </div>
     `;
@@ -245,7 +268,7 @@ function pintarMateriales(materiales) {
 
   contenedor.innerHTML = '';
   materiales.forEach((m) => {
-    const categoria = TEMA_A_CATEGORIA[m.tema] || 'todas';
+    const categoria = categoriaDeTema(m.tema);
     const item = document.createElement('div');
     item.className = 'material-item';
     item.dataset.categoria = categoria;

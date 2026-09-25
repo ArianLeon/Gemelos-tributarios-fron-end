@@ -2,6 +2,15 @@
    GEMELO TRIBUTARIO — utilidades compartidas
    ============================================================ */
 
+const API_URL = 'http://localhost:8080/api';
+
+/** Escapa texto antes de insertarlo como HTML (para el listado de opiniones). */
+function escHtml(v) {
+  return String(v == null ? '' : v).replace(/[&<>"']/g, (c) => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+  ));
+}
+
 /** Formatea un número como moneda USD */
 function formatUSD(value) {
   const n = Number.isFinite(value) ? value : 0;
@@ -256,14 +265,33 @@ function renderFeedbackList(list) {
   if (!wrap) return;
   wrap.innerHTML = '';
 
-  list.slice(0, 6).forEach((item) => {
-    const row = document.createElement('div');
-    row.className = 'feedback-item';
-    row.innerHTML =
-      '<span class="stars-mini">' + '★'.repeat(item.rating) + '☆'.repeat(5 - item.rating) + '</span>' +
-      '<p><strong>' + (item.name || 'Usuario de la demo') + ':</strong> ' + item.comment + '</p>';
-    wrap.appendChild(row);
-  });
+  list
+    .slice()
+    .sort((a, b) => new Date(b.fechaCreacion) - new Date(a.fechaCreacion))
+    .slice(0, 6)
+    .forEach((item) => {
+      const row = document.createElement('div');
+      row.className = 'feedback-item';
+      const nombre = item.nombreMostrado
+        || (item.usuario && [item.usuario.primerNombre, item.usuario.apellidoPaterno].filter(Boolean).join(' '))
+        || 'Usuario de la demo';
+      row.innerHTML =
+        '<span class="stars-mini">' + '★'.repeat(item.calificacion) + '☆'.repeat(5 - item.calificacion) + '</span>' +
+        '<p><strong>' + escHtml(nombre) + ':</strong> ' + escHtml(item.comentario) + '</p>';
+      wrap.appendChild(row);
+    });
+}
+
+/** Trae las opiniones ya guardadas en el backend (para pintarlas en la landing). */
+async function cargarOpinionesLanding() {
+  try {
+    const res = await fetch(`${API_URL}/opiniones`);
+    if (!res.ok) return [];
+    const data = await res.json();
+    return Array.isArray(data) ? data : [];
+  } catch (e) {
+    return [];
+  }
 }
 
 function initFeedbackForm() {
@@ -290,12 +318,9 @@ function initFeedbackForm() {
   });
   starsRow.addEventListener('mouseleave', () => paintStars(selectedRating));
 
-  
-  const stored = gtGet('feedback_demo', null);
-  const list = stored && stored.length ? stored : seed;
-  renderFeedbackList(list);
+  cargarOpinionesLanding().then(renderFeedbackList);
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     if (selectedRating === 0) {
@@ -313,21 +338,37 @@ function initFeedbackForm() {
       return;
     }
 
-    const entry = {
-      name: nameEl.value.trim(),
-      rating: selectedRating,
-      comment
-    };
+    const submitBtn = form.querySelector('button[type="submit"]');
+    if (submitBtn) submitBtn.disabled = true;
 
-    const current = gtGet('feedback_demo', list);
-    const updated = [entry, ...current];
-    gtSet('feedback_demo', updated);
-    renderFeedbackList(updated);
+    try {
+      const res = await fetch(`${API_URL}/opiniones`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nombreMostrado: nameEl.value.trim() || null,
+          calificacion: selectedRating,
+          comentario: comment
+        })
+      });
 
-    form.reset();
-    selectedRating = 0;
-    paintStars(0);
-    showToast('¡Gracias por tu opinión!');
+      if (!res.ok) {
+        showToast('No se pudo enviar tu opinión. Intenta de nuevo.');
+        return;
+      }
+
+      form.reset();
+      selectedRating = 0;
+      paintStars(0);
+      showToast('¡Gracias por tu opinión!');
+
+      const lista = await cargarOpinionesLanding();
+      renderFeedbackList(lista);
+    } catch (err) {
+      showToast('No se pudo conectar con el servidor.');
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
+    }
   });
 }
 
@@ -381,5 +422,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Estas solo actúan en la página de inicio de sesión.
   initPasswordToggle();
-  initLoginForm();
+  if (typeof initLoginForm === 'function') initLoginForm();
 });

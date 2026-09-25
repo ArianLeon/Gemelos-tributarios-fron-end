@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel de administración — Gemelo Tributario</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="app-shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="brand">
+        <img src="img/robotsolo.png" alt="Gemelo Tributario" class="brand-logo-img" style="height: 90px;width:auto;display:block;">
+      </div>
+    </div>
+
+    <span class="sidebar-caption" style="margin-top:0;">Panel de administración</span>
+
+    <nav class="nav-list">
+      <a href="admin-dashboard.html" class="nav-item active">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+        Resumen
+      </a>
+
+      <span class="sidebar-caption">Usuarios</span>
+      <a href="admin-usuarios.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="4"/><path d="M2 20c0-4 3-6 7-6s7 2 7 6"/><path d="M17 8a4 4 0 010 8"/><path d="M22 20c0-3-2-5-4-5.6"/></svg>
+        Usuarios registrados
+      </a>
+      <a href="admin-perfiles.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18v13H3z"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+        Perfiles tributarios
+      </a>
+
+      <span class="sidebar-caption">Obligaciones tributarias</span>
+      <a href="admin-catalogo.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5.5A2.5 2.5 0 015.5 3H12v18H5.5A2.5 2.5 0 013 18.5v-13z"/><path d="M21 5.5A2.5 2.5 0 0018.5 3H12v18h6.5a2.5 2.5 0 002.5-2.5v-13z"/></svg>
+        Catálogo de obligaciones
+      </a>
+      <a href="admin-calendario.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+        Calendario por noveno dígito
+      </a>
+      <a href="admin-obligaciones.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/><path d="M9 15l2 2 4-4"/></svg>
+        Obligaciones de usuarios
+      </a>
+
+      <span class="sidebar-caption">Calculadora (tablas)</span>
+      <a href="admin-tramos-renta.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-6 3 3 5-8"/></svg>
+        Tramos de Renta
+      </a>
+      <a href="admin-tarifas-rimpe.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h1M12 11h1M16 11h1M8 15h1M12 15h1M16 15h1"/></svg>
+        Tarifas RIMPE
+      </a>
+      <a href="admin-retenciones.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="7" cy="7" r="3"/><circle cx="17" cy="17" r="3"/><path d="M6 18L18 6"/></svg>
+        Retenciones
+      </a>
+      <a href="admin-periodos-fiscales.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        Períodos fiscales
+      </a>
+      <a href="admin-historial-calculos.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 17V9M12 17V5M17 17v-7"/></svg>
+        Historial de cálculos
+      </a>
+
+      <span class="sidebar-caption">Aprender</span>
+      <a href="admin-guias.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5.5A2.5 2.5 0 015.5 3H12v18H5.5A2.5 2.5 0 013 18.5v-13z"/><path d="M21 5.5A2.5 2.5 0 0018.5 3H12v18h6.5a2.5 2.5 0 002.5-2.5v-13z"/></svg>
+        Guías de aprendizaje
+      </a>
+
+      <span class="sidebar-caption">Opiniones</span>
+      <a href="admin-opiniones.html" class="nav-item">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+        Opiniones de usuarios
+      </a>
+
+      <a href="dashboard.html" class="nav-item" style="margin-top:auto; opacity:.7;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        Volver a la app
+      </a>
+    </nav>
+  </aside>
+
+  <header class="topbar-mobile">
+    <div class="brand">
+      <img src="img/logo_completo.png" alt="Gemelo Tributario" class="brand-logo-img brand-logo-img-sm" style="height:30px;width:auto;display:block;">
+    </div>
+  </header>
+
+  <main class="main">
+
+    <div class="page-head">
+      <div>
+        <span class="eyebrow">Administración</span>
+        <h1>Panel de administración</h1>
+        <p class="subtitle">Gestiona el contenido y los datos que alimentan a Gemelo Tributario.</p>
+      </div>
+
+      <div class="head-actions">
+        <div style="position:relative;">
+          <button type="button" class="icon-btn" data-dropdown-toggle="notif-panel" aria-label="Avisos">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0112 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 21a2 2 0 004 0"/></svg>
+            <span class="icon-btn-badge" id="notif-count">0</span>
+          </button>
+          <div class="dropdown-panel notif-panel" id="notif-panel">
+            <div class="notif-head">Avisos del sistema</div>
+            <div id="notif-lista"><div class="notif-item"><span>No hay avisos por ahora.</span></div></div>
+          </div>
+        </div>
+
+        <div style="position:relative;">
+          <button type="button" class="user-chip" data-dropdown-toggle="user-panel">
+            <span class="user-avatar" id="topbar-avatar">A</span>
+            <span class="user-name" id="topbar-nombre">Administrador</span>
+            <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="dropdown-panel" id="user-panel">
+            <a href="dashboard.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>Volver a la app</a>
+            <a href="Login.html" id="cerrar-sesion"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>Cerrar sesión</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KPIs generales (placeholders; se llenan al conectar el backend) -->
+    <div class="grid grid-4">
+      <div class="card admin-kpi">
+        <div class="kpi-label">Usuarios registrados</div>
+        <div class="kpi-value" id="kpi-usuarios">—</div>
+      </div>
+      <div class="card admin-kpi k-green">
+        <div class="kpi-label">Obligaciones en el catálogo</div>
+        <div class="kpi-value" id="kpi-catalogo">—</div>
+      </div>
+      <div class="card admin-kpi k-amber">
+        <div class="kpi-label">Guías publicadas</div>
+        <div class="kpi-value" id="kpi-guias">—</div>
+      </div>
+      <div class="card admin-kpi k-red">
+        <div class="kpi-label">Opiniones registradas</div>
+        <div class="kpi-value" id="kpi-opiniones">—</div>
+      </div>
+    </div>
+
+    <!-- Aviso: contenido pendiente de cargar -->
+    <div class="recommend-banner mt-24">
+      <div class="star">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.5 9a2.5 2.5 0 015 .5c0 1.5-2 1.5-2.5 3"/><path d="M12 17h.01"/></svg>
+      </div>
+      <div class="body">
+        <strong>Antes de que la app funcione al 100%</strong>
+        <p>Carga el catálogo de obligaciones y su calendario por noveno dígito, y las tablas de RIMPE, Renta y retenciones — la calculadora y los recordatorios dependen de esos datos.</p>
+      </div>
+      <a href="admin-catalogo.html" class="btn btn-primary btn-sm">Empezar por el catálogo</a>
+    </div>
+
+    <h3 class="mt-24 mb-16" style="font-size:16px;">Usuarios</h3>
+    <div class="grid grid-3">
+      <a href="admin-usuarios.html" class="card action-card">
+        <div class="action-icon icon-purple"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="4"/><path d="M2 20c0-4 3-6 7-6s7 2 7 6"/><path d="M17 8a4 4 0 010 8"/><path d="M22 20c0-3-2-5-4-5.6"/></svg></div>
+        <div><h3>Usuarios registrados</h3><p>Ver, editar o desactivar cuentas de usuario.</p></div>
+      </a>
+      <a href="admin-perfiles.html" class="card action-card">
+        <div class="action-icon icon-green"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18v13H3z"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></div>
+        <div><h3>Perfiles tributarios</h3><p>Régimen, noveno dígito y datos fiscales de cada usuario.</p></div>
+      </a>
+    </div>
+
+    <h3 class="mt-24 mb-16" style="font-size:16px;">Obligaciones tributarias</h3>
+    <div class="grid grid-3">
+      <a href="admin-catalogo.html" class="card action-card">
+        <div class="action-icon icon-orange"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5.5A2.5 2.5 0 015.5 3H12v18H5.5A2.5 2.5 0 013 18.5v-13z"/><path d="M21 5.5A2.5 2.5 0 0018.5 3H12v18h6.5a2.5 2.5 0 002.5-2.5v-13z"/></svg></div>
+        <div><h3>Catálogo de obligaciones</h3><p>Qué trámites existen, para qué régimen y con qué base legal.</p></div>
+      </a>
+      <a href="admin-calendario.html" class="card action-card">
+        <div class="action-icon icon-navy"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></div>
+        <div><h3>Calendario por noveno dígito</h3><p>Mes y día de vencimiento de cada obligación, por dígito y año.</p></div>
+      </a>
+      <a href="admin-obligaciones.html" class="card action-card">
+        <div class="action-icon icon-purple"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/><path d="M9 15l2 2 4-4"/></svg></div>
+        <div><h3>Obligaciones de usuarios</h3><p>Monitorea lo que se generó y lo que cada usuario ya cumplió.</p></div>
+      </a>
+    </div>
+
+    <h3 class="mt-24 mb-16" style="font-size:16px;">Calculadora (tablas de referencia)</h3>
+    <div class="grid grid-3">
+      <a href="admin-tramos-renta.html" class="card action-card">
+        <div class="action-icon icon-green"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-6 3 3 5-8"/></svg></div>
+        <div><h3>Tramos de Renta</h3><p>Tabla progresiva del Impuesto a la Renta por año fiscal.</p></div>
+      </a>
+      <a href="admin-tarifas-rimpe.html" class="card action-card">
+        <div class="action-icon icon-orange"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h1M12 11h1M16 11h1"/></svg></div>
+        <div><h3>Tarifas RIMPE</h3><p>Cuota fija y porcentaje por tramo, Negocio Popular y Emprendedor.</p></div>
+      </a>
+      <a href="admin-retenciones.html" class="card action-card">
+        <div class="action-icon icon-navy"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="7" cy="7" r="3"/><circle cx="17" cy="17" r="3"/><path d="M6 18L18 6"/></svg></div>
+        <div><h3>Retenciones</h3><p>Porcentajes de retención en la fuente vigentes.</p></div>
+      </a>
+      <a href="admin-periodos-fiscales.html" class="card action-card">
+        <div class="action-icon icon-purple"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+        <div><h3>Períodos fiscales</h3><p>Datos de entrada que cada usuario guardó por período.</p></div>
+      </a>
+      <a href="admin-historial-calculos.html" class="card action-card">
+        <div class="action-icon icon-green"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 17V9M12 17V5M17 17v-7"/></svg></div>
+        <div><h3>Historial de cálculos</h3><p>Qué han calculado los usuarios con la calculadora.</p></div>
+      </a>
+    </div>
+
+    <h3 class="mt-24 mb-16" style="font-size:16px;">Aprender</h3>
+    <div class="grid grid-3">
+      <a href="admin-guias.html" class="card action-card">
+        <div class="action-icon icon-orange"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5.5A2.5 2.5 0 015.5 3H12v18H5.5A2.5 2.5 0 013 18.5v-13z"/><path d="M21 5.5A2.5 2.5 0 0018.5 3H12v18h6.5a2.5 2.5 0 002.5-2.5v-13z"/></svg></div>
+        <div><h3>Guías de aprendizaje</h3><p>Sube las materias, artículos y videos que ven los usuarios en Aprender.</p></div>
+      </a>
+    </div>
+
+    <h3 class="mt-24 mb-16" style="font-size:16px;">Opiniones</h3>
+    <div class="grid grid-3">
+      <a href="admin-opiniones.html" class="card action-card">
+        <div class="action-icon icon-navy"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg></div>
+        <div><h3>Opiniones de usuarios</h3><p>Comentarios y calificaciones dejados en la app.</p></div>
+      </a>
+    </div>
+
+  </main>
+</div>
+
+<script src="js/admin-common.js"></script>
+<script src="js/admin-dashboard.js"></script>
+</body>
+</html>

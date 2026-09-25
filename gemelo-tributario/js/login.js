@@ -80,8 +80,9 @@ form.addEventListener('submit', async (e) => {
       return;
     }
 
-    const usuario = await res.json();
+       const usuario = await res.json();
     localStorage.setItem('gt_id_usuario', usuario.idUsuario);
+    localStorage.setItem('gt_rol', usuario.rol || 'USUARIO');
 
     if (document.getElementById('remember-me').checked) {
       localStorage.setItem('gt_recordar_correo', correo);
@@ -89,7 +90,7 @@ form.addEventListener('submit', async (e) => {
       localStorage.removeItem('gt_recordar_correo');
     }
 
-    window.location.href = 'dashboard.html';
+    window.location.href = usuario.rol === 'ADMIN' ? 'admin-dashboard.html' : 'dashboard.html';
 
   } catch (error) {
     setFieldError(passwordInput, document.getElementById('login-password-error'),

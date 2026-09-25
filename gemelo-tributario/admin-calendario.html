@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calendario por noveno dígito — Panel de administración</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="sidebar-header"><div class="brand"><img src="img/robotsolo.png" alt="Gemelo Tributario" class="brand-logo-img" style="height: 90px;width:auto;display:block;"></div></div>
+    <span class="sidebar-caption" style="margin-top:0;">Panel de administración</span>
+    <nav class="nav-list">
+      <a href="admin-dashboard.html" class="nav-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>Resumen</a>
+      <span class="sidebar-caption">Usuarios</span>
+      <a href="admin-usuarios.html" class="nav-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="4"/><path d="M2 20c0-4 3-6 7-6s7 2 7 6"/><path d="M17 8a4 4 0 010 8"/><path d="M22 20c0-3-2-5-4-5.6"/></svg>Usuarios registrados</a>
+      <a href="admin-perfiles.html" class="nav-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18v13H3z"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>Perfiles tributarios</a>
+      <span class="sidebar-caption">Obligaciones tributarias</span>
+      <a href="admin-catalogo.html" class="nav-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5.5A2.5 2.5 0 015.5 3H12v18H5.5A2.5 2.5 0 013 18.5v-13z"/><path d="M21 5.5A2.5 2.5 0 0018.5 3H12v18h6.5a2.5 2.5 0 002.5-2.5v-13z"/></svg>Catálogo de obligaciones</a>
+      <a href="admin-calendario.html" class="nav-item active"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>Calendario por noveno dígito</a>
+      <a href="admin-obligaciones.html" class="nav-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/><path d="M9 15l2 2 4-4"/></svg>Obligaciones de usuarios</a>
+      <span class="sidebar-caption">Calculadora (tablas)</span>
+      <a href="admin-tramos-renta.html" class="nav-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 15l4-6 3 3 5-8"/></svg>Tramos de Renta</a>
+      <a href="admin-tarifas-rimpe.html" class="nav-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h1M12 11h1M16 11h1M8 15h1M12 15h1M16 15h1"/></svg>Tarifas RIMPE</a>
+      <a href="admin-retenciones.html" class="nav-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="7" cy="7" r="3"/><circle cx="17" cy="17" r="3"/><path d="M6 18L18 6"/></svg>Retenciones</a>
+      <a href="admin-periodos-fiscales.html" class="nav-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Períodos fiscales</a>
+      <a href="admin-historial-calculos.html" class="nav-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 17V9M12 17V5M17 17v-7"/></svg>Historial de cálculos</a>
+      <span class="sidebar-caption">Aprender</span>
+      <a href="admin-guias.html" class="nav-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 5.5A2.5 2.5 0 015.5 3H12v18H5.5A2.5 2.5 0 013 18.5v-13z"/><path d="M21 5.5A2.5 2.5 0 0018.5 3H12v18h6.5a2.5 2.5 0 002.5-2.5v-13z"/></svg>Guías de aprendizaje</a>
+      <span class="sidebar-caption">Opiniones</span>
+      <a href="admin-opiniones.html" class="nav-item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>Opiniones de usuarios</a>
+      <a href="dashboard.html" class="nav-item" style="margin-top:auto; opacity:.7;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>Volver a la app</a>
+    </nav>
+  </aside>
+
+  <header class="topbar-mobile"><div class="brand"><img src="img/logo_completo.png" alt="Gemelo Tributario" class="brand-logo-img brand-logo-img-sm" style="height:30px;width:auto;display:block;"></div></header>
+
+  <main class="main">
+    <a href="admin-dashboard.html" class="see-all-link">← Panel de administración</a>
+    <div class="page-head">
+      <div><h1>Calendario por noveno dígito</h1><p class="subtitle">Mes y día de vencimiento de cada obligación, por año y noveno dígito del RUC.</p></div>
+      <div class="head-actions">
+        <div style="position:relative;">
+          <button type="button" class="user-chip" data-dropdown-toggle="user-panel"><span class="user-avatar" id="topbar-avatar">A</span><span class="user-name" id="topbar-nombre">Administrador</span><svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="6 9 12 15 18 9"/></svg></button>
+          <div class="dropdown-panel" id="user-panel">
+            <a href="dashboard.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>Volver a la app</a>
+            <a href="Login.html" id="cerrar-sesion"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>Cerrar sesión</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-muted" style="margin:-8px 0 18px;">Por cada obligación del catálogo necesitas 10 filas (una por cada noveno dígito, del 0 al 9) para cada año fiscal.</p>
+
+    <div class="card">
+      <div class="panel-head">
+        <div style="display:flex; gap:10px; align-items:center;">
+          <select class="input select" id="filtro-obligacion" style="min-width:220px;"><option value="">Todas las obligaciones</option></select>
+          <select class="input select" id="filtro-anio" style="min-width:110px;"><option value="">Todos los años</option></select>
+        </div>
+        <button type="button" class="btn btn-primary btn-sm" id="btn-nuevo">+ Nueva fila</button>
+      </div>
+      <div style="overflow-x:auto;">
+        <table class="admin-table">
+          <thead><tr><th>Año</th><th>Obligación</th><th>Noveno dígito</th><th>Vence (mes)</th><th>Vence (día)</th><th></th></tr></thead>
+          <tbody id="tabla-body">
+            <tr><td colspan="6" class="text-muted" style="padding:20px 18px;">Cargando calendario…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="modal-overlay" id="modal-form">
+  <div class="modal-box form">
+    <h3 id="modal-titulo">Nueva fila de calendario</h3>
+    <form id="form-calendario">
+      <input type="hidden" id="f-id">
+      <div class="field"><label for="f-obligacion">Obligación</label>
+        <select id="f-obligacion" class="select" required><option value="">Selecciona una obligación…</option></select>
+        <p class="hint">Se llena con el catálogo. Si no aparece la que buscas, créala primero en Catálogo de obligaciones.</p>
+      </div>
+      <div class="grid grid-2">
+        <div class="field"><label for="f-anio">Año fiscal</label><input type="number" id="f-anio" class="input" min="2020" max="2100" required></div>
+        <div class="field"><label for="f-digito">Noveno dígito del RUC</label>
+          <select id="f-digito" class="select" required>
+            <option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option>
+            <option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid grid-2">
+        <div class="field"><label for="f-mes">Mes de vencimiento</label>
+          <select id="f-mes" class="select" required>
+            <option value="1">Enero</option><option value="2">Febrero</option><option value="3">Marzo</option><option value="4">Abril</option>
+            <option value="5">Mayo</option><option value="6">Junio</option><option value="7">Julio</option><option value="8">Agosto</option>
+            <option value="9">Septiembre</option><option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
+          </select>
+        </div>
+        <div class="field"><label for="f-dia">Día de vencimiento</label><input type="number" id="f-dia" class="input" min="1" max="31" required></div>
+      </div>
+      <div class="calc-actions-row" style="justify-content:flex-end;gap:10px;">
+        <button type="button" class="btn btn-outline btn-sm" id="btn-cancelar">Cancelar</button>
+        <button type="submit" class="btn btn-primary btn-sm">Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-eliminar">
+  <div class="modal-box">
+    <h3>¿Eliminar esta fila?</h3>
+    <p>Los usuarios con ese noveno dígito dejarán de tener fecha de vencimiento para esa obligación y ese año.</p>
+    <div class="calc-actions-row" style="justify-content:center;gap:10px;">
+      <button type="button" class="btn btn-outline btn-sm" id="btn-cancelar-eliminar">Cancelar</button>
+      <button type="button" class="btn btn-primary btn-sm" id="btn-confirmar-eliminar" style="background:var(--red-600);border-color:var(--red-600);">Eliminar</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/admin-common.js"></script>
+<script src="js/admin-calendario.js"></script>
+</body>
+</html>

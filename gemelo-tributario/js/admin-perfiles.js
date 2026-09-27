@@ -55,8 +55,10 @@ function abrirEditar(id) {
   $('f-tipo-contribuyente').value = p.tipoContribuyente;
   $('f-nombre-negocio').value = p.nombreNegocio || '';
   $('f-direccion-negocio').value = p.direccionNegocio || '';
-  document.getElementById(p.obligadoContabilidad ? 'f-contabilidad-si' : 'f-contabilidad-no').checked = true;
-  $('f-agente-retencion').checked = !!p.agenteRetencion;
+  let condicion = 'no';
+if (p.obligadoContabilidad) condicion = 'si';
+else if (p.agenteRetencion) condicion = 'agente';
+document.querySelector(`input[name="f-contabilidad"][value="${condicion}"]`).checked = true;
   $('modal-titulo').textContent = 'Editar perfil tributario';
   abrirModal('modal-form');
 }
@@ -72,7 +74,7 @@ async function guardar(e) {
     nombreNegocio: $('f-nombre-negocio').value.trim(),
     direccionNegocio: $('f-direccion-negocio').value.trim(),
     obligadoContabilidad: document.querySelector('input[name="f-contabilidad"]:checked')?.value === 'si',
-    agenteRetencion: $('f-agente-retencion').checked
+agenteRetencion: document.querySelector('input[name="f-contabilidad"]:checked')?.value === 'agente'
   };
   const boton = e.target.querySelector('button[type="submit"]');
   boton.disabled = true;

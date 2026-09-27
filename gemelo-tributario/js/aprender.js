@@ -3,6 +3,59 @@
    ============================================================ */
 
 const API_URL = 'http://localhost:8080/api';
+const BACKEND_ORIGIN = API_URL.replace(/\/api\/?$/, '');
+
+/** Convierte una ruta relativa del backend ("/uploads/guias/x.mp4") en una URL completa. */
+function urlAbsoluta(url) {
+  if (!url) return '';
+  const limpia = url.trim();
+  if (/^https?:\/\//i.test(limpia)) return limpia;
+  return BACKEND_ORIGIN + (limpia.startsWith('/') ? limpia : '/' + limpia);
+}
+
+/** true si la URL apunta directo a un archivo de video (subido o enlazado). */
+function esArchivoDeVideo(url) {
+  return /\.(mp4|webm|ogg|ogv|mov|m4v)(\?.*)?$/i.test(url || '');
+}
+
+function idYoutube(url) {
+  const m = (url || '').match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([\w-]{6,})/i);
+  return m ? m[1] : null;
+}
+
+function idVimeo(url) {
+  const m = (url || '').match(/vimeo\.com\/(?:video\/)?(\d+)/i);
+  return m ? m[1] : null;
+}
+
+/**
+ * Arma el HTML del reproductor según el tipo de enlace: video subido/directo,
+ * YouTube, Vimeo, o (si no se puede incrustar) un botón para abrirlo aparte.
+ */
+function embedVideoHtml(urlOriginal) {
+  const url = urlAbsoluta(urlOriginal);
+  if (!url) {
+    return '<div class="video-sin-fuente text-muted" style="display:flex;align-items:center;justify-content:center;height:100%;font-size:12.5px;">Sin video</div>';
+  }
+  const yt = idYoutube(url);
+  if (yt) {
+    return `<iframe src="https://www.youtube.com/embed/${yt}" title="Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width:100%;height:100%;"></iframe>`;
+  }
+  const vm = idVimeo(url);
+  if (vm) {
+    return `<iframe src="https://player.vimeo.com/video/${vm}" title="Video" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="width:100%;height:100%;"></iframe>`;
+  }
+  if (esArchivoDeVideo(url)) {
+    return `<video controls preload="metadata" playsinline style="width:100%;height:100%;">
+      <source src="${url}" type="video/mp4">
+      Tu navegador no soporta la reproducción de video.
+    </video>`;
+  }
+  // Enlace que no podemos incrustar de forma confiable: lo abrimos aparte.
+  return `<div style="display:flex;align-items:center;justify-content:center;height:100%;">
+    <a href="${url}" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Ver video</a>
+  </div>`;
+}
 
 const idUsuario = localStorage.getItem('gt_id_usuario');
 if (!idUsuario) {
@@ -186,10 +239,7 @@ function pintarVideos(videos) {
     card.dataset.titulo = v.titulo.toLowerCase();
     card.innerHTML = `
       <div class="video-thumb">
-        <video controls preload="metadata" playsinline>
-          <source src="${v.contenidoUrl || ''}" type="video/mp4">
-          Tu navegador no soporta la reproducción de video.
-        </video>
+        ${embedVideoHtml(v.contenidoUrl)}
         <span class="video-cat-tag">${v.tema}</span>
       </div>
       <div class="video-info">
@@ -206,7 +256,7 @@ function pintarVideos(videos) {
     `;
 
     const videoEl = card.querySelector('video');
-    videoEl.addEventListener('ended', () => marcarVideoCompletado(v.idGuia, card));
+    if (videoEl) videoEl.addEventListener('ended', () => marcarVideoCompletado(v.idGuia, card));
 
     contenedor.appendChild(card);
   });
@@ -275,7 +325,7 @@ function pintarMateriales(materiales) {
     item.dataset.titulo = m.titulo.toLowerCase();
 
     const botonHtml = m.contenidoUrl
-      ? `<a href="${m.contenidoUrl}" target="_blank" rel="noopener" download class="btn btn-outline btn-sm">
+      ? `<a href="${urlAbsoluta(m.contenidoUrl)}" target="_blank" rel="noopener" download class="btn btn-outline btn-sm">
            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
            Descargar
          </a>`

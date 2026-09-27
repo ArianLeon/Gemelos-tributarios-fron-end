@@ -113,3 +113,17 @@ document.addEventListener('DOMContentLoaded', () => {
   initCierreModalesPorFondo();
   initCerrarSesion();
 });
+
+/* Mantiene la posición de scroll del sidebar al navegar entre páginas del panel. */
+(function () {
+  const CLAVE = 'gt_admin_sidebar_scroll';
+  document.addEventListener('DOMContentLoaded', () => {
+    const sidebar = document.querySelector('.sidebar');
+    if (!sidebar) return;
+    const guardado = sessionStorage.getItem(CLAVE);
+    if (guardado !== null) sidebar.scrollTop = Number(guardado);
+    sidebar.addEventListener('scroll', () => {
+      sessionStorage.setItem(CLAVE, String(sidebar.scrollTop));
+    });
+  });
+})();

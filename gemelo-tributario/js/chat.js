@@ -1,57 +1,18 @@
 /* ============================================================
    Chat — Gemelo Tributario
-   Motor de respuestas por coincidencia de palabras clave.
-   En la versión completa este panel se conecta a un asistente
-   con IA; aquí se simula con una base de respuestas fija para
-   fines de demostración del prototipo.
+   Conectado a Gemelo Chat con IA (backend + Claude).
+   API_URL ya viene declarada por main.js (que se carga antes en chat.html).
    ============================================================ */
 
-const BASE_RESPUESTAS = [
-  {
-    claves: ['iva', 'declarar iva', 'cuando declaro'],
-    respuesta: 'Debes declarar el IVA mensualmente si estás obligado a llevar contabilidad, o si tus ingresos anuales superan los $300.000. La fecha límite depende del noveno dígito de tu RUC.',
-    norma: 'Art. 67 LRTI'
-  },
-  {
-    claves: ['rimpe'],
-    respuesta: 'El RIMPE es el Régimen Simplificado para Emprendedores y Negocios Populares. Es un régimen opcional pensado para formalizar y facilitar el cumplimiento tributario de negocios pequeños y medianos.',
-    norma: 'Res. NAC-DGERCGC22-00000024'
-  },
-  {
-    claves: ['renta', 'impuesto a la renta'],
-    respuesta: 'El Impuesto a la Renta se calcula sobre tu base imponible anual (ingresos menos gastos deducibles) aplicando una tabla progresiva por tramos. Puedes simularlo en la sección Calculadora.',
-    norma: 'Art. 36 LRTI'
-  },
-  {
-    claves: ['retencion', 'retenciones'],
-    respuesta: 'Las retenciones en la fuente son anticipos del impuesto que el comprador retiene al proveedor. El porcentaje varía según el tipo de bien o servicio (por ejemplo 1.75% en bienes, 10% en honorarios profesionales).',
-    norma: 'Res. NAC-DGERCGC vigente'
-  },
-  {
-    claves: ['multa', 'sancion', 'atraso', 'retraso'],
-    respuesta: 'Declarar o pagar fuera de plazo genera un interés por mora más una multa que se calcula como porcentaje del impuesto causado, incluso si el valor a pagar es cero.',
-    norma: 'Art. 100 LRTI'
-  },
-  {
-    claves: ['factura', 'facturacion', 'facturar'],
-    respuesta: 'Toda transferencia de bienes o prestación de servicios debe respaldarse con un comprobante de venta autorizado por el SRI, actualmente mediante facturación electrónica.',
-    norma: 'Reglamento de Comprobantes de Venta'
-  },
-  {
-    claves: ['fecha limite', 'plazo', 'noveno digito'],
-    respuesta: 'Los plazos de declaración se organizan según el noveno dígito de tu RUC. Puedes revisar tus próximas fechas clave en la sección Recordatorios.',
-    norma: 'Reglamento LRTI, Art. 158'
-  },
-  {
-    claves: ['contador', 'contable', 'diferencia'],
-    respuesta: 'Un contador ajusta y organiza tus cuentas financieras. Gemelo Tributario se enfoca en el cumplimiento legal: te guía según la normativa tributaria vigente para que tomes decisiones informadas, sin reemplazar la contabilidad de tu negocio.',
-    norma: 'Enfoque Gemelo Tributario'
-  }
-];
+const idUsuario = localStorage.getItem('gt_id_usuario');
+if (!idUsuario) {
+  window.location.href = 'Login.html';
+}
 
-const RESPUESTA_DEFECTO = {
-  respuesta: 'Todavía no tengo una respuesta preparada para eso en esta demostración. En la sección Aprender encontrarás guías y preguntas frecuentes sobre IVA, Renta, RIMPE y facturación.',
-  norma: null
+const REGIMEN_LABEL = {
+  RIMPE_NEGOCIO_POPULAR: 'RIMPE – Negocio Popular',
+  RIMPE_EMPRENDEDOR: 'RIMPE – Emprendedor',
+  GENERAL: 'Régimen General'
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -72,17 +33,122 @@ document.addEventListener('DOMContentLoaded', () => {
     enviarMensaje(texto, messages);
     input.value = '';
   });
+
+  initFormularioSoporte();
+  cargarSidebarReal();
+  cargarUsuarioReal();
+  cargarNotificaciones();
+
+  const btnCerrarSesion = document.getElementById('cerrar-sesion');
+  if (btnCerrarSesion) {
+    btnCerrarSesion.addEventListener('click', () => {
+      localStorage.removeItem('gt_id_usuario');
+    });
+  }
 });
 
-function enviarMensaje(texto, messages) {
+/* ------------------------------------------------------------
+   Foto y nombre reales del usuario en la barra superior
+   (mismo patrón que usa dashboard.js).
+   ------------------------------------------------------------ */
+async function cargarUsuarioReal() {
+  try {
+    const res = await fetch(`${API_URL}/usuarios/${idUsuario}`);
+    if (!res.ok) return;
+    const usuario = await res.json();
+
+    const nombreEl = document.getElementById('topbar-nombre');
+    if (nombreEl) nombreEl.textContent = usuario.primerNombre || 'Usuario';
+
+    const avatarEl = document.getElementById('topbar-avatar');
+    if (avatarEl) {
+      if (usuario.fotoUrl) {
+        avatarEl.innerHTML = `<img src="http://localhost:8080${usuario.fotoUrl}" alt="Foto de perfil" style="width:100%;height:100%;object-fit:cover;border-radius:50%;">`;
+      } else {
+        const iniciales = (usuario.primerNombre?.[0] || '') + (usuario.apellidoPaterno?.[0] || '');
+        avatarEl.textContent = iniciales.toUpperCase() || 'GT';
+      }
+    }
+  } catch (e) {
+    /* si falla, se queda en "—" en vez de mostrar un dato falso */
+  }
+}
+
+/* ------------------------------------------------------------
+   Régimen y RUC reales en el sidebar (reemplaza los valores
+   quemados que traía el diseño original).
+   ------------------------------------------------------------ */
+async function cargarSidebarReal() {
+  try {
+    const res = await fetch(`${API_URL}/perfiles-tributarios/usuario/${idUsuario}`);
+    if (!res.ok) return;
+    const perfil = await res.json();
+
+    const regimenEl = document.getElementById('sidebar-regimen');
+    if (regimenEl) regimenEl.textContent = REGIMEN_LABEL[perfil.regimen] || perfil.regimen;
+
+    const rucEl = document.getElementById('sidebar-ruc');
+    if (rucEl) rucEl.textContent = `RUC: ${perfil.rucCedula || '—'}`;
+  } catch (e) {
+    /* si falla, el sidebar se queda en "—" en vez de mostrar un dato falso */
+  }
+}
+
+/* ------------------------------------------------------------
+   Notificaciones reales (contador + lista del dropdown)
+   ------------------------------------------------------------ */
+async function cargarNotificaciones() {
+  const contador = document.getElementById('notif-count');
+  const lista = document.getElementById('notif-lista');
+  if (!contador || !lista) return;
+
+  try {
+    const res = await fetch(`${API_URL}/notificaciones/usuario/${idUsuario}`);
+    if (!res.ok) return;
+    const notificaciones = await res.json();
+
+    contador.textContent = notificaciones.filter((n) => !n.leida).length;
+
+    lista.innerHTML = '';
+    if (notificaciones.length === 0) {
+      lista.innerHTML = '<div class="notif-item"><span>No tienes notificaciones por ahora.</span></div>';
+      return;
+    }
+    notificaciones.slice(0, 5).forEach((n) => {
+      const item = document.createElement('div');
+      item.className = 'notif-item';
+      item.innerHTML = `<strong>${n.titulo}</strong><span>${n.mensaje}</span>`;
+      lista.appendChild(item);
+    });
+  } catch (e) {
+    /* deja el contador en 0 en vez de un número inventado */
+  }
+}
+
+async function enviarMensaje(texto, messages) {
   agregarMensajeUsuario(texto, messages);
   mostrarEscribiendo(messages);
-  const delay = 600 + Math.random() * 500;
-  setTimeout(() => {
+
+  try {
+    const res = await fetch(`${API_URL}/chat/mensaje/usuario/${idUsuario}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ pregunta: texto })
+    });
+
+    const data = await res.json().catch(() => null);
     quitarEscribiendo(messages);
-    const match = buscarRespuesta(texto);
-    agregarMensajeBot(match, messages);
-  }, delay);
+
+    if (!res.ok) {
+      agregarMensajeBot(data?.mensaje || 'No pude conectarme con Gemelo ahora mismo. Intenta de nuevo en un momento.', messages);
+      return;
+    }
+
+    agregarMensajeBot(data.respuesta, messages);
+  } catch (err) {
+    quitarEscribiendo(messages);
+    agregarMensajeBot('No se pudo conectar con el servidor. Revisa tu conexión e intenta de nuevo.', messages);
+  }
 }
 
 function agregarMensajeUsuario(texto, messages) {
@@ -93,11 +159,12 @@ function agregarMensajeUsuario(texto, messages) {
   messages.scrollTop = messages.scrollHeight;
 }
 
-function agregarMensajeBot(match, messages) {
+function agregarMensajeBot(texto, messages) {
   const div = document.createElement('div');
   div.className = 'msg msg-bot';
-  div.innerHTML = '<p>' + match.respuesta + '</p>' +
-    (match.norma ? '<span class="norm-tag light">' + match.norma + '</span>' : '');
+  const p = document.createElement('p');
+  p.textContent = texto;
+  div.appendChild(p);
   messages.appendChild(div);
   messages.scrollTop = messages.scrollHeight;
 }
@@ -116,15 +183,40 @@ function quitarEscribiendo(messages) {
   if (el) el.remove();
 }
 
-function buscarRespuesta(texto) {
-  const t = texto
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '');
-  for (const entrada of BASE_RESPUESTAS) {
-    if (entrada.claves.some((clave) => t.includes(clave))) {
-      return entrada;
+/* ============================================================
+   Formulario de soporte (tarjeta "¿Necesitas hablar con una persona?")
+   ============================================================ */
+function initFormularioSoporte() {
+  const form = document.getElementById('form-soporte');
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const mensajeEl = document.getElementById('soporte-mensaje');
+    const mensaje = mensajeEl.value.trim();
+    if (!mensaje) {
+      mensajeEl.focus();
+      return;
     }
-  }
-  return RESPUESTA_DEFECTO;
+
+    const boton = form.querySelector('button[type="submit"]');
+    boton.disabled = true;
+
+    try {
+      const res = await fetch(`${API_URL}/soporte/usuario/${idUsuario}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ mensaje })
+      });
+      if (!res.ok) throw new Error('fallo');
+      mensajeEl.value = '';
+      if (typeof showToast === 'function') showToast('Tu mensaje fue enviado al equipo de soporte.');
+      else alert('Tu mensaje fue enviado al equipo de soporte.');
+    } catch (err) {
+      if (typeof showToast === 'function') showToast('No se pudo enviar el mensaje. Intenta de nuevo.');
+      else alert('No se pudo enviar el mensaje. Intenta de nuevo.');
+    } finally {
+      boton.disabled = false;
+    }
+  });
 }

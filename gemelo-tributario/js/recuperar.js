@@ -155,10 +155,7 @@ formCodigo.addEventListener('submit', async (e) => {
     setFieldError(codigoInput, document.getElementById('codigo-error'), 'Ingresa el código de 6 dígitos.');
     valido = false;
   }
-  if (!nuevaContrasena || nuevaContrasena.length < 8) {
-    setFieldError(nuevaContrasenaInput, document.getElementById('nueva-contrasena-error'), 'Debe tener al menos 8 caracteres.');
-    valido = false;
-  }
+  
   if (confirmarContrasena !== nuevaContrasena) {
     setFieldError(confirmarContrasenaInput, document.getElementById('confirmar-contrasena-error'), 'Las contraseñas no coinciden.');
     valido = false;
